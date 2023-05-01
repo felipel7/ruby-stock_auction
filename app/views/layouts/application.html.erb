@@ -1,18 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>AuctionApp</title>
+    <title>Leilão do Galpão</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
   </head>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <menu>
+          <li><%= link_to 'Página Inicial', root_path %></li>
+          <li>link 2</li>
+        </menu>
+        <div>
+          <% if current_user %>
+            <p><%= current_user.email %> <%= "[#{current_user.role}]" %></p>
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= button_to 'Entrar', new_user_session_path %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
