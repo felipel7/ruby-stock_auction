@@ -1,0 +1,34 @@
+@import 'config';
+@import 'mixins';
+
+.header,
+.header__nav,
+.header .menu,
+.nav__auth {
+  @include center-flex;
+}
+
+.header {
+  height: 8rem;
+  box-shadow: 0 2px 5px rgba($grey-500, 0.3);
+  padding-inline: 2rem;
+
+  .header__nav {
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .menu {
+    gap: 1rem;
+  }
+
+  .btn {
+    border: 1px solid $grey-900;
+    margin-inline-start: 1rem;
+
+    &:hover {
+      background: $grey-900;
+      color: $white;
+    }
+  }
+}

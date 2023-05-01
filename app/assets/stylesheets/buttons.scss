@@ -1,0 +1,12 @@
+/* Buttons */
+
+.btn {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
