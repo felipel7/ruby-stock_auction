@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
       )
       admin_user = User.create!(
         email: "felipe@leilaodogalpao.com.br",
-        cpf: "11111111112",
+        cpf: "00000000000",
         password: "123124",
       )
 
@@ -19,8 +19,67 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#data" do
-    it "email deve ser único" do
+  describe "#valid?" do
+    context "CPF" do
+      it "deve ser único" do
+        first_user = User.create!(
+          email: "felipe@gmail.com",
+          cpf: "11111111111",
+          password: "123123",
+        )
+        second_user = User.new(
+          email: "felipe2@gmail.com",
+          cpf: "11111111111",
+          password: "123124",
+        )
+
+        second_user.valid?
+        error = second_user.errors.full_messages
+
+        expect(error).to include "CPF já está em uso"
+      end
+
+      it "deve ter 11 dígitos" do
+        user = User.new(
+          email: "felipe@gmail.com",
+          cpf: "111",
+          password: "123123",
+        )
+
+        user.valid?
+        error = user.errors.full_messages
+
+        expect(error).to include "CPF não possui o tamanho esperado (11 caracteres)"
+      end
+
+      it "deve ser válido com dados corretos" do
+        user = User.new(
+          email: "felipe@gmail.com",
+          cpf: "04536086048",
+          password: "123123",
+        )
+
+        result = user.valid?
+
+        expect(result).to be true
+      end
+
+      it "deve ser inválido com dados incorretos" do
+        user = User.new(
+          email: "felipe@gmail.com",
+          cpf: "12345678901",
+          password: "123123",
+        )
+
+        result = user.valid?
+        error = user.errors.full_messages
+
+        expect(error).to include "CPF inválido"
+        expect(result).to be false
+      end
+    end
+
+    it "E-mail deve ser único" do
       first_user = User.create!(
         email: "felipe@gmail.com",
         cpf: "11111111111",
@@ -36,37 +95,6 @@ RSpec.describe User, type: :model do
       error = second_user.errors.full_messages
 
       expect(error).to include "E-mail já está em uso"
-    end
-
-    it "cpf deve ser único" do
-      first_user = User.create!(
-        email: "felipe@gmail.com",
-        cpf: "11111111111",
-        password: "123123",
-      )
-      second_user = User.new(
-        email: "felipe2@gmail.com",
-        cpf: "11111111111",
-        password: "123124",
-      )
-
-      second_user.valid?
-      error = second_user.errors.full_messages
-
-      expect(error).to include "Cpf já está em uso"
-    end
-
-    it "cpf deve ter 11 dígitos" do
-      user = User.new(
-        email: "felipe@gmail.com",
-        cpf: "111",
-        password: "123123",
-      )
-
-      user.valid?
-      error = user.errors.full_messages
-
-      expect(error).to include "Cpf não possui o tamanho esperado (11 caracteres)"
     end
   end
 end
