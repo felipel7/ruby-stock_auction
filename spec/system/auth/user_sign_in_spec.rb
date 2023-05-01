@@ -15,7 +15,7 @@ describe "Usuário regular faz login" do
       click_on "Entrar"
     end
     fill_in "E-mail", with: "felipe@gmail.com"
-    fill_in "Password", with: "123123"
+    fill_in "Senha", with: "123123"
     within ".actions" do
       click_on "Entrar"
     end
@@ -23,6 +23,56 @@ describe "Usuário regular faz login" do
     # Assert
     within "header nav" do
       expect(page).to have_content "felipe@gmail.com"
+      expect(page).to have_button "Sair"
+      expect(page).not_to have_button "Entrar"
+    end
+    expect(page).to have_content "Login efetuado com sucesso"
+  end
+
+  it "com informações inválidas" do
+    # Act
+    visit root_path
+    within "header nav" do
+      click_on "Entrar"
+    end
+    fill_in "E-mail", with: "felipe@gmail.com"
+    fill_in "Senha", with: "123123"
+    within ".actions" do
+      click_on "Entrar"
+    end
+
+    # Assert
+    within "header nav" do
+      expect(page).to have_button "Entrar"
+      expect(page).not_to have_button "Sair"
+    end
+    expect(page).to have_content "E-mail ou senha inválidos"
+  end
+end
+
+describe "Admin faz login" do
+  it "com informações válidas" do
+    # Arrange
+    user = User.create!(
+      email: "felipe@leilaodogalpao.com.br",
+      cpf: "11111111111",
+      password: "123123",
+    )
+
+    # Act
+    visit root_path
+    within "header nav" do
+      click_on "Entrar"
+    end
+    fill_in "E-mail", with: "felipe@leilaodogalpao.com.br"
+    fill_in "Senha", with: "123123"
+    within ".actions" do
+      click_on "Entrar"
+    end
+
+    # Assert
+    within "header nav" do
+      expect(page).to have_content "felipe@leilaodogalpao.com.br [admin]"
       expect(page).to have_button "Sair"
       expect(page).not_to have_button "Entrar"
     end
