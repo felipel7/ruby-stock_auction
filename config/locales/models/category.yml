@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      category: 'Categoria'
+    attributes:
+      category:
+        name: 'Nome'
