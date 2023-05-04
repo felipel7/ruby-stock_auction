@@ -1,0 +1,20 @@
+<section>
+  <h2>Produto</h2>
+
+  <dl>
+    <div>
+      <dt>Nome:</dt>
+      <dd><%= @product_model.name %></dd>
+    </div>
+
+    <div>
+      <dt>Dimensões:</dt>
+      <dd><%= @product_model.width %>cm x <%= @product_model.height %>cm x <%= @product_model.depth %>cm</dd>
+    </div>
+
+    <div>
+      <dt>Categoria:</dt>
+      <dd><%= @product_model.category.name %></dd>
+    </div>
+  </dl>
+</section>

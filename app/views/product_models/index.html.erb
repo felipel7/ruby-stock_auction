@@ -1,0 +1,35 @@
+<section>
+  <h2>Lista de produtos cadastrados</h2>
+
+  <%= link_to "Cadastrar Novo Produto", new_product_model_path, class:"btn btn-primary" %>
+
+  <div class="search__container">
+    <%= form_with(url: "#", html: { class: "form" }) do |form| %>
+      <%= form.label :code  %>
+      <%= form.text_field :code %>
+
+      <%= form.submit "Buscar", class: "btn btn-outline" %>
+    <% end %>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Vendido</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1321KJASH</td>
+        <td>Monitor LG</td>
+        <td>Sim</td>
+        <td>Eletrônicos</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-secondary btn-full">Carregar mais resultados</button>
+</section>

@@ -1,0 +1,38 @@
+<%= form_with(model: @product_model, class: "form") do |form|  %>
+  <p>
+    <%= form.label :name  %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :height  %>
+    <%= form.number_field :height, placeholder: "em centímetros" %>
+  </p>
+
+  <p>
+    <%= form.label :width  %>
+    <%= form.number_field :width, placeholder: "em centímetros" %>
+  </p>
+
+  <p>
+    <%= form.label :depth  %>
+    <%= form.number_field :depth, placeholder: "em centímetros" %>
+  </p>
+
+  <p>
+    <%= form.label :weight  %>
+    <%= form.number_field :weight, placeholder: "em gramas" %>
+  </p>
+
+  <p>
+    <%= form.label :category_id  %>
+    <%= form.collection_select :category_id, @categories, :id, :name %>
+  </p>
+
+  <p>
+    <%= form.label :description  %>
+    <%= form.text_area :description %>
+  </p>
+
+  <%= form.submit %>
+<% end %>

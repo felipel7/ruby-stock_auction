@@ -1,0 +1,11 @@
+<section>
+  <h2>Criar um novo Item</h2>
+
+  <ul>
+    <% @product_model.errors.full_messages.each do |msg| %>
+      <li><%= msg  %></li>
+    <% end %>
+  </ul>
+
+  <%= render 'form' %>
+</section>
