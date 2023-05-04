@@ -1,5 +1,9 @@
 class ProductModelsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_admin_role
+
   def index
+    @product_models = ProductModel.all
   end
 
   def new
@@ -25,6 +29,13 @@ class ProductModelsController < ApplicationController
   end
 
   private
+
+  def check_admin_role
+    unless current_user && current_user.is_admin?
+      flash[:alert] = "Acesso negado. Você precisa ser um administrador para acessar esta página."
+      redirect_to root_path
+    end
+  end
 
   def product_models_params
     params.require(:product_model).permit(

@@ -12,10 +12,14 @@ class User < ApplicationRecord
 
   validates :cpf, presence: true, uniqueness: true, length: { is: 11 }
 
+  def is_admin?
+    self.role == "admin"
+  end
+
   private
 
   def set_default_role
-    self.role ||= :user
+    self.role = :user
   end
 
   def check_email_domain

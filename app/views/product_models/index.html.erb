@@ -8,7 +8,7 @@
       <%= form.label :code  %>
       <%= form.text_field :code %>
 
-      <%= form.submit "Buscar", class: "btn btn-outline" %>
+      <!-- <%= form.submit "Buscar", class: "btn btn-outline" %> -->
     <% end %>
   </div>
 
@@ -22,12 +22,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1321KJASH</td>
-        <td>Monitor LG</td>
-        <td>Sim</td>
-        <td>Eletrônicos</td>
-      </tr>
+      <% @product_models.each do |product| %>
+        <tr>
+          <td><%= product.sku %></td>
+          <td><%= product.name %></td>
+          <td>Sim</td>
+          <td><%= product.category.name %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 

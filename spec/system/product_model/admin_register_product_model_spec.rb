@@ -17,7 +17,7 @@ describe "Admin registra um novo produto" do
     fill_in "Profundidade", with: 10
     fill_in "Peso", with: 15
     select "Eletrônicos", from: "Categoria"
-    click_on "Criar Produto"
+    click_on "Cadastrar Novo Produto"
 
     expect(page).to have_content "O produto foi cadastrado com sucesso"
     expect(page).to have_content "Monitor LG"
