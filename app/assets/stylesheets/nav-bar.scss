@@ -16,19 +16,10 @@
   .header__nav {
     flex: 1;
     justify-content: space-between;
+    max-width: 1024px;
   }
 
   .menu {
     gap: 1rem;
-  }
-
-  .btn {
-    border: 1px solid $grey-900;
-    margin-inline-start: 1rem;
-
-    &:hover {
-      background: $grey-900;
-      color: $white;
-    }
   }
 }

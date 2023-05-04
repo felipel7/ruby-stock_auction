@@ -1,0 +1,29 @@
+@import 'mixins';
+
+.form {
+  padding-block: 1rem;
+
+  p {
+    @include center-flex(column);
+    align-items: flex-start;
+  }
+
+  input,
+  select {
+    margin-bottom: 1rem;
+    padding: 0.65rem;
+  }
+
+  textarea {
+    padding: 1rem;
+    max-width: 100%;
+    max-height: 20rem;
+  }
+
+  .check-box__container {
+    @include center-flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}

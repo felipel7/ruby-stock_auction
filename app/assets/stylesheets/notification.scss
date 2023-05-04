@@ -1,0 +1,21 @@
+@import 'config';
+
+.flash__container {
+  font-weight: bold;
+  color: $white;
+  margin-bottom: 1rem;
+
+  & > p {
+    max-width: $page-width;
+    padding-block: 1rem;
+    margin-inline: auto;
+  }
+
+  &.notice {
+    background: $green-500;
+  }
+
+  &.alert {
+    background-color: $red-500;
+  }
+}

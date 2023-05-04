@@ -1,6 +1,9 @@
+@import 'config';
+
 /* Buttons */
 
-.btn {
+.btn,
+.btn[type='submit'] {
   cursor: pointer;
   font-weight: bold;
   padding: 0.5rem 2rem;
@@ -8,5 +11,20 @@
 
   &:hover {
     filter: brightness(0.85);
+  }
+}
+
+.btn-primary {
+  background-color: #007bff; // TODO: escolher cores
+  color: white;
+}
+
+.btn-outline {
+  border: 1px solid $grey-900;
+  margin-inline-start: 1rem;
+
+  &:hover {
+    background: $grey-900;
+    color: $white;
   }
 }

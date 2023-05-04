@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'config';
+
+main {
+  display: grid;
+  grid-template-columns: 1fr $page-width 1fr;
+}
+
+main > * {
+  grid-column: 2;
+}
+
+section {
+  padding-block: 1rem;
+}
+
+.full-bleed {
+  grid-column: 1 / span 3;
+}

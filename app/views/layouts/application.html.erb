@@ -19,24 +19,27 @@
 
         <menu class="list menu">
           <li class="menu__item"><%= link_to 'Página Inicial', root_path %></li>
-          <li class="menu__item">link 2</li>
+          <li class="menu__item"><%= link_to 'Produtos', product_models_path %></li>
         </menu>
 
         <div class="nav__auth">
           <% if current_user %>
             <p><%= current_user.email %> <%= "[#{current_user.role}]" %></p>
-            <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn" %>
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
           <% else %>
-            <%= button_to 'Entrar', new_user_session_path, class: "btn" %>
+            <%= button_to 'Entrar', new_user_session_path, class: "btn btn-outline" %>
           <% end %>
         </div>
       </nav>
     </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <main>
+      <% flash.each do |type, msg|%>
+        <div class="flash__container <%= type %> full-bleed" >
+          <p><%= msg %></p>
+        </div>
+      <% end %>
+
       <%= yield %>
     </main>
   </body>
