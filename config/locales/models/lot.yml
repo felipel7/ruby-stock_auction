@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      lot: 'Lote'
+    attributes:
+      lot:
+        start_date: 'Data de início'
+        end_date: 'Data de termino'
+        min_value: 'Valor mínimo'
+        min_allowed_difference: 'Valor mínimo da diferença'
