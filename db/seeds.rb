@@ -8,7 +8,17 @@
 
 # Categories
 
+first_category = Category.create!(name: "Eletrônicos")
 Category.create!(name: "Vestuário")
-Category.create!(name: "Eletrônicos")
 Category.create!(name: "Livros")
 Category.create!(name: "Esportes")
+
+ProductModel.create!(
+  name: "Monitor LG",
+  description: "Monitor de 24 polegadas da marca LG...",
+  weight: 1500,
+  width: 100,
+  height: 80,
+  depth: 15,
+  category: first_category,
+)
