@@ -1,0 +1,35 @@
+@import 'config';
+
+/* Typography */
+html {
+  font-size: 62.5%; // 1 rem => 10px
+}
+
+body,
+input,
+label,
+button,
+textarea,
+select {
+  font-size: 1.65rem; // 16.5px
+  font-family: sans-serif; // TODO: Escolher uma fonte
+}
+
+/* Layout */
+main {
+  display: grid;
+  grid-template-columns: minmax(20rem, 1fr) minmax(20rem, $page-width) 1fr;
+}
+
+main > * {
+  grid-column: 2;
+}
+
+.full-bleed {
+  grid-column: 1 / span 3;
+}
+
+/* Global */
+section {
+  padding-block: 2rem;
+}

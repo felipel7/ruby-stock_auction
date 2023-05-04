@@ -1,0 +1,32 @@
+@import 'config';
+
+.dashboard {
+  background-color: $sidebar-bg-color;
+  border-right: 1px solid $grey-900;
+  height: calc(100vh - 8rem);
+  left: 0;
+  min-width: 20rem;
+  position: absolute;
+
+  li {
+    width: 100%;
+    border-bottom: 1px solid rgba($grey-900, 0.5);
+
+    &:hover {
+      background-color: $sidebar-hover-bg-color;
+    }
+
+    a {
+      all: unset;
+      color: $white;
+      cursor: pointer;
+      display: block;
+      font-weight: bold;
+      padding: 2.5rem;
+
+      &:active {
+        color: $primary-color;
+      }
+    }
+  }
+}

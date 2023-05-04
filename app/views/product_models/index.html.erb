@@ -1,37 +1,40 @@
-<section>
-  <h2>Lista de produtos cadastrados</h2>
-
+<section class="section section__product-model--index">
   <%= link_to "Cadastrar Novo Produto", new_product_model_path, class:"btn btn-primary" %>
+  <h2>Lista de produtos cadastrados</h2>
 
   <div class="search__container">
     <%= form_with(url: "#", html: { class: "form" }) do |form| %>
       <%= form.label :code  %>
       <%= form.text_field :code %>
 
-      <!-- <%= form.submit "Buscar", class: "btn btn-outline" %> -->
+      <%= form.check_box :status %>
+      <%= form.label :status, "Disponível"  %>
+
+      <%= form.submit "Buscar", class: "btn btn-outline" %>
     <% end %>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nome</th>
-        <th>Vendido</th>
-        <th>Categoria</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @product_models.each do |product| %>
+  <div class="table__container">
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td><%= product.sku %></td>
-          <td><%= product.name %></td>
-          <td>Sim</td>
-          <td><%= product.category.name %></td>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Status</th>
+          <th>Categoria</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <button class="btn btn-secondary btn-full">Carregar mais resultados</button>
+      </thead>
+      <tbody>
+        <% @product_models.each do |product| %>
+          <tr>
+            <td><%= product.sku %></td>
+            <td><%= product.name %></td>
+            <td>Disponível</td>
+            <td><%= product.category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-secondary btn-large">Carregar mais resultados</button>
 </section>

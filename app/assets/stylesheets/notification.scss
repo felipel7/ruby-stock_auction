@@ -1,14 +1,13 @@
 @import 'config';
 
 .flash__container {
-  font-weight: bold;
   color: $white;
-  margin-bottom: 1rem;
+  font-weight: bold;
 
   & > p {
+    margin-inline: auto;
     max-width: $page-width;
     padding-block: 1rem;
-    margin-inline: auto;
   }
 
   &.notice {

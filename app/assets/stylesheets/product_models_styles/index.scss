@@ -1,0 +1,45 @@
+@import '../mixins';
+
+// View Index
+.section__product-model--index {
+  display: flex;
+  flex-wrap: wrap;
+
+  h2 {
+    flex-basis: 100%;
+  }
+
+  .btn-primary {
+    margin-left: auto;
+    max-width: 20rem;
+    padding-block: 1rem;
+  }
+
+  .btn-secondary {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+}
+
+// View Show
+.section__product-model--show {
+  display: flex;
+  flex-wrap: wrap;
+
+  h2 {
+    flex-basis: 100%;
+  }
+
+  dl div {
+    display: flex;
+    gap: 1rem;
+
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      font-weight: normal;
+    }
+  }
+}
