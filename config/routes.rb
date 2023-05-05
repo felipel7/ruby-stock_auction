@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :product_models, only: [:index, :show, :new, :create]
+  resources :lots, only: [:index, :show, :new, :create]
 end

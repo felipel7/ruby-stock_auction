@@ -9,7 +9,12 @@
 
     <div>
       <dt>Dimensões:</dt>
-      <dd><%= @product_model.width %>cm x <%= @product_model.height %>cm x <%= @product_model.depth %>cm</dd>
+      <dd><%= @product_model.full_dimensions_desc %></dd>
+    </div>
+
+    <div>
+      <dt>Peso:</dt>
+      <dd><%= @product_model.weight %>g</dd>
     </div>
 
     <div>

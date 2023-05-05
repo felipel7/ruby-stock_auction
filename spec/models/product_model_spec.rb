@@ -27,7 +27,7 @@ RSpec.describe ProductModel, type: :model do
       expect(error).not_to include "Categoria é obrigatório(a)"
     end
 
-    it "deve passar caso os campos obrigatórios sejam passados" do
+    it "deve passar caso os campos sejam passados corretamente" do
       category = Category.create!(name: "Eletrônicos")
 
       product_model = ProductModel.new(

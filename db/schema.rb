@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_152336) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_05_041950) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_152336) do
     t.string "batch_code"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "min_value"
     t.integer "min_allowed_difference"
     t.datetime "created_at", null: false

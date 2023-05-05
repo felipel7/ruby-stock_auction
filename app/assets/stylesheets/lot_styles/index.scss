@@ -1,0 +1,13 @@
+.section__product-model--show {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  h2 {
+    flex-basis: 100%;
+  }
+
+  a.btn.btn-primary {
+    order: -1;
+  }
+}

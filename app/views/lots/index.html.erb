@@ -1,0 +1,32 @@
+<section class="section section__product-model--show">
+  <h2>Lotes</h2>
+
+  <% if current_user && current_user.is_admin? %>
+    <%= link_to "Cadastrar Novo Lote", new_lot_path, class:"btn btn-primary" %>
+    <% @lots.each do |lot| %>
+      <article>
+        <header>
+          <h3>Lorem, ipsum.</h3>
+          Lorem ipsum dolor sit. Aspernatur, facilis?
+        </header>
+
+        <div>
+          Lorem ipsum dolor sit elit. Eveniet, asperiores.
+        </div>
+      </article>
+    <% end %>
+  <% else %>
+    <% @lots_approved.each do |lot| %>
+      <article>
+        <header>
+          <h3>Lorem, ipsum.</h3>
+          Lorem ipsum dolor sit. Aspernatur, facilis?
+        </header>
+
+        <div>
+          Lorem ipsum dolor sit elit. Eveniet, asperiores.
+        </div>
+      </article>
+    <% end %>
+  <% end %>
+</section>

@@ -3,11 +3,17 @@ class Lot < ApplicationRecord
   # TODO: has many bids
   # TODO: has many lots products
 
-  before_validation :generate_code
+  enum status: { pending: 0, approved: 5, sold: 10 }, _default: :pending
+
+  before_validation :generate_code, on: :create
   validates :batch_code, :start_date, :end_date, :min_value, :min_allowed_difference, presence: true
   validates :min_value, :min_allowed_difference, numericality: { greater_than: 0 }
-  validates :start_date, comparison: { greater_than: Time.now }
-  validates :end_date, comparison: { greater_than: :start_date }
+
+  validates :start_date, comparison: { greater_than: Time.now,
+                                       message: "deve ser posterior à hora atual" }
+
+  validates :end_date, comparison: { greater_than: :start_date,
+                                     message: "deve ser posterior à data de início" }
 
   private
 

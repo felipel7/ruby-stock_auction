@@ -1,0 +1,11 @@
+<section>
+  <h2>Criar um novo Lote</h2>
+
+  <ul>
+    <% @lot.errors.full_messages.each do |msg| %>
+      <li><%= msg  %></li>
+    <% end %>
+  </ul>
+
+  <%= render 'form' %>
+</section>

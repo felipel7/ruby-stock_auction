@@ -5,6 +5,11 @@ pt-BR:
     attributes:
       lot:
         start_date: 'Data de início'
-        end_date: 'Data de termino'
+        end_date: 'Data de encerramento'
         min_value: 'Valor mínimo'
         min_allowed_difference: 'Valor mínimo da diferença'
+        status:
+          pending: 'Pendente'
+          approved: 'Aprovado'
+          sold: 'Vendido'
+          inactive: 'Inativo'

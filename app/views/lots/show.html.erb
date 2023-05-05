@@ -1,0 +1,25 @@
+<section>
+  <h2>Lote: <%= @lot.batch_code %></h2>
+
+  <dl>
+    <div>
+      <dt>Data de início:</dt>
+      <dd><%= l(@lot.start_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Data de encerramento:</dt>
+      <dd><%= l(@lot.end_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Status:</dt>
+      <dd><%= @lot.status %></dd>
+    </div>
+
+    <div>
+      <dt>Criador por:</dt>
+      <dd>admin name...</dd>
+    </div>
+  </dl>
+</section>

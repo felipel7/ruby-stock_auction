@@ -7,4 +7,8 @@ class ProductModel < ApplicationRecord
   def generate_code
     self.sku = SecureRandom.alphanumeric(10).upcase
   end
+
+  def full_dimensions_desc
+    "#{self.width}cm x #{self.height}cm x #{self.depth}cm"
+  end
 end

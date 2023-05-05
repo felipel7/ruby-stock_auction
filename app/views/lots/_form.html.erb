@@ -1,0 +1,26 @@
+<%= form_with(model: @lot, class: "form form__lot") do |form|  %>
+
+  <% Time.use_zone("America/Sao_Paulo") do %>
+    <p>
+      <%= form.label :start_date  %>
+      <%= form.datetime_select :start_date %>
+    </p>
+
+    <p>
+      <%= form.label :end_date  %>
+      <%= form.datetime_select :end_date %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= form.label :min_value  %>
+    <%= form.number_field :min_value, placeholder: "em reais" %>
+  </p>
+
+  <p>
+    <%= form.label :min_allowed_difference  %>
+    <%= form.number_field :min_allowed_difference, placeholder: "em reais" %>
+  </p>
+
+  <%= form.submit "Cadastrar Novo Lote", class: "btn btn-primary" %>
+<% end %>
