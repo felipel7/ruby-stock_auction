@@ -1,7 +1,7 @@
 <section>
   <h2>Lote: <%= @lot.batch_code %></h2>
 
-  <dl>
+  <dl class="description__list">
     <div>
       <dt>Data de início:</dt>
       <dd><%= l(@lot.start_date, format: :long) %></dd>
@@ -14,12 +14,12 @@
 
     <div>
       <dt>Status:</dt>
-      <dd><%= @lot.status %></dd>
+      <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
     </div>
 
     <div>
       <dt>Criador por:</dt>
-      <dd>admin name...</dd>
+      <dd><%= @lot.user.name %></dd>
     </div>
   </dl>
 </section>

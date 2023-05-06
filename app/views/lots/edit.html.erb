@@ -1,0 +1,37 @@
+<section>
+  <h2>Editar Lote</h2>
+
+  <dl class="description__list">
+    <div>
+      <dt>Data de início:</dt>
+      <dd><%= l(@lot.start_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Data de encerramento:</dt>
+      <dd><%= l(@lot.end_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Status:</dt>
+      <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
+    </div>
+
+    <div>
+      <dt>Criador por:</dt>
+      <dd><%= @lot.user.name %> - <%= @lot.user.email %></dd>
+    </div>
+  </dl>
+
+  <div>
+    <%= form_with(url: approved_lot_path(@lot), method: :post) do |form|  %>
+      <%= form.submit "Aprovar Lote", class: "btn btn-accent" %>
+    <% end %>
+
+    <% if @lot.status != "approved" %>
+      <%= form_with(url: inactive_lot_path(@lot), method: :post) do |form|  %>
+        <%= form.submit "Desativar Lote", class: "btn btn-alert" %>
+      <% end %>
+    <% end %>
+  </div>
+</section>

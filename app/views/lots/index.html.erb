@@ -1,4 +1,4 @@
-<section class="section section__product-model--show">
+<section class="section section__lot--index">
   <h2>Lotes</h2>
 
   <% if current_user && current_user.is_admin? %>
@@ -13,6 +13,8 @@
         <div>
           Lorem ipsum dolor sit elit. Eveniet, asperiores.
         </div>
+
+        <%= link_to "Editar Lote", edit_lot_path(lot)  %>
       </article>
     <% end %>
   <% else %>

@@ -29,17 +29,4 @@
   h2 {
     flex-basis: 100%;
   }
-
-  dl div {
-    display: flex;
-    gap: 1rem;
-
-    dt {
-      font-weight: bold;
-    }
-
-    dd {
-      font-weight: normal;
-    }
-  }
 }
