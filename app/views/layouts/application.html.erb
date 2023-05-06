@@ -19,11 +19,13 @@
 
         <menu class="list menu">
           <li class="menu__item"><%= link_to 'Página Inicial', root_path %></li>
+          <li class="menu__item"><%= link_to 'Lotes', lots_path %></li>
+          <li class="menu__item">Meus Lances</li>
         </menu>
 
         <div class="nav__auth">
           <% if current_user %>
-            <p><%= current_user.email %> <%= "[#{current_user.role}]" %></p>
+            <p><%= current_user.name %> <%= "[#{current_user.role}]" %></p>
             <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
           <% else %>
             <%= button_to 'Entrar', new_user_session_path, class: "btn btn-outline" %>

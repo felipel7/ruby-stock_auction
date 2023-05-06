@@ -3,6 +3,7 @@ class ProductModel < ApplicationRecord
 
   before_validation :generate_code, on: :create
   validates :name, :description, :weight, :width, :height, :depth, presence: true
+  validates :weight, :width, :height, :depth, numericality: { greater_than: 0 }
 
   def generate_code
     self.sku = SecureRandom.alphanumeric(10).upcase
