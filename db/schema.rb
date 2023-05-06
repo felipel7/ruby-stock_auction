@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_041950) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_06_063728) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -26,6 +26,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_041950) do
     t.integer "min_allowed_difference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "register_by_id"
+    t.integer "approved_by_id"
+    t.index ["approved_by_id"], name: "index_lots_on_approved_by_id"
+    t.index ["register_by_id"], name: "index_lots_on_register_by_id"
   end
 
   create_table "product_models", force: :cascade do |t|
@@ -56,5 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_041950) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lots", "users", column: "approved_by_id"
+  add_foreign_key "lots", "users", column: "register_by_id"
   add_foreign_key "product_models", "categories"
 end
