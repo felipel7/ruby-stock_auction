@@ -1,0 +1,12 @@
+<section>
+  <h2>Editar categoria</h2>
+
+  <%= form_with(model: @category, class: "form") do |form| %>
+    <p>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </p>
+
+    <%= form.submit "Editar Categoria", class: "btn btn-primary" %>
+  <% end %>
+</section>
