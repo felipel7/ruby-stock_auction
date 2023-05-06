@@ -5,7 +5,7 @@ describe "Usuário regular faz login" do
     # Arrange
     user = User.create!(
       email: "felipe@gmail.com",
-      cpf: "11111111111",
+      cpf: "64063418057",
       password: "123123",
     )
 
@@ -22,7 +22,7 @@ describe "Usuário regular faz login" do
 
     # Assert
     within "header nav" do
-      expect(page).to have_content "felipe@gmail.com"
+      expect(page).to have_content "Felipe"
       expect(page).to have_button "Sair"
       expect(page).not_to have_button "Entrar"
     end
@@ -55,7 +55,7 @@ describe "Admin faz login" do
     # Arrange
     user = User.create!(
       email: "felipe@leilaodogalpao.com.br",
-      cpf: "11111111111",
+      cpf: "64063418057",
       password: "123123",
     )
 
@@ -72,7 +72,7 @@ describe "Admin faz login" do
 
     # Assert
     within "header nav" do
-      expect(page).to have_content "felipe@leilaodogalpao.com.br [admin]"
+      expect(page).to have_content "Felipe [admin]"
       expect(page).to have_button "Sair"
       expect(page).not_to have_button "Entrar"
     end

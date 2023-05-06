@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Lot, type: :model do
   describe "#valid?" do
-    it "deve falhar se os campos forem passados incorretamente" do
+    it "não é possível criar um novo lote com os dados incorretos" do
       lot = Lot.new(
         start_date: nil,
         end_date: nil,
@@ -19,12 +19,15 @@ RSpec.describe Lot, type: :model do
       expect(error).to include "Valor mínimo da diferença deve ser maior que 0"
     end
 
-    it "deve passar caso os campos sejam passados corretamente" do
+    it "o lote é criado com sucesso quando preenchido corretamente" do
+      admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
+
       lot = Lot.new(
         start_date: 1.minute.from_now,
         end_date: 1.hour.from_now,
         min_value: 150,
         min_allowed_difference: 10,
+        register_by_id: admin.id,
       )
 
       lot.valid?
@@ -54,12 +57,14 @@ RSpec.describe Lot, type: :model do
     end
 
     it "data de encerramento não pode ser anterior a data de início" do
+      admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       start_date_time = 1.hour.from_now
       lot = Lot.new(
         start_date: start_date_time,
         end_date: 1.minute.from_now,
         min_value: 150,
         min_allowed_difference: 10,
+        register_by_id: admin.id,
       )
 
       lot.valid?
@@ -69,18 +74,40 @@ RSpec.describe Lot, type: :model do
       expect(error).to include "Data de encerramento deve ser posterior à data de início"
     end
 
-    it "deve gerar um código automático de 3 letras e 6 números" do
+    it "o código gerado automaticamente deve ter 3 letras e 6 números" do
+      admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       lot = Lot.new(
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
         min_allowed_difference: 50,
+        register_by_id: admin.id,
       )
 
       lot.valid?
 
       expect(lot.batch_code[0..2]).to match(/[A-Z]{3}/)
       expect(lot.batch_code[3..-1]).to match(/[0-9]{6}/)
+    end
+
+    it "o código do lote deve ser único" do
+      admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
+      first_lot = Lot.create!(
+        start_date: 1.minute.from_now,
+        end_date: 2.hours.from_now,
+        min_value: 1000,
+        min_allowed_difference: 50,
+        register_by_id: admin.id,
+      )
+      second_lot = Lot.create!(
+        start_date: 1.minute.from_now,
+        end_date: 2.hours.from_now,
+        min_value: 1000,
+        min_allowed_difference: 50,
+        register_by_id: admin.id,
+      )
+
+      expect(first_lot.batch_code).not_to eq second_lot.batch_code
     end
   end
 end

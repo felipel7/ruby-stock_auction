@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Admin registra um novo produto" do
   it "e envia com sucesso" do
-    admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "00000000000", password: "123123")
+    admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
     Category.create!(name: "Vestuário")
     Category.create!(name: "Eletrônicos")
 
@@ -15,7 +15,7 @@ describe "Admin registra um novo produto" do
     fill_in "Altura", with: 80
     fill_in "Largura", with: 100
     fill_in "Profundidade", with: 10
-    fill_in "Peso", with: 15
+    fill_in "Peso", with: 1500
     select "Eletrônicos", from: "Categoria"
     click_on "Cadastrar Novo Produto"
 
@@ -25,15 +25,30 @@ describe "Admin registra um novo produto" do
     expect(page).to have_content "Categoria: Eletrônicos"
     expect(page).not_to have_content "Vestuário"
   end
-end
 
-describe "Usuário tenta registrar um novo produto" do
-  it "e não tem acesso" do
-    user = User.create!(email: "felipe@gmail.com.br", cpf: "81140180037", password: "123123")
+  it "e falha quando tem informações incorretas" do
+    admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+    Category.create!(name: "Vestuário")
+    Category.create!(name: "Eletrônicos")
 
-    login_as(user)
-    visit product_models_path
+    login_as(admin)
+    visit root_path
+    click_on "Produtos"
+    click_on "Cadastrar Novo Produto"
+    fill_in "Nome", with: "Monitor LG"
+    fill_in "Descrição", with: ""
+    fill_in "Altura", with: -80
+    fill_in "Largura", with: 0
+    fill_in "Profundidade", with: -10
+    fill_in "Peso", with: -15
+    select "Eletrônicos", from: "Categoria"
+    click_on "Cadastrar Novo Produto"
 
-    expect(page).to have_content "Acesso negado. Você precisa ser um administrador para acessar esta página"
+    expect(page).to have_content "Não foi possível cadastrar o produto"
+    expect(page).to have_content "Descrição não pode ficar em branco"
+    expect(page).to have_content "Peso deve ser maior que 0"
+    expect(page).to have_content "Largura deve ser maior que 0"
+    expect(page).to have_content "Altura deve ser maior que 0"
+    expect(page).to have_content "Profundidade deve ser maior que 0"
   end
 end
