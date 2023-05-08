@@ -1,0 +1,32 @@
+<% lots.each do |lot| %>
+  <article class="card">
+    <header>
+      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
+      <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt='teste'>
+    </header>
+
+    <dl class="card__body">
+      <div>
+        <dt>Tempo restante:</dt>
+        <dd>
+          <time class="countdown"><%= lot.end_date %></time>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Status:</dt>
+        <dd class="<%= lot.status %>">
+          <%= t("activerecord.attributes.lot.status.#{lot.status}") %>
+        </dd>
+      </div>
+
+      <% if admin %>
+        <p class="card__controls">
+          <%= link_to "Ver", lot_path(lot)  %>
+          <%= link_to "Editar", edit_lot_path(lot)  %>
+          <%= link_to "Gerenciar", manage_lot_path(lot)  %>
+        </p>
+      <% end %>
+    </dl>
+  </article>
+<% end %>

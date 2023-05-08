@@ -11,15 +11,5 @@
       <dt>Data de encerramento:</dt>
       <dd><%= l(@lot.end_date, format: :long) %></dd>
     </div>
-
-    <div>
-      <dt>Status:</dt>
-      <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
-    </div>
-
-    <div>
-      <dt>Criador por:</dt>
-      <dd><%= @lot.user.name %></dd>
-    </div>
   </dl>
 </section>

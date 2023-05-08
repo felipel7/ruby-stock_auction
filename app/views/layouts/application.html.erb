@@ -13,14 +13,14 @@
       <nav class="header__nav">
         <h1>
           <%= link_to root_path do %>
-            Leilão do Galpão
+            Leilão do<br/>
+             Galpão
           <% end %>
         </h1>
 
         <menu class="list menu">
-          <li class="menu__item"><%= link_to 'Página Inicial', root_path %></li>
           <li class="menu__item"><%= link_to 'Lotes', lots_path %></li>
-          <li class="menu__item">Meus Lances</li>
+          <li class="menu__item"><%= link_to 'Meus Lances', lots_path %></li>
         </menu>
 
         <div class="nav__auth">
