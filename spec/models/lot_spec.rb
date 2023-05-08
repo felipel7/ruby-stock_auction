@@ -15,8 +15,8 @@ RSpec.describe Lot, type: :model do
 
       expect(error).to include "Data de início não pode ficar em branco"
       expect(error).to include "Data de encerramento não pode ficar em branco"
-      expect(error).to include "Valor mínimo deve ser maior que 0"
-      expect(error).to include "Valor mínimo da diferença deve ser maior que 0"
+      expect(error).to include "Valor mínimo inicial deve ser maior que 0"
+      expect(error).to include "Valor mínimo do lance deve ser maior que 0"
     end
 
     it "o lote é criado com sucesso quando preenchido corretamente" do
