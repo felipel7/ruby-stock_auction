@@ -1,0 +1,34 @@
+<section>
+  <h2>Lote: <%= @lot.batch_code %></h2>
+
+  <%= render 'shared/errors', { obj: @lot } %>
+
+  <dl class="description__list">
+    <div>
+      <dt>Data de início:</dt>
+      <dd><%= l(@lot.start_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Data de encerramento:</dt>
+      <dd><%= l(@lot.end_date, format: :long) %></dd>
+    </div>
+
+    <div>
+      <dt>Status:</dt>
+      <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
+    </div>
+
+    <div>
+      <dt>Criado por:</dt>
+      <dd><%= @lot.user.name %></dd>
+    </div>
+
+    <div>
+      <dt>Aprovado por:</dt>
+      <dd>
+        <%= @lot.approved_by&.name || "Esse lote ainda não foi aprovado" %>
+      </dd>
+    </div>
+  </dl>
+</section>

@@ -1,0 +1,6 @@
+<section class="section section__lot--index">
+  <h2>Lotes</h2>
+
+  <%= link_to "Cadastrar Novo Lote", new_lot_path, class:"btn btn-primary" %>
+  <%= render  partial: 'card', locals: { admin: true, lots: @lots } %>
+</section>
