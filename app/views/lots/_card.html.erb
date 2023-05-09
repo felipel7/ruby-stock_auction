@@ -22,9 +22,13 @@
 
       <% if admin %>
         <p class="card__controls">
-          <%= link_to "Ver", lot_path(lot)  %>
-          <%= link_to "Editar", edit_lot_path(lot)  %>
-          <%= link_to "Gerenciar", manage_lot_path(lot)  %>
+          <%= link_to "Ver", lot_path(lot), class: "card__controls-btn"  %>
+
+          <% if lot.status == "pending" %>
+            <%= link_to "Editar", edit_lot_path(lot), class: "card__controls-btn"  %>
+            <%= link_to "Gerenciar", manage_lot_path(lot), class: "card__controls-btn"  %>
+          <% end %>
+
         </p>
       <% end %>
     </dl>

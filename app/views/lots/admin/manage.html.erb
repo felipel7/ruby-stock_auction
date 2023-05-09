@@ -3,11 +3,9 @@
 
   <p>Atualizar informações do lote:</p>
 
-  <div class="btn__controls">
-    <%= button_to "Aprovar Lote", approved_lot_path, method: :post  %>
-  </div>
+  <%= button_to "Aprovar Lote", approved_lot_path, method: :post, class: "btn btn-success"  %>
 
-  <div class="container manage--products">
+  <div class="manage--products">
     <h4>Produtos contidos neste lote:</h4>
 
     <% @products.each do |product| %>
@@ -29,15 +27,14 @@
           </div>
 
           <div class="card__controls">
-            <%= link_to "Ver", lot_path(@lot), class: "card__controls-btn"  %>
-            <%= button_to "Remover", remove_product_lot_path(product_model_id: product.id), method: :post, class: "card__controls-btn"  %>
+            <%= button_to "Remover", remove_product_lot_path(product_model_id: product.id), method: :post, class: "card__controls-btn" %>
           </div>
         </dl>
       </article>
     <% end %>
   </div>
 
-  <div class="container manage--products">
+  <div>
     <h4>Produtos disponíveis para adicionar ao lote:</h4>
 
     <div class="table__container">
@@ -56,11 +53,11 @@
               <td><%= product.sku %></td>
               <td><%= product.name %></td>
               <td><%= product.category.name %></td>
-              <td>
-                <p class="card__controls">
-                  <%= link_to "Ver", product_model_path(product)  %>
-                  <%= button_to "Adicionar", add_product_lot_path(product_model_id: product.id), method: :post  %>
-                </p>
+              <td class="table__controls">
+                <div>
+                  <%= link_to "Ver", product_model_path(product), class: "btn btn-secondary"  %>
+                  <%= button_to "Adicionar", add_product_lot_path(product_model_id: product.id), method: :post, class: "btn btn-primary"  %>
+                </div>
               </td>
             </tr>
           <% end %>

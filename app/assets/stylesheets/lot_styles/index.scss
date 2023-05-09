@@ -1,3 +1,5 @@
+@import '../config';
+
 // View index
 .section__lot--index {
   display: flex;
@@ -10,6 +12,7 @@
 
   a.btn.btn-primary {
     order: -1;
+    padding-block: 0.75rem;
   }
 }
 
@@ -25,5 +28,27 @@
 
   a.btn.btn-primary {
     order: -1;
+  }
+}
+
+// Admin views
+.manage--products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+
+  h4 {
+    flex-basis: 100%;
+  }
+
+  .card__controls-btn[type='submit'] {
+    color: $red-700;
+    border: 1px solid $red-700 !important;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: $red-500;
+    }
   }
 }

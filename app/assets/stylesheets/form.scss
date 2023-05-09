@@ -1,3 +1,4 @@
+@import 'config';
 @import 'mixins';
 
 .form {
@@ -8,17 +9,20 @@
     align-items: flex-start;
   }
 
-  input,
+  input:not(.btn),
   select {
-    margin-bottom: 1rem;
-    padding: 0.65rem;
+    margin-block: 0.5rem 1rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid $table-border-color;
+    border-radius: 0.5rem;
+    outline: none;
   }
 
   textarea {
-    max-height: 20rem;
-    max-width: 100%;
     min-height: 5rem;
+    max-height: 20rem;
     min-width: 10rem;
+    max-width: 100%;
     padding: 1rem;
   }
 

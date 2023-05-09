@@ -1,4 +1,35 @@
 <section class="section section__lot--index">
-  <h2>Lotes</h2>
-  <%= render  'card', { admin: false, lots: @lots.approved } %>
+  <h2>Lotes em andamento:</h2>
+  <%= render  'card', { admin: false, lots: @lots.lots_in_progress } %>
 </section>
+
+<section class="section section__lot--index">
+  <h2>Lotes futuros:</h2>
+  <%= render  'card', { admin: false, lots: @lots.lots_in_future } %>
+</section>
+
+<script>
+  const spans = document.querySelectorAll('.countdown')
+
+  function updateCountdown(endTime, span) {
+    const now = new Date();
+    const timeLeft = Math.max(0, endTime - now);
+    const hours = Math.floor(timeLeft / (60 * 60 * 1000));
+    const minutes = Math.floor((timeLeft / (60 * 1000)) % 60);
+    const seconds = Math.floor((timeLeft / 1000) % 60);
+    const timeString = hours + ':' + minutes + ':' + seconds;
+    span.innerHTML = timeString;
+  }
+
+  function startCountdown(endTime, span) {
+    updateCountdown(endTime, span);
+    setInterval(() => {
+      updateCountdown(endTime, span);
+    }, 1000);
+  }
+
+  spans.forEach(span => {
+    const endTime = new Date(span.innerHTML);
+    startCountdown(endTime, span);
+  })
+</script>

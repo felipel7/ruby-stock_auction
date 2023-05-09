@@ -33,10 +33,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
-      flash[:notice] = "Categoria foi editada com sucesso"
+      flash[:notice] = "Categoria foi atualizada com sucesso."
       redirect_to categories_path
     else
-      flash.now[:alert] = "Não foi possível editar a categoria"
+      flash.now[:alert] = "Não foi possível editar a categoria."
       render :edit
     end
   end

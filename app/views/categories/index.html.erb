@@ -1,13 +1,21 @@
-<section>
+<section class="section section__categories--index">
   <%= link_to "Cadastrar Nova Categoria", new_category_path, class:"btn btn-primary" %>
   <h2>Lista de Categorias</h2>
 
-  <% @categories.each do |category| %>
-    <ul class="list">
-      <li>
-        <%= category.name %>
-        <%= link_to "Editar", edit_category_path(category)  %>
-      </li>
-    </ul>
-  <% end %>
+  <table class="table table-bordered">
+    <thead>
+      <th>Nome da Categoria</th>
+      <th>Total de Produtos</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.product_models.count %></td>
+          <td><%= link_to "Editar", edit_category_path(category)  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </section>

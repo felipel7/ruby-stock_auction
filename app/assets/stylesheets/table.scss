@@ -20,6 +20,15 @@
     border-top: 1px solid $table-border-color;
     padding: 1rem;
   }
+
+  .table__controls {
+    width: 1%;
+    white-space: nowrap;
+
+    > div {
+      display: inline-flex;
+    }
+  }
 }
 
 .table-bordered {

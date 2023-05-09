@@ -3,7 +3,7 @@
 .dashboard {
   background-color: $sidebar-bg-color;
   border-right: 1px solid $grey-900;
-  height: calc(100vh - 8rem);
+  top: 8rem;
   left: 0;
   min-width: 20rem;
   position: absolute;

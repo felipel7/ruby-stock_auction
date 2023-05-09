@@ -4,7 +4,8 @@ class Lot < ApplicationRecord
   has_many :product_models
 
   enum status: { pending: 0, approved: 5, finished: 10 }, _default: :pending
-  scope :approved, -> { where(status: :approved) }
+  scope :lots_in_progress, -> { where(status: :approved).where("start_date < ?", Time.zone.now) }
+  scope :lots_in_future, -> { where(status: :approved).where("start_date > ?", Time.zone.now) }
 
   before_validation :generate_code, on: :create
   validates :batch_code, uniqueness: true

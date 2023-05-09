@@ -1,4 +1,5 @@
 @import 'config';
+@import 'mixins';
 
 /* Buttons */
 .btn,
@@ -7,6 +8,7 @@
   font-weight: bold;
   padding: 0.5rem 2rem;
   transition: filter 0.2s ease;
+  color: $white;
 
   &:hover {
     filter: brightness(0.85);
@@ -15,20 +17,26 @@
 
 .btn-primary {
   background-color: $primary-color;
-  color: $white;
 }
 
 .btn-secondary {
   background-color: $secondary-color;
-  color: $white;
 }
 
 .btn-accent {
   background-color: $accent-color;
-  color: $white;
 }
 
-.btn-outline {
+.btn-success {
+  background-color: $green-700;
+}
+
+.btn-danger {
+  background-color: $red-700;
+}
+
+.btn-outline,
+.btn-outline[type='submit'] {
   border: 1px solid $primary-color;
   color: $primary-color;
   margin-inline-start: 1rem;
