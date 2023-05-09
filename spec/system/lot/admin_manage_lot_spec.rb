@@ -168,7 +168,7 @@ describe "Admin acessa um lote" do
     within "aside" do
       click_on "Lotes"
     end
-    click_on "Gerenciar"
+    visit manage_lot_path(lot.id)
     click_on "Aprovar Lote"
 
     expect(page).to have_content "O lote já foi aprovado"

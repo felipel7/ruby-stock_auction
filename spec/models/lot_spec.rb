@@ -109,5 +109,40 @@ RSpec.describe Lot, type: :model do
 
       expect(first_lot.batch_code).not_to eq second_lot.batch_code
     end
+
+    it "o produto não pode estar em dois lotes ao mesmo tempo" do
+      admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
+
+      first_lot = Lot.create!(
+        start_date: 1.minute.from_now,
+        end_date: 2.hours.from_now,
+        min_value: 1000,
+        min_allowed_difference: 50,
+        register_by_id: admin.id,
+      )
+      second_lot = Lot.create!(
+        start_date: 1.minute.from_now,
+        end_date: 2.hours.from_now,
+        min_value: 1000,
+        min_allowed_difference: 50,
+        register_by_id: admin.id,
+      )
+      category = Category.create!(name: "Eletrônicos")
+      product = ProductModel.create!(
+        name: "Smartphone Samsung",
+        description: "Smartphone Samsung Galaxy S21 com tela de 6.2 polegadas...",
+        weight: 200,
+        width: 7.1,
+        height: 15.1,
+        depth: 8,
+        category: category,
+      )
+
+      second_lot.product_models << product
+      first_lot.product_models << product
+
+      expect(second_lot.product_models.present?).to be true
+      expect(first_lot.product_models.present?).to be false
+    end
   end
 end
