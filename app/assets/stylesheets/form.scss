@@ -49,3 +49,17 @@
     flex-basis: 100%;
   }
 }
+
+.bid__form {
+  @include center-flex;
+  flex-wrap: wrap;
+
+  input {
+    flex: 1;
+  }
+
+  input[type='submit'] {
+    flex-basis: 100%;
+    margin: 0;
+  }
+}

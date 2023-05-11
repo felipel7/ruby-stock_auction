@@ -30,6 +30,9 @@ class LotsController < ApplicationController
   end
 
   def show
+    total_bids_amount = @lot.bids.sum(:amount) || 0
+    @current_bid = total_bids_amount.to_i + @lot.min_value.to_i
+
     render "lots/admin/show" if current_user&.is_admin?
   end
 

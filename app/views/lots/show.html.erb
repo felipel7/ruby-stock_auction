@@ -11,5 +11,17 @@
       <dt>Data de encerramento:</dt>
       <dd><%= l(@lot.end_date, format: :long) %></dd>
     </div>
+
+    <div>
+      <dt>Lance atual:</dt>
+      <dd><%= @current_bid %></dd>
+    </div>
+
+    <% @lot.bids.each do |bid| %>
+      <div>
+        <dt><%= bid.user.name %>:</dt>
+        <dd><%= bid.amount %></dd>
+      </div>
+    <% end %>
   </dl>
 </section>

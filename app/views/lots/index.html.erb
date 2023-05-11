@@ -1,11 +1,11 @@
 <section class="section section__lot--index">
   <h2>Lotes em andamento:</h2>
-  <%= render  'card', { admin: false, lots: @lots.lots_in_progress } %>
+  <%= render  'shared/card', { lots: @lots.lots_in_progress } %>
 </section>
 
 <section class="section section__lot--index">
   <h2>Lotes futuros:</h2>
-  <%= render  'card', { admin: false, lots: @lots.lots_in_future } %>
+  <%= render 'shared/card', { lots: @lots.lots_in_future } %>
 </section>
 
 <script>

@@ -1,0 +1,27 @@
+<% lots.each do |lot| %>
+  <article class="card">
+    <header>
+      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
+      <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt='teste'>
+    </header>
+
+    <dl class="card__body">
+      <div>
+        <dt>Tempo restante:</dt>
+        <dd>
+          <time class="countdown"><%= lot.end_date %></time>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Valor do lance atual:</dt>
+        <dd><%= lot.min_value %></dd>
+      </div>
+      <%= form_with(url: bids_path(id: lot.id), html: { class: "form bid__form"} ) do |form|  %>
+        <%= form.label :amount %>
+        <%= form.number_field :amount, min: lot.min_allowed_difference %>
+        <%= form.submit "Dar Lance" %>
+      <% end %>
+    </dl>
+  </article>
+<% end %>

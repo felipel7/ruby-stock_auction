@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :lots
+  has_many :bids
 
   enum role: { user: 0, admin: 5 }
   after_initialize :set_default_role, :if => :new_record?

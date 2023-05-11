@@ -2,9 +2,10 @@ class Lot < ApplicationRecord
   belongs_to :user, foreign_key: :register_by_id
   belongs_to :approved_by, class_name: "User", foreign_key: "approved_by_id", optional: true
   has_many :product_models
+  has_many :bids
 
   enum status: { pending: 0, approved: 5, finished: 10 }, _default: :pending
-  scope :lots_in_progress, -> { where(status: :approved).where("start_date < ?", Time.zone.now) }
+  scope :lots_in_progress, -> { where("start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now) }
   scope :lots_in_future, -> { where(status: :approved).where("start_date > ?", Time.zone.now) }
 
   before_validation :generate_code, on: :create
