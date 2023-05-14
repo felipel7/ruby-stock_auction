@@ -12,7 +12,10 @@ pt-BR:
         approved_by: 'Administrador que aprovou'
         product_model_id: 'Produto'
         product_models: 'Produto'
+        photo: 'Foto'
         status:
           pending: 'Pendente'
           approved: 'Aprovado'
+          ended: 'Encerrado'
           finished: 'Finalizado'
+          canceled: 'Cancelado'
