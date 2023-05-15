@@ -4,6 +4,10 @@
   color: $white;
   font-weight: bold;
 
+  @media screen and(max-width: 1080px) {
+    padding-inline: 2rem;
+  }
+
   & > p {
     margin-inline: auto;
     max-width: $page-width;

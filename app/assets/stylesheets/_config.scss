@@ -1,6 +1,10 @@
 /* Variables */
 $page-width: 1024px;
 
+/* 
+ * Schema 
+ */
+
 /* Colors */
 $white: #ffffff;
 $grey-500: #848484;
@@ -9,9 +13,10 @@ $green-500: #2ec52e;
 $green-700: #28a745;
 $red-500: #fa583c;
 $red-700: #f94424;
+$yellow-500: #ebc02c;
 
-/* Schema */
-$primary-color: #3498db;
+// $primary-color: #3498db;
+$primary-color: #2c73eb;
 $secondary-color: #95a5a6;
 $accent-color: #e67e22;
 $text-color: #212529;
@@ -27,3 +32,10 @@ $table-border-color: #dee2e6;
 /* Border */
 $border: 1px solid rgba(0, 0, 0, 0.125);
 $border-color: #6c757d;
+
+/* Form */
+$input-background: #f3f3f4;
+$input-color: #0d0c22;
+
+/* Buttons */
+$btn-dark-color: #2c3e50;

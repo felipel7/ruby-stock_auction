@@ -1,14 +1,11 @@
 @import '../config';
+@import '../mixins';
 
 // View index
 .section__lot--index {
-  display: flex;
-  flex-wrap: wrap;
+  @include section-wrap;
+  justify-content: flex-start;
   gap: 1.5rem;
-
-  h2 {
-    flex-basis: 100%;
-  }
 
   a.btn.btn-primary {
     order: -1;
@@ -18,28 +15,135 @@
 
 // View show
 .section__lot--show {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  @include section-wrap;
+  column-gap: 5rem;
 
   h2 {
-    flex-basis: 100%;
+    padding-block-end: 1rem;
   }
 
-  a.btn.btn-primary {
-    order: -1;
+  img {
+    width: 40rem;
+    object-fit: cover;
+  }
+
+  > div {
+    flex-basis: 50%;
+  }
+
+  dl div {
+    margin-block: 1.5rem;
+  }
+
+  .initial-value {
+    border-bottom: $border;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding-bottom: 2rem;
+
+    .value {
+      color: lighten($text-color, 20);
+    }
+  }
+
+  .end-time {
+    color: lighten($text-color, 25);
+    font-size: 1.4rem;
+
+    dt {
+      font-weight: normal;
+    }
+  }
+
+  .current-value {
+    font-size: 2rem;
+  }
+
+  .bid {
+    @include center-flex;
+    justify-content: flex-start;
+
+    .bid__form {
+      flex-wrap: nowrap;
+      padding: 0;
+
+      span {
+        color: lighten($text-color, 25);
+        margin-left: 0.5rem;
+      }
+
+      button,
+      input {
+        cursor: pointer;
+        padding: 0.75rem;
+        border: none;
+        font-size: 2rem;
+        font-weight: bold;
+
+        &[type='submit'] {
+          background-color: $btn-dark-color;
+          border-radius: 0.5rem;
+          color: $white;
+          margin-left: 1rem;
+        }
+      }
+
+      #bid-input {
+        border: none;
+        margin: 0;
+        width: 10rem;
+        font-weight: normal;
+      }
+
+      .bid__controls {
+        border: $border;
+        border-radius: 0.5rem;
+        gap: 0;
+        align-items: baseline;
+      }
+    }
   }
 }
 
-// Admin views
-.manage--products {
+.countdown__container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
+  border-radius: 0.5rem;
 
-  h4 {
-    flex-basis: 100%;
+  > div {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.countdown__section {
+  font-weight: bold;
+  color: lighten($text-color, 15);
+
+  .label {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: lighter;
+  }
+}
+
+.countdown__item {
+  @include center-flex(column);
+  padding-inline: 1rem;
+}
+
+.admin .filter--controls {
+  flex-basis: 100%;
+}
+
+// Admin View manage/show
+.section__lot--manage {
+  @include section-wrap;
+}
+
+// Admin-lot View index
+.manage--products {
+  p {
+    padding-block: 1rem;
   }
 
   .card__controls-btn[type='submit'] {

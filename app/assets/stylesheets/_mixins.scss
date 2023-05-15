@@ -4,3 +4,12 @@
   justify-content: center;
   flex-direction: $direction;
 }
+
+@mixin section-wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+  h2 {
+    flex-basis: 100%;
+  }
+}

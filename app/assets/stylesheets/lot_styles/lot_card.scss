@@ -1,0 +1,172 @@
+@import '../config';
+@import '../mixins';
+
+.section.admin .card {
+  width: 32.5rem;
+  overflow: hidden;
+  border: $border;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  position: relative;
+
+  header {
+    color: $white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+    a {
+      color: $yellow-500;
+    }
+
+    h3 {
+      position: absolute;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.1);
+      left: 0;
+      top: 0;
+      right: 0;
+      transition: background-color 0.25s ease;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  img {
+    object-fit: cover;
+    height: 27rem;
+    border-bottom: $border;
+  }
+
+  .card__body {
+    padding: 2rem;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      padding-block: 0.35rem;
+
+      time {
+        flex-basis: 100%;
+      }
+
+      dt {
+        font-weight: bold;
+      }
+
+      dd.pending {
+        color: $accent-color;
+      }
+      dd.approved {
+        color: $green-500;
+      }
+      dd.ended {
+        color: $red-700;
+      }
+    }
+
+    .countdown__section {
+      position: absolute;
+      background-color: $white;
+      border-radius: 0.5rem;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      top: 20rem;
+      width: calc(100% - 4rem);
+
+      .countdown__item {
+        padding: 0 auto;
+
+        & ~ .countdown__item {
+          border-left: $border;
+        }
+
+        .label {
+          font-size: 1.1rem;
+        }
+      }
+
+      .countdown__label {
+        background-color: rgba($white, 0.65);
+        border-radius: 0.2rem;
+        display: block;
+        font-size: 1.4rem;
+        position: absolute;
+        top: -2rem;
+        font-weight: normal;
+        letter-spacing: 1.1px;
+        padding: 0.5rem;
+
+        &.ended {
+          background-color: #ffc107;
+          font-weight: 500;
+          top: 5rem;
+        }
+      }
+    }
+  }
+
+  .card__controls {
+    @include center-flex;
+    margin-top: 1.5rem;
+    justify-content: space-between;
+
+    .card__controls-btn {
+      all: unset;
+      color: $border-color;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 1.8rem;
+      padding: 0.4rem 0.8rem;
+      border: $border;
+      border-color: $border-color;
+      transition: background-color 0.2s ease;
+
+      &:first-child {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+
+        &:not(:only-child) {
+          border-right: 0;
+        }
+      }
+
+      &:last-child {
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+
+        &:not(:only-child) {
+          border-left: 0;
+        }
+      }
+
+      &:hover {
+        background-color: $border-color;
+        color: $white;
+      }
+    }
+
+    button,
+    a {
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      color: $white;
+      background-color: $primary-color;
+      transition: all 0.3s ease;
+    }
+
+    .btn-bid {
+      background-color: $btn-dark-color;
+      color: #fff;
+    }
+  }
+}
+
+.card__admin.card {
+  width: 27.5rem;
+
+  img {
+    width: 100%;
+    height: 18rem;
+  }
+}
