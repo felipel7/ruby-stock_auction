@@ -1,4 +1,4 @@
-<section>
+<section class="section section__login">
   <h2>Criar uma conta</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form "}) do |f| %>
@@ -27,9 +27,9 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </p>
 
-    <p>
+    <div class="actions">
       <%= f.submit "Criar conta", class: "btn btn-primary" %>
-    </p>
+    </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
