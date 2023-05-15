@@ -1,6 +1,18 @@
-<section class="section section__lot--index">
+<section class="section admin section__lot--index">
   <h2>Lotes</h2>
 
   <%= link_to "Cadastrar Novo Lote", new_lot_path, class:"btn btn-primary" %>
+
+  <div class="filter--controls"> Filtrar:
+    <%= link_to "Todos", lots_path(status: nil), class: "btn btn-secondary" %>
+    <%= link_to "Pendentes", lots_path(status: "pending"), class: "btn btn-secondary" %>
+    <%= link_to "Aprovados", lots_path(status: "approved"), class: "btn btn-secondary" %>
+    <%= link_to "Encerrados", lots_path(status: "ended"), class: "btn btn-secondary" %>
+  </div>
+
   <%= render  partial: 'card', locals: { admin: true, lots: @lots } %>
+
+  <% if @lots.empty? %>
+    <p>Crie um novo <%= link_to "clicando aqui", new_lot_path %>.</p>
+  <% end %>
 </section>

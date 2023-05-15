@@ -1,5 +1,21 @@
-<section>
-  <h2>Meus Lances</h2>
+<section class="section section__bid--index">
+  <h2>Meus Lances Vencedores</h2>
 
   <%= render 'shared/card', { lots: @lots } %>
+
+  <% if @lots.empty? %>
+    <p>Você ainda não venceu nenhum lance.</p>
+  <% end %>
+</section>
+
+<section class="section section__bid--index">
+  <h2>Meu Histórico de Lances</h2>
+
+  <%= render 'shared/card', { lots: @lots } %>
+
+  <% if @lots.empty? %>
+    <p>Você ainda não deu nenhum lance.
+      <%= link_to "Clique aqui", product_models_path %> para pesquisar produtos.
+    </p>
+  <% end %>
 </section>

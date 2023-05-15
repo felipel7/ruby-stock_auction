@@ -2,26 +2,42 @@
   <article class="card">
     <header>
       <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
-      <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt='teste'>
+
+      <% if lot.photo.attached? %>
+        <%= image_tag lot.photo %>
+      <% else  %>
+        <%= image_tag("default.png") %>
+      <% end %>
     </header>
 
-    <dl class="card__body">
-      <div>
-        <dt>Tempo restante:</dt>
-        <dd>
-          <time class="countdown"><%= lot.end_date %></time>
-        </dd>
+    <div class="card__body">
+      <div class="countdown__section">
+        <% if Time.zone.now > lot.start_date && Time.zone.now < lot.end_date %>
+          <%= format_time_left(lot.end_date - Time.zone.now, false).html_safe %>
+          <p class="countdown__label">Tempo restante:</p>
+        <% elsif Time.zone.now < lot.start_date %>
+          <%= format_time_left(lot.start_date - Time.zone.now, false).html_safe %>
+          <p class="countdown__label">Falta para iniciar:</p>
+        <% else %>
+          <p class="countdown__label ended">Lances encerrados!</p>
+        <% end %>
       </div>
 
       <div>
-        <dt>Valor do lance atual:</dt>
-        <dd><%= lot.min_value %></dd>
+        <strong>Lance Inicial:&nbsp;</strong>
+        <p> <%= number_to_currency(lot.min_value, locale: :'pt-BR') %></p>
       </div>
-      <%= form_with(url: bids_path(id: lot.id), html: { class: "form bid__form"} ) do |form|  %>
-        <%= form.label :amount %>
-        <%= form.number_field :amount, min: lot.min_allowed_difference %>
-        <%= form.submit "Dar Lance" %>
-      <% end %>
-    </dl>
+
+      <div class="card__controls">
+        <%= link_to(lot_path(lot), class: "btn btn-bid" ) do %>
+          <i class="fa fa-gavel" style="margin-left: 5px;"></i>
+          <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
+        <% end %>
+        <button class="btn">
+          <!--<i class="fa fa-heart-o"></i>-->
+          <i class="fa fa-heart"></i>
+        </button>
+      </div>
+    </div>
   </article>
 <% end %>

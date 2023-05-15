@@ -1,0 +1,30 @@
+<section class="section section__product-model--index">
+  <%= link_to "Cadastrar Novo Produto", new_product_model_path, class:"btn btn-primary" %>
+  <h2>Lista de produtos cadastrados</h2>
+
+  <div class="table__container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Status</th>
+          <th>Lote</th>
+          <th>Categoria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_models.each do |product| %>
+          <tr>
+            <td><%= link_to product.sku, product_model_path(product) %></td>
+            <td><%= product.name %></td>
+            <td><%= product.lot&.batch_code ? "Não Disponível" : "Disponível" %></td>
+            <td><%= product.lot&.batch_code %></td>
+            <td><%= product.category.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-secondary btn-large">Carregar mais resultados</button>
+</section>

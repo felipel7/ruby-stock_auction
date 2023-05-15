@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Leilão do Galpão</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag 'main' %>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Unbounded:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
     <header class="header">
       <nav class="header__nav">
-        <h1>
+
+        <h1 class="nav__brand">
           <%= link_to root_path do %>
             Leilão do<br/>
             Galpão
@@ -20,12 +25,21 @@
 
         <menu class="list menu">
           <li class="menu__item"><%= link_to 'Lotes', lots_path %></li>
-          <li class="menu__item"><%= link_to 'Meus Lances', bids_path %></li>
+          <li class="menu__item"><%= link_to 'Produtos', product_models_path %></li>
+          <li class="menu__item"><%= link_to 'Lances', bids_path %></li>
+          <% if current_user && current_user.is_admin? %>
+            <li class="menu__item admin">
+              Admin
+              <%= render "shared/admin-menu" %>
+            </li>
+          <% else %>
+            <li class="menu__item"><%= link_to 'Favoritos', product_models_path %></li>
+          <% end %>
         </menu>
 
         <div class="nav__auth">
           <% if current_user %>
-            <p><%= current_user.name %> <%= "[#{current_user.role}]" %></p>
+            <p><%= current_user.name %></p>
             <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
           <% else %>
             <%= button_to 'Entrar', new_user_session_path, class: "btn btn-outline" %>
@@ -39,10 +53,6 @@
         <div class="flash__container <%= type %> full-bleed" >
           <p><%= msg %></p>
         </div>
-      <% end %>
-
-      <% if current_user && current_user.is_admin? %>
-        <%= render "shared/dashboard" %>
       <% end %>
 
       <%= yield %>

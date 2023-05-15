@@ -1,0 +1,5 @@
+<% if obj.photo.attached? %>
+  <%= image_tag obj.photo, alt: obj.name %>
+<% else  %>
+  <%= image_tag("default.png") %>
+<% end %>

@@ -1,0 +1,21 @@
+<section>
+  <h2>Lista de Lances dos Usuários</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Lote</th>
+        <th>Usuário</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_bids.each do |bid| %>
+        <tr>
+          <td><%= bid.lot.batch_code %></td>
+          <td><%= bid.user.email %></td>
+          <td><%= bid.amount %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

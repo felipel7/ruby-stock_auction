@@ -22,5 +22,10 @@
     <%= form.number_field :min_allowed_difference, placeholder: "em reais" %>
   </p>
 
+  <p>
+    <%= form.label :photo  %>
+    <%= form.file_field :photo %>
+  </p>
+
   <%= form.submit class: "btn btn-primary" %>
 <% end %>

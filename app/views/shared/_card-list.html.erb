@@ -1,0 +1,22 @@
+<% products.each do |product| %>
+  <article class="card">
+    <h3><%= product.name %> - <%= product.sku %></h3>
+    <header>
+    </header>
+    <figure>
+      <% if product.photo.attached? %>
+        <%= image_tag product.photo %>
+      <% else  %>
+        <%= image_tag("default.png") %>
+      <% end %>
+    </figure>
+    <div class="card__body">
+      <ul class="list">
+        <li><strong>Peso:</strong> <%= product.weight %>g</li>
+        <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>
+        <li><strong>Código SKU:</strong> <%= product.sku %></li>
+        <li><strong>Categoria:</strong> <%= product.category.name %></li>
+      </ul>
+    </div>
+  </article>
+<% end %>

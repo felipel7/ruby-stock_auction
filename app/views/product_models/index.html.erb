@@ -1,42 +1,5 @@
 <section class="section section__product-model--index">
-  <%= link_to "Cadastrar Novo Produto", new_product_model_path, class:"btn btn-primary" %>
-  <h2>Lista de produtos cadastrados</h2>
+  <h2>Lista de Produtos</h2>
 
-  <div class="search__container">
-    <%= form_with(url: "#", html: { class: "form" }) do |form| %>
-      <%= form.label :code  %>
-      <%= form.text_field :code %>
-
-      <%= form.check_box :status %>
-      <%= form.label :status, "Disponível"  %>
-
-      <%= form.submit "Buscar", class: "btn btn-outline" %>
-    <% end %>
-  </div>
-
-  <div class="table__container">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Nome</th>
-          <th>Status</th>
-          <th>Lote</th>
-          <th>Categoria</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @product_models.each do |product| %>
-          <tr>
-            <td><%= product.sku %></td>
-            <td><%= product.name %></td>
-            <td><%= product.lot&.batch_code ? "Não Disponível" : "Disponível" %></td>
-            <td><%= product.lot&.batch_code %></td>
-            <td><%= product.category.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <button class="btn btn-secondary btn-large">Carregar mais resultados</button>
+  <%= render partial: 'shared/card-list', locals: { products: @product_models }  %>
 </section>

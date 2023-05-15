@@ -1,36 +1,40 @@
 <% lots.each do |lot| %>
-  <article class="card">
+  <article class="card card__admin">
     <header>
       <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
-      <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt='teste'>
+      <% if lot.photo.attached? %>
+        <%= image_tag lot.photo %>
+      <% else  %>
+        <%= image_tag("default.png") %>
+      <% end %>
     </header>
 
-    <dl class="card__body">
+    <div class="card__body">
       <div>
-        <dt>Tempo restante:</dt>
-        <dd>
-          <time class="countdown"><%= lot.end_date %></time>
-        </dd>
+        <strong>Lance Inicial:&nbsp;</strong>
+        <p> <%= number_to_currency(lot.min_value, locale: :'pt-BR') %></p>
       </div>
 
       <div>
-        <dt>Status:</dt>
+        <dt>Status:&nbsp;</dt>
         <dd class="<%= lot.status %>">
           <%= t("activerecord.attributes.lot.status.#{lot.status}") %>
         </dd>
       </div>
 
-      <% if admin %>
-        <p class="card__controls">
-          <%= link_to "Ver", lot_path(lot), class: "card__controls-btn"  %>
+      <div class="card__controls">
+        <% if admin %>
+          <p class="card__controls">
+            <%= link_to "Ver", lot_path(lot), class: "card__controls-btn"  %>
 
-          <% if lot.status == "pending" %>
-            <%= link_to "Editar", edit_lot_path(lot), class: "card__controls-btn"  %>
-            <%= link_to "Gerenciar", manage_lot_path(lot), class: "card__controls-btn"  %>
-          <% end %>
+            <% if lot.status == "pending" %>
+              <%= link_to "Editar", edit_lot_path(lot), class: "card__controls-btn"  %>
+              <%= link_to "Gerenciar", manage_lot_path(lot), class: "card__controls-btn"  %>
+            <% end %>
 
-        </p>
-      <% end %>
-    </dl>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </article>
 <% end %>

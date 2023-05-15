@@ -1,27 +1,99 @@
-<section>
+<section class="section section__lot--show">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
-  <dl class="description__list">
-    <div>
-      <dt>Data de início:</dt>
-      <dd><%= l(@lot.start_date, format: :long) %></dd>
-    </div>
+  <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt=''>
 
-    <div>
-      <dt>Data de encerramento:</dt>
-      <dd><%= l(@lot.end_date, format: :long) %></dd>
-    </div>
+  <div>
+    <p class="initial-value">
+      Preço Inicial: 
+      <span class="value"><%= number_to_currency(@lot.min_value, locale: :'pt-BR') %></span>
+    </p>
 
-    <div>
-      <dt>Lance atual:</dt>
-      <dd><%= @current_bid %></dd>
-    </div>
-
-    <% @lot.bids.each do |bid| %>
+    <dl class="description__list">
       <div>
-        <dt><%= bid.user.name %>:</dt>
-        <dd><%= bid.amount %></dd>
+        <dt>Total:</dt>
+        <dd><%= pluralize(@lot.product_models.count, "produto", "produtos") %></dd>
       </div>
-    <% end %>
-  </dl>
+
+      <div class="countdown__container">
+        <dt><%= @lot_ended ? "Encerrado" : "Tempo Restante" %>:</dt>
+        <dd><%= distance_of_time_in_words(Time.zone.now, @lot.end_date) %></dd>
+
+        <div class="countdown__section">
+          <%= format_time_left(@time_left).html_safe unless @lot_ended %>
+        </div>
+      </div>
+
+      <div class="end-time">
+        <dt>Data de encerramento:</dt>
+        <dd><%= l(@lot.end_date, format: :long) %></dd>
+      </div>
+
+      <div class="current-value">
+        <dt>Lance atual:</dt>
+        <dd><%= number_to_currency(@current_bid, locale: :'pt-BR') %></dd>
+      </div>
+
+      <% if @lot_ended %>
+        <div class="bid">
+          <h4>Vencedor:</h4>
+          <p>
+            <%= @winner.name %>
+            <%= "Parabéns você venceu!" if @winner.id == current_user.id %>
+          </p>
+        </div>
+      <% else %>
+        <div class="bid">
+          <%= form_with(url: bids_path(id: @lot.id), html: { class: "form bid__form"} ) do |form|  %>
+            <div class="bid__controls">
+              <button type="button" onclick="decrement()"> - </button>
+              <span>R$</span>
+              <%= form.number_field :amount, min: @lot.min_allowed_difference, value: @lot.min_allowed_difference, id: "bid-input" %>
+              <button type="button" onclick="increment()"> + </button>
+            </div>
+            <%= form.submit "Dar Lance", disabled: @lot.end_date > Time.zone.now ? false : true %>
+          <% end %>
+        </div>
+      <% end %>
+    </dl>
+  </div>
 </section>
+
+<section class="section section__lot--show">
+  <h2>Produtos Disponíveis neste Lote:</h2>
+
+  <% @lot.product_models.each do |product_model| %>
+    <dl class="description__list">
+      <div>
+        <dt>Nome:</dt>
+        <dd><%= link_to product_model.name, product_model_path(product_model) %></dd>
+      </div>
+
+      <div>
+        <dt>Dimensões:</dt>
+        <dd><%= product_model.full_dimensions_desc %></dd>
+      </div>
+
+      <div>
+        <dt>Peso:</dt>
+        <dd><%= product_model.weight %>g</dd>
+      </div>
+
+      <div>
+        <dt>Categoria:</dt>
+        <dd><%= product_model.category.name %></dd>
+      </div>
+    </dl>
+  <% end %>
+</section>
+
+<script>
+  const input = document.getElementById("bid-input")
+
+  function increment() {
+    input.stepUp()
+  }
+  function decrement() {
+    input.stepDown()
+  }
+</script>

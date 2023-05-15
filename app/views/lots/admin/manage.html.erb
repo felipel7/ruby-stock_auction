@@ -1,12 +1,15 @@
 <section class="section section__lot--manage">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
-  <p>Atualizar informações do lote:</p>
-
-  <%= button_to "Aprovar Lote", approved_lot_path, method: :post, class: "btn btn-success"  %>
-
   <div class="manage--products">
-    <h4>Produtos contidos neste lote:</h4>
+    <h3>Produtos contidos neste lote:</h3>
+
+    <% if @products.empty? %>
+      <p>Não há produtos neste lote.</p>
+    <% end %>
+
+    <p>Atualizar informações do lote:</p>
+    <%= button_to "Aprovar Lote", approved_lot_path, method: :post, class: "btn btn-success"  %>
 
     <% @products.each do |product| %>
       <article class="card">
@@ -33,10 +36,17 @@
       </article>
     <% end %>
   </div>
+</section>
 
-  <div>
-    <h4>Produtos disponíveis para adicionar ao lote:</h4>
+<section class="section section__lot--manage">
+  <h2>Produtos disponíveis para adicionar ao lote:</h2>
 
+  <% if @available_products.empty? %>
+    <p>
+      Não há produtos disponíveis no momento, crie um novo 
+      <%= link_to "clicando aqui", new_product_model_path %>.
+    </p>
+  <% else %>
     <div class="table__container">
       <table class="table table-bordered">
         <thead>
@@ -65,5 +75,5 @@
       </table>
     </div>
     <button class="btn btn-secondary btn-large">Carregar mais resultados</button>
-  </div>
+  <% end %>
 </section>

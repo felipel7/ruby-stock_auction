@@ -1,7 +1,13 @@
-<section>
+<section class="section admin section__lot--show">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <%= render 'shared/errors', { obj: @lot } %>
+
+  <% if @lot.photo.attached? %>
+    <%= image_tag @lot.photo %>
+  <% else  %>
+    <%= image_tag("default.png") %>
+  <% end %>
 
   <dl class="description__list">
     <div>
@@ -26,9 +32,36 @@
 
     <div>
       <dt>Aprovado por:</dt>
-      <dd>
-        <%= @lot.approved_by&.name || "Esse lote ainda não foi aprovado" %>
-      </dd>
+      <dd><%= @lot.approved_by&.name || "Esse lote ainda não foi aprovado" %></dd>
     </div>
+
+    <% if @lot.status == "ended" %>
+      <div class="lot__controls">
+        <% if @lot.bids.present? %>
+          <%= button_to "Validar Resultado", ended_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
+        <% else %>
+          <%= button_to "Cancelar Lote", ended_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    <% elsif @lot.status == "finished" %>
+      <div>
+        <dt>Vencedor:</dt>
+        <dd><%= @lot.bids.last&.user&.name || "Não houve nenhum lance." %></dd>
+      </div>
+    <% end %>
+
+    <% if @lot.product_models.empty? %>
+      <%= link_to "Adicionar Produtos", manage_lot_path(@lot), class: "btn btn-primary" %>
+    <% end %>
   </dl>
+</section>
+
+<section class="section ">
+  <h2 style="flex-basis: 100%">Produtos contidos neste lote:</h2>
+
+  <% if @lot.product_models.empty? %>
+    <p>Não há produtos neste lote.</p>
+  <% end %>
+
+  <%= render partial: "shared/card-list", locals: { products: @lot.product_models } %>
 </section>
