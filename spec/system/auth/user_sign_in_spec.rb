@@ -72,10 +72,11 @@ describe "Admin faz login" do
 
     # Assert
     within "header nav" do
-      expect(page).to have_content "Felipe [admin]"
+      expect(page).to have_content "Felipe"
       expect(page).to have_button "Sair"
       expect(page).not_to have_button "Entrar"
     end
     expect(page).to have_content "Login efetuado com sucesso"
+    expect(user.role).to include "admin"
   end
 end

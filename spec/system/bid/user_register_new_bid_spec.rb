@@ -2,6 +2,16 @@ require "rails_helper"
 
 describe "Usuário da um novo lance" do
   it "e falha quando o valor do lance é mais baixo que o mínimo permitido" do
+    category = Category.create!(name: "Eletrônicos")
+    product = ProductModel.new(
+      name: "Monitor LG",
+      description: "Monitor de 24 polegadas da marca LG...",
+      weight: 15,
+      width: 100,
+      height: 80,
+      depth: 10,
+      category: category,
+    )
     first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
@@ -13,14 +23,18 @@ describe "Usuário da um novo lance" do
       register_by_id: first_admin.id,
       approved_by_id: second_admin.id,
     )
+    lot.update(status: :approved)
+    lot.product_models << product
     lot.update(start_date: 1.minute.ago)
+    lot.reload
 
     login_as(user)
     visit root_path
     within "nav" do
       click_on "Lotes"
     end
-    fill_in "Amount", with: 30
+    click_on "Dar Lance"
+    fill_in "bid-input", with: 30
     click_on "Dar Lance"
 
     expect(page).to have_content "Não foi possível dar o lance"
@@ -57,7 +71,8 @@ describe "Usuário da um novo lance" do
     within "nav" do
       click_on "Lotes"
     end
-    fill_in "Amount", with: 40
+    click_on "Dar Lance"
+    fill_in "bid-input", with: 40
     click_on "Dar Lance"
 
     expect(page).to have_content "Não foi possível dar o lance"
@@ -95,10 +110,55 @@ describe "Usuário da um novo lance" do
     within "nav" do
       click_on "Lotes"
     end
-    fill_in "Amount", with: 50
+    click_on "Dar Lance"
+    fill_in "bid-input", with: 50
     click_on "Dar Lance"
 
     expect(page).to have_content "O lance foi atualizado com sucesso."
-    expect(page).to have_content "Lance atual: 2550"
+    expect(page).to have_content "Lance atual: R$ 2.550,00"
+  end
+
+  it "e falha quando o usuário já possui o maior lance" do
+    first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+    second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
+    user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
+    category = Category.create!(name: "Eletrônicos")
+    product = ProductModel.create!(
+      name: "Monitor LG",
+      description: "Monitor de 24 polegadas da marca LG...",
+      weight: 1500,
+      width: 100,
+      height: 80,
+      depth: 15,
+      category: category,
+    )
+    lot = Lot.create!(
+      start_date: 1.second.from_now,
+      end_date: 1.day.from_now,
+      min_value: 2500,
+      min_allowed_difference: 35,
+      register_by_id: first_admin.id,
+      approved_by_id: second_admin.id,
+    )
+    lot.product_models << product
+    lot.update(status: :approved)
+    lot.update(start_date: 1.minute.ago)
+
+    login_as(user)
+    visit root_path
+    within "nav" do
+      click_on "Lotes"
+    end
+    click_on "Dar Lance"
+    fill_in "bid-input", with: 50
+    click_on "Dar Lance"
+    within "nav" do
+      click_on "Lotes"
+    end
+    click_on "Dar Lance"
+    fill_in "bid-input", with: 50
+    click_on "Dar Lance"
+
+    expect(page).to have_content "Não foi possível dar o lance. O usuário já possui o último lance."
   end
 end

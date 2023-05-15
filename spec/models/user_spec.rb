@@ -5,12 +5,12 @@ RSpec.describe User, type: :model do
     it "deve distinguir usuário comum de administrador pelo e-mail" do
       regular_user = User.create!(
         email: "felipe@gmail.com",
-        cpf: "11111111111",
+        cpf: "96585753070",
         password: "123123",
       )
       admin_user = User.create!(
         email: "felipe@leilaodogalpao.com.br",
-        cpf: "00000000000",
+        cpf: "91720461040",
         password: "123124",
       )
 
@@ -20,16 +20,34 @@ RSpec.describe User, type: :model do
   end
 
   describe "#valid?" do
+    it "E-mail deve ser único" do
+      first_user = User.create!(
+        email: "felipe@gmail.com",
+        cpf: "61902427076",
+        password: "123123",
+      )
+      second_user = User.new(
+        email: "felipe@gmail.com",
+        cpf: "08736710075",
+        password: "123124",
+      )
+
+      second_user.valid?
+      error = second_user.errors.full_messages
+
+      expect(error).to include "E-mail já está em uso"
+    end
+
     context "CPF" do
       it "deve ser único" do
         first_user = User.create!(
           email: "felipe@gmail.com",
-          cpf: "11111111111",
+          cpf: "81258837030",
           password: "123123",
         )
         second_user = User.new(
           email: "felipe2@gmail.com",
-          cpf: "11111111111",
+          cpf: "81258837030",
           password: "123124",
         )
 
@@ -77,24 +95,6 @@ RSpec.describe User, type: :model do
         expect(error).to include "CPF inválido"
         expect(result).to be false
       end
-    end
-
-    it "E-mail deve ser único" do
-      first_user = User.create!(
-        email: "felipe@gmail.com",
-        cpf: "11111111111",
-        password: "123123",
-      )
-      second_user = User.new(
-        email: "felipe@gmail.com",
-        cpf: "11111111112",
-        password: "123124",
-      )
-
-      second_user.valid?
-      error = second_user.errors.full_messages
-
-      expect(error).to include "E-mail já está em uso"
     end
   end
 end

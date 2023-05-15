@@ -26,7 +26,7 @@ describe "Admin acessa um lote" do
 
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"
@@ -63,7 +63,7 @@ describe "Admin acessa um lote" do
     lot.product_models << product
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"
@@ -86,7 +86,7 @@ describe "Admin acessa um lote" do
 
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"
@@ -123,7 +123,7 @@ describe "Admin acessa um lote" do
     lot.product_models << product
     login_as(second_admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"
@@ -160,12 +160,12 @@ describe "Admin acessa um lote" do
     lot.product_models << product
     login_as(second_admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"
     click_on "Aprovar Lote"
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     visit manage_lot_path(lot.id)
@@ -190,7 +190,7 @@ describe "Admin acessa um lote" do
 
     login_as(second_admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Gerenciar"

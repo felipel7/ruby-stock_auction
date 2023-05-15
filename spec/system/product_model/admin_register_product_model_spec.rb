@@ -8,7 +8,10 @@ describe "Admin registra um novo produto" do
 
     login_as(admin)
     visit root_path
-    click_on "Produtos"
+    find("li", text: "Admin").click
+    within ".menu__item.admin" do
+      click_on "Produtos"
+    end
     click_on "Cadastrar Novo Produto"
     fill_in "Nome", with: "Monitor LG"
     fill_in "Descrição", with: "Monitor de 24 polegadas da marca LG..."
@@ -33,7 +36,10 @@ describe "Admin registra um novo produto" do
 
     login_as(admin)
     visit root_path
-    click_on "Produtos"
+    find("li", text: "Admin").click
+    within ".menu__item.admin" do
+      click_on "Produtos"
+    end
     click_on "Cadastrar Novo Produto"
     fill_in "Nome", with: "Monitor LG"
     fill_in "Descrição", with: ""

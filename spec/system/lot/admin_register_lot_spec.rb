@@ -12,7 +12,7 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Cadastrar Novo Lote"
@@ -47,7 +47,7 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Cadastrar Novo Lote"
@@ -82,7 +82,7 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Cadastrar Novo Lote"
@@ -102,7 +102,7 @@ describe "Admin registra um novo lote" do
     fill_in "Valor mínimo inicial", with: 100
     fill_in "Valor mínimo do lance", with: 10
     click_on "Criar Lote"
-    within "aside" do
+    within ".menu .menu__item.admin" do
       click_on "Lotes"
     end
     click_on "Editar"
