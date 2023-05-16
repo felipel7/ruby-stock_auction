@@ -1,6 +1,7 @@
 class ProductModel < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :lot, optional: true
+  has_one_attached :photo
 
   before_validation :generate_code, on: :create
   validates :name, :description, :weight, :width, :height, :depth, presence: true
