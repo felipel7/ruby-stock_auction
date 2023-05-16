@@ -16,7 +16,7 @@
 // View show
 .section__lot--show {
   @include section-wrap;
-  column-gap: 5rem;
+  gap: 2rem;
 
   h2 {
     padding-block-end: 1rem;
@@ -141,18 +141,34 @@
 }
 
 // Admin-lot View index
+.section.admin.section__lot--manage {
+  article {
+    margin-block: 2rem;
+  }
+
+  .card__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
 .manage--products {
   p {
     padding-block: 1rem;
   }
 
-  .card__controls-btn[type='submit'] {
-    color: $red-700;
-    border: 1px solid $red-700 !important;
+  .card__controls-btn[type='submit'],
+  #btn-remove {
+    background-color: $white;
+    cursor: pointer;
+    border: 1px solid $red-700;
     border-radius: 0.5rem;
+    color: $red-700;
 
     &:hover {
       background-color: $red-500;
+      color: $white;
     }
   }
 }

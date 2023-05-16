@@ -3,6 +3,7 @@
 // View Index
 .section__product-model--index {
   @include section-wrap;
+  gap: 1rem;
 
   .btn-primary {
     margin-left: auto;
@@ -19,6 +20,11 @@
 // View Show
 .section__product-model--show {
   @include section-wrap;
+  column-gap: 5rem;
+
+  .description__list {
+    padding-block-start: 2rem;
+  }
 
   div {
     padding-block: 0.5rem;

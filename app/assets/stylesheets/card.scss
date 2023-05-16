@@ -22,12 +22,11 @@
   }
 
   figure {
-    border-bottom: $border;
-
     img {
       object-fit: contain;
       height: 27rem;
       width: 100%;
+      border-bottom: $border;
     }
   }
 

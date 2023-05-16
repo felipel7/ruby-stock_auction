@@ -1,7 +1,9 @@
 @import '../config';
 @import '../mixins';
 
-.section.admin .card {
+.section.admin .card,
+.section__bid--index .card,
+.section__lot--index .card {
   width: 32.5rem;
   overflow: hidden;
   border: $border;

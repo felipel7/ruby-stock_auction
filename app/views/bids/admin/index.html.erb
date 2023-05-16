@@ -6,6 +6,7 @@
         <th>Lote</th>
         <th>Usuário</th>
         <th>Valor</th>
+        <th>Horário</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
           <td><%= bid.lot.batch_code %></td>
           <td><%= bid.user.email %></td>
           <td><%= bid.amount %></td>
+          <td><%= l(bid.created_at, format: :long) %></td>
         </tr>
       <% end %>
     </tbody>

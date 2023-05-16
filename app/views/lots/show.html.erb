@@ -1,7 +1,7 @@
 <section class="section section__lot--show">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
-  <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt=''>
+  <%= render partial: "shared/image", locals: { obj: @lot } %>
 
   <div>
     <p class="initial-value">
@@ -39,7 +39,7 @@
           <h4>Vencedor:</h4>
           <p>
             <%= @winner.name %>
-            <%= "Parabéns você venceu!" if @winner.id == current_user.id %>
+            <%= "Parabéns você venceu!" if @winner.id == current_user&.id %>
           </p>
         </div>
       <% else %>
@@ -62,29 +62,7 @@
 <section class="section section__lot--show">
   <h2>Produtos Disponíveis neste Lote:</h2>
 
-  <% @lot.product_models.each do |product_model| %>
-    <dl class="description__list">
-      <div>
-        <dt>Nome:</dt>
-        <dd><%= link_to product_model.name, product_model_path(product_model) %></dd>
-      </div>
-
-      <div>
-        <dt>Dimensões:</dt>
-        <dd><%= product_model.full_dimensions_desc %></dd>
-      </div>
-
-      <div>
-        <dt>Peso:</dt>
-        <dd><%= product_model.weight %>g</dd>
-      </div>
-
-      <div>
-        <dt>Categoria:</dt>
-        <dd><%= product_model.category.name %></dd>
-      </div>
-    </dl>
-  <% end %>
+  <%= render partial: "shared/card-list", locals: { products: @lot.product_models } %>
 </section>
 
 <script>

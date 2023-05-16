@@ -1,4 +1,4 @@
-<section class="section section__lot--manage">
+<section class="section admin section__lot--manage">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <div class="manage--products">
@@ -11,69 +11,65 @@
     <p>Atualizar informações do lote:</p>
     <%= button_to "Aprovar Lote", approved_lot_path, method: :post, class: "btn btn-success"  %>
 
-    <% @products.each do |product| %>
-      <article class="card">
-        <header>
+    <div class='card__container'>
+      <% @products.each do |product| %>
+        <article class="card">
           <h3><%= product.name %> - <%= product.sku %></h3>
-          <img src='https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png' alt='teste'>
-        </header>
-
-        <dl class="card__body">
-          <div>
-            <dt>Descrição:</dt>
-            <dd><%= product.description %></dd>
+          <header>
+          </header>
+          <figure>
+            <%= render partial: "shared/image", locals: { obj:product } %>
+          </figure>
+          <div class="card__body">
+            <ul class="list">
+              <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>
+              <li><strong>Peso:</strong> <%= product.weight %>g</li>
+              <li><strong>Categoria:</strong> <%= product.category.name %></li>
+            </ul>
+            <div class="card__controls">
+              <%= button_to "Remover", remove_product_lot_path(product_model_id: product.id), method: :post, id: "btn-remove" %>
+            </div>
           </div>
-
-          <div>
-            <dt>Dimensões:</dt>
-            <dd><%= product.full_dimensions_desc %></dd>
-          </div>
-
-          <div class="card__controls">
-            <%= button_to "Remover", remove_product_lot_path(product_model_id: product.id), method: :post, class: "card__controls-btn" %>
-          </div>
-        </dl>
-      </article>
-    <% end %>
-  </div>
-</section>
-
-<section class="section section__lot--manage">
-  <h2>Produtos disponíveis para adicionar ao lote:</h2>
-
-  <% if @available_products.empty? %>
-    <p>
-      Não há produtos disponíveis no momento, crie um novo 
-      <%= link_to "clicando aqui", new_product_model_path %>.
-    </p>
-  <% else %>
-    <div class="table__container">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @available_products.each do |product| %>
-            <tr>
-              <td><%= product.sku %></td>
-              <td><%= product.name %></td>
-              <td><%= product.category.name %></td>
-              <td class="table__controls">
-                <div>
-                  <%= link_to "Ver", product_model_path(product), class: "btn btn-secondary"  %>
-                  <%= button_to "Adicionar", add_product_lot_path(product_model_id: product.id), method: :post, class: "btn btn-primary"  %>
-                </div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        </article>
+      <% end %>
     </div>
-    <button class="btn btn-secondary btn-large">Carregar mais resultados</button>
-  <% end %>
-</section>
+  </section>
+
+  <section class="section section__lot--manage">
+    <h2>Produtos disponíveis para adicionar ao lote:</h2>
+
+    <% if @available_products.empty? %>
+      <p>
+        Não há produtos disponíveis no momento, crie um novo 
+        <%= link_to "clicando aqui", new_product_model_path %>.
+      </p>
+    <% else %>
+      <div class="table__container">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @available_products.each do |product| %>
+              <tr>
+                <td><%= product.sku %></td>
+                <td><%= product.name %></td>
+                <td><%= product.category.name %></td>
+                <td class="table__controls">
+                  <div>
+                    <%= link_to "Ver", product_model_path(product), class: "btn btn-secondary"  %>
+                    <%= button_to "Adicionar", add_product_lot_path(product_model_id: product.id), method: :post, class: "btn btn-primary"  %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </section>

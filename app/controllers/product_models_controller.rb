@@ -1,11 +1,15 @@
 class ProductModelsController < ApplicationController
   include AuthorizationHelper
 
-  before_action :authenticate_user!
-  before_action -> { check_admin_role(current_user) }
+  before_action :authenticate_user!, except: [:index]
+  before_action -> { check_admin_role(current_user) }, except: [:index]
 
   def index
     @product_models = ProductModel.all
+
+    if current_user&.is_admin?
+      render "product_models/admin/index"
+    end
   end
 
   def new
@@ -40,7 +44,8 @@ class ProductModelsController < ApplicationController
       :width,
       :depth,
       :weight,
-      :category_id
+      :category_id,
+      :photo
     )
   end
 end

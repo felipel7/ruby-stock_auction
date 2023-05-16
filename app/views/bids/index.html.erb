@@ -1,9 +1,9 @@
 <section class="section section__bid--index">
   <h2>Meus Lances Vencedores</h2>
 
-  <%= render 'shared/card', { lots: @lots } %>
+  <%= render 'shared/card', { lots: @winning_lots } %>
 
-  <% if @lots.empty? %>
+  <% if @winning_lots.empty? %>
     <p>Você ainda não venceu nenhum lance.</p>
   <% end %>
 </section>

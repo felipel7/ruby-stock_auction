@@ -2,12 +2,7 @@
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <%= render 'shared/errors', { obj: @lot } %>
-
-  <% if @lot.photo.attached? %>
-    <%= image_tag @lot.photo %>
-  <% else  %>
-    <%= image_tag("default.png") %>
-  <% end %>
+  <%= render partial: "shared/image", locals: { obj: @lot } %>
 
   <dl class="description__list">
     <div>
@@ -37,11 +32,8 @@
 
     <% if @lot.status == "ended" %>
       <div class="lot__controls">
-        <% if @lot.bids.present? %>
-          <%= button_to "Validar Resultado", ended_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
-        <% else %>
-          <%= button_to "Cancelar Lote", ended_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
-        <% end %>
+        <%= button_to "Validar Resultado", ended_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
+        <%= button_to "Cancelar Lote", ended_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
       </div>
     <% elsif @lot.status == "finished" %>
       <div>
@@ -56,8 +48,8 @@
   </dl>
 </section>
 
-<section class="section ">
-  <h2 style="flex-basis: 100%">Produtos contidos neste lote:</h2>
+<section class="section admin section__lot--show">
+  <h2>Produtos contidos neste lote:</h2>
 
   <% if @lot.product_models.empty? %>
     <p>Não há produtos neste lote.</p>
