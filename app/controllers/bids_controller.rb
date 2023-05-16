@@ -4,6 +4,12 @@ class BidsController < ApplicationController
   def index
     @user_bids = current_user.bids
     @lots = @user_bids.map(&:lot).uniq
+    @winning_lots = @lots.select { |lot| lot.bids.last.user_id == current_user.id }
+
+    if current_user&.is_admin?
+      @all_bids = Bid.all
+      render "bids/admin/index"
+    end
   end
 
   def new

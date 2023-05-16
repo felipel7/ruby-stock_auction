@@ -5,6 +5,7 @@ class Bid < ApplicationRecord
   validates :amount, presence: true
   validate :check_min_bid_allowed_difference
   validate :lot_available_for_bidding
+  validate :check_last_bid_user, on: :create
 
   private
 
@@ -18,6 +19,13 @@ class Bid < ApplicationRecord
   def lot_available_for_bidding
     unless Lot.lots_in_progress.include?(self.lot)
       self.errors.add(:base, "Um lance não pode ser dado em um lote que não está em andamento.")
+    end
+  end
+
+  def check_last_bid_user
+    last_bid = self.lot.bids.last if self.lot&.bids
+    if last_bid && last_bid.user == self.user
+      errors.add(:base, "O usuário já possui o último lance.")
     end
   end
 end
