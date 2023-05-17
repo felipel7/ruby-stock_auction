@@ -3,6 +3,7 @@ class Lot < ApplicationRecord
   belongs_to :approved_by, class_name: "User", foreign_key: "approved_by_id", optional: true
   has_many :product_models
   has_many :bids
+  has_many :favorites
   has_one_attached :photo
 
   enum status: { pending: 0, approved: 2, ended: 4, finished: 6, canceled: 8 }, _default: :pending

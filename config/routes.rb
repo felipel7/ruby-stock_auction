@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: "lots#index"
   get "search", to: "lots#search", as: :search
 
-  resources :users, only: [:index]
+  resources :favorites, only: [:index, :create]
+  resources :profiles, only: [:index]
   resources :bids, only: [:index, :new, :create]
   resources :product_models, only: [:index, :show, :new, :create]
   resources :categories, only: [:index, :new, :create, :edit, :update]

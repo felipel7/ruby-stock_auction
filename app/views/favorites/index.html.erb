@@ -1,0 +1,9 @@
+<section class="section section__lot--index">
+  <h2>Lotes Favoritados:</h2>
+
+  <%= render 'shared/card', { lots: @favorite_lots } %>
+
+  <% if @favorite_lots.empty? %>
+    <p>Não há nenhum lote favoritado no momento.</p>
+  <% end %>
+</section>

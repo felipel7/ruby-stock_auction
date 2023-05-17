@@ -29,14 +29,18 @@
       </div>
 
       <div class="card__controls">
-        <%= link_to(lot_path(lot), class: "btn btn-bid" ) do %>
+        <%= link_to(lot_path(lot), class: "btn btn-bid") do %>
           <i class="fa fa-gavel" style="margin-left: 5px;"></i>
           <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
         <% end %>
-        <button class="btn">
-          <!--<i class="fa fa-heart-o"></i>-->
-          <i class="fa fa-heart"></i>
-        </button>
+
+        <%= button_to favorites_path(lot_id: lot.id), method: :post, class: 'btn favorite' do %>
+          <% if current_user&.favorites&.exists?(lot_id: lot.id) %>
+            <i class="fa fa-heart"></i>
+          <% else %>
+            <i class="fa fa-heart-o"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </article>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :lots
   has_many :bids
+  has_many :favorites
 
   enum role: { user: 0, admin: 5 }
   after_initialize :set_default_role, :if => :new_record?
