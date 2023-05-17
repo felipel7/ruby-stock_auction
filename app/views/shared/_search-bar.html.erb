@@ -1,0 +1,10 @@
+<div class="search-bar__wrapper">
+  <%= form_with(url: search_path, method: :get)  do |form| %>
+    <label>
+      <%= form.text_field :query, placeholder: "Buscar Produto" %>
+      <button type="submit" class="btn" id="search">
+        <i class="fa fa-search" title="Buscar"></i>
+      </button>
+    </label>
+  <% end %>
+</div>

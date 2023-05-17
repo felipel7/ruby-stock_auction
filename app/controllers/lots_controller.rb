@@ -1,7 +1,7 @@
 class LotsController < ApplicationController
   include AuthorizationHelper
 
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_lot, except: [:index, :new, :create, :search]
   before_action -> { check_admin_role(current_user) }, except: [:index, :show, :search]
 
@@ -134,6 +134,17 @@ class LotsController < ApplicationController
   end
 
   def search
+    query = params[:query]
+    @lots = Lot.joins(:product_models).where(
+      "batch_code LIKE ? OR product_models.name LIKE ?", "%#{query}%", "%#{query}%"
+    ).distinct
+    @lots.where(status: :approved).each { |lot| lot.update_status }
+
+    if current_user&.is_admin?
+      @lots = Lot.where(status: params[:status]) unless params[:status].nil?
+      render "lots/admin/index"
+    end
+    render :index
   end
 
   private

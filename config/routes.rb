@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "lots#index"
+  get "search", to: "lots#search", as: :search
 
+  resources :users, only: [:index]
   resources :bids, only: [:index, :new, :create]
   resources :product_models, only: [:index, :show, :new, :create]
   resources :categories, only: [:index, :new, :create, :edit, :update]
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
       post :add_product
       post :remove_product
       post :approved
+      post :ended
     end
   end
 end
