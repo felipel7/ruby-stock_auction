@@ -8,12 +8,13 @@ fifth_category = Category.create!(name: "Esportes")
 # Produtos
 first_product = ProductModel.create!(
   name: "Monitor LG",
-  description: "Monitor de 24 polegadas da marca LG...",
+  description: "Monitor de 32 polegadas da marca LG...",
   weight: 1500,
   width: 100,
   height: 80,
   depth: 15,
   category: first_category,
+  photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/monitor-lg.webp", "image/webp"),
 )
 second_product = ProductModel.create!(
   name: "Smartphone Samsung",
@@ -23,6 +24,7 @@ second_product = ProductModel.create!(
   height: 15,
   depth: 8,
   category: first_category,
+  photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/smart-sam.webp", "image/webp"),
 )
 third_product = ProductModel.create!(
   name: "Notebook Dell",
@@ -32,6 +34,7 @@ third_product = ProductModel.create!(
   height: 2,
   depth: 24,
   category: first_category,
+  photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/note-dell.webp", "image/webp"),
 )
 fourth_product = ProductModel.create!(
   name: "Smartwatch Apple",
@@ -41,6 +44,7 @@ fourth_product = ProductModel.create!(
   height: 4,
   depth: 1,
   category: first_category,
+  photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/smart-watch.webp", "image/webp"),
 )
 fifth_product = ProductModel.create!(
   name: "Câmera Sony",
@@ -50,6 +54,7 @@ fifth_product = ProductModel.create!(
   height: 11,
   depth: 7,
   category: first_category,
+  photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/sony-cam.webp", "image/webp"),
 )
 sixth_product = ProductModel.create!(
   name: "Caixa de som JBL",
@@ -79,8 +84,8 @@ eighth_product = ProductModel.create!(
   category: third_category,
 )
 ninth_product = ProductModel.create!(
-  name: "Livro de Receitas",
-  description: "Livro de Receitas - Cozinha Brasileira com as melhores receitas do país...",
+  name: "Livro - O Senhor dos Anéis",
+  description: "A história narra o conflito contra o mal que se alastra pela Terra-média...",
   weight: 800,
   width: 15,
   height: 23,
@@ -105,7 +110,6 @@ eleventh_product = ProductModel.create!(
   depth: 2,
   category: first_category,
 )
-
 twelfth_product = ProductModel.create!(
   name: "Mixer 3 em 1",
   description: "Mixer 3 em 1 Oster com Triturador, Batedor e Processador de Alimentos...",
@@ -116,8 +120,8 @@ twelfth_product = ProductModel.create!(
   category: second_category,
 )
 thirteenth_product = ProductModel.create!(
-  name: "Camiseta Branca",
-  description: "Camiseta Básica Masculina em Algodão...",
+  name: "Wetsuit",
+  description: "O novo wetsuit Apex Float é a roupa de borracha mais flutuante da gama Orca...",
   weight: 300,
   width: 30,
   height: 40,
@@ -175,28 +179,27 @@ third_admin = User.create!(
 # Lotes
 first_lot = Lot.create!(
   start_date: 1.second.from_now,
-  end_date: 8.hours.from_now,
+  end_date: 1.hour.from_now,
   min_value: 2500,
   min_allowed_difference: 35,
   register_by_id: first_admin.id,
   approved_by_id: second_admin.id,
 )
-first_lot.product_models << first_product
 first_lot.product_models << second_product
-first_lot.product_models << third_product
-first_lot.update(status: :approved)
+first_lot.product_models << eleventh_product
+first_lot.update!(status: :approved)
 
 second_lot = Lot.create!(
-  start_date: 5.minutes.from_now,
-  end_date: 15.hours.from_now,
+  start_date: 3.minutes.from_now,
+  end_date: 11.hours.from_now,
   min_value: 1500,
   min_allowed_difference: 25,
   register_by_id: first_admin.id,
   approved_by_id: third_admin.id,
 )
-second_lot.product_models << fourth_product
-second_lot.product_models << fifth_product
-second_lot.update(status: :approved)
+second_lot.product_models << ninth_product
+second_lot.product_models << fourteenth_product
+second_lot.update!(status: :approved)
 
 Lot.create!(
   start_date: 1.day.from_now,
@@ -206,16 +209,20 @@ Lot.create!(
   register_by_id: first_admin.id,
 )
 third_lot = Lot.create!(
-  start_date: 1.day.from_now,
-  end_date: 2.days.from_now,
+  start_date: 1.second.from_now,
+  end_date: 1.minute.from_now,
   min_value: 2200,
   min_allowed_difference: 100,
   register_by_id: second_admin.id,
   approved_by_id: third_admin.id,
 )
-third_lot.product_models << sixth_product
-third_lot.product_models << seventh_product
-third_lot.update(status: :approved)
+third_lot.product_models << fifteenth_product
+third_lot.update!(start_date: 1.minute.ago)
+third_lot.update!(status: :approved)
+Bid.create!(user: first_user, lot: third_lot, amount: 120)
+Bid.create!(user: second_user, lot: third_lot, amount: 120)
+Bid.create!(user: first_user, lot: third_lot, amount: 200)
+third_lot.update!(status: :ended)
 
 fourth_lot = Lot.create!(
   start_date: 1.second.from_now,
@@ -225,19 +232,10 @@ fourth_lot = Lot.create!(
   register_by_id: second_admin.id,
   approved_by_id: first_admin.id,
 )
-fourth_lot.product_models << ninth_product
-fourth_lot.product_models << tenth_product
-fourth_lot.product_models << eleventh_product
-fourth_lot.product_models << twelfth_product
-fourth_lot.update(status: :approved)
-
-Lot.create!(
-  start_date: 1.day.from_now,
-  end_date: 2.days.from_now,
-  min_value: 2500,
-  min_allowed_difference: 52,
-  register_by_id: second_admin.id,
-)
+fourth_lot.product_models << first_product
+fourth_lot.product_models << third_product
+fourth_lot.product_models << fourth_product
+fourth_lot.update!(status: :approved)
 
 fifth_lot = Lot.create!(
   start_date: 1.day.from_now,
@@ -248,12 +246,17 @@ fifth_lot = Lot.create!(
   approved_by_id: second_admin.id,
 )
 fifth_lot.product_models << thirteenth_product
-fifth_lot.update(status: :finished)
+third_lot.update!(start_date: 1.minute.ago)
+third_lot.update!(status: :approved)
+third_lot.update!(status: :ended)
 
-Lot.create!(
-  start_date: 2.day.from_now,
-  end_date: 3.days.from_now,
-  min_value: 12500,
-  min_allowed_difference: 500,
-  register_by_id: third_admin.id,
+sixth_lot = Lot.create!(
+  start_date: 1.day.from_now,
+  end_date: 2.days.from_now,
+  min_value: 1500,
+  min_allowed_difference: 75,
+  register_by_id: first_admin.id,
+  approved_by_id: second_admin.id,
 )
+sixth_lot.product_models << sixth_product
+sixth_lot.update!(status: :approved)
