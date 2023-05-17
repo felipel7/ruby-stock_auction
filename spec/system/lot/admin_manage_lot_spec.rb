@@ -4,6 +4,7 @@ describe "Admin acessa um lote" do
   it "e adiciona um produto" do
     admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -39,6 +40,7 @@ describe "Admin acessa um lote" do
   it "e remove um produto" do
     admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -72,6 +74,7 @@ describe "Admin acessa um lote" do
   it "e não tem permissão para aprovar o lote que ele registrou" do
     admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -95,6 +98,7 @@ describe "Admin acessa um lote" do
     first_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -129,6 +133,7 @@ describe "Admin acessa um lote" do
     first_admin = User.create!(email: "Felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     second_admin = User.create!(email: "Maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -168,8 +173,8 @@ describe "Admin acessa um lote" do
   it "e não consegue aprovar um lote que não tem nenhum produto" do
     first_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
     second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
-
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 2.hours.from_now,
       min_value: 1000,
@@ -194,8 +199,8 @@ describe "Admin acessa um lote" do
     it "e não consegue aprovar um lote sem lances" do
       first_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
-
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 2.seconds.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -222,6 +227,7 @@ describe "Admin acessa um lote" do
       second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
       user = User.create!(email: "joao@gmail.com.br", cpf: "77694319054", password: "123123")
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -261,6 +267,7 @@ describe "Admin acessa um lote" do
       second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
       user = User.create!(email: "joao@gmail.com.br", cpf: "77694319054", password: "123123")
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -300,6 +307,7 @@ describe "Admin acessa um lote" do
       second_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "09468829081", password: "123123")
       user = User.create!(email: "joao@gmail.com.br", cpf: "77694319054", password: "123123")
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,

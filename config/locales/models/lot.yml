@@ -4,6 +4,7 @@ pt-BR:
       lot: 'Lote'
     attributes:
       lot:
+        batch_code: 'Código do Lote'
         start_date: 'Data de início'
         end_date: 'Data de encerramento'
         min_value: 'Valor mínimo inicial'

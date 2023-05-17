@@ -5,3 +5,6 @@ pt-BR:
     attributes:
       user:
         cpf: 'CPF'
+        role:
+          user: 'Regular'
+          admin: 'Administrador'

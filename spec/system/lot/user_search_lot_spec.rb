@@ -24,6 +24,7 @@ describe "Usuário procura através da barra de pesquisa" do
       category: category,
     )
     first_lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.minute.from_now,
       end_date: 1.day.from_now,
       min_value: 1200,
@@ -32,6 +33,7 @@ describe "Usuário procura através da barra de pesquisa" do
       approved_by_id: second_admin.id,
     )
     second_lot = Lot.create!(
+      batch_code: "HZK119066",
       start_date: 1.minute.from_now,
       end_date: 1.day.from_now,
       min_value: 2500,

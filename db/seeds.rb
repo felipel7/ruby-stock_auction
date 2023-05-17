@@ -178,6 +178,7 @@ third_admin = User.create!(
 
 # Lotes
 first_lot = Lot.create!(
+  batch_code: "ELE661430",
   start_date: 1.second.from_now,
   end_date: 1.hour.from_now,
   min_value: 2500,
@@ -190,6 +191,7 @@ first_lot.product_models << eleventh_product
 first_lot.update!(status: :approved)
 
 second_lot = Lot.create!(
+  batch_code: "FTH123456",
   start_date: 3.minutes.from_now,
   end_date: 11.hours.from_now,
   min_value: 1500,
@@ -202,6 +204,7 @@ second_lot.product_models << fourteenth_product
 second_lot.update!(status: :approved)
 
 Lot.create!(
+  batch_code: "LMP654321",
   start_date: 1.day.from_now,
   end_date: 2.days.from_now,
   min_value: 500,
@@ -209,6 +212,7 @@ Lot.create!(
   register_by_id: first_admin.id,
 )
 third_lot = Lot.create!(
+  batch_code: "QWE987654",
   start_date: 1.second.from_now,
   end_date: 1.minute.from_now,
   min_value: 2200,
@@ -225,6 +229,7 @@ Bid.create!(user: first_user, lot: third_lot, amount: 200)
 third_lot.update!(status: :ended)
 
 fourth_lot = Lot.create!(
+  batch_code: "UIO234567",
   start_date: 1.second.from_now,
   end_date: 8.hours.from_now,
   min_value: 1200,
@@ -238,6 +243,7 @@ fourth_lot.product_models << fourth_product
 fourth_lot.update!(status: :approved)
 
 fifth_lot = Lot.create!(
+  batch_code: "RTY456789",
   start_date: 1.day.from_now,
   end_date: 2.days.from_now,
   min_value: 1500,
@@ -251,6 +257,7 @@ third_lot.update!(status: :approved)
 third_lot.update!(status: :ended)
 
 sixth_lot = Lot.create!(
+  batch_code: "QAZ987654",
   start_date: 1.day.from_now,
   end_date: 2.days.from_now,
   min_value: 1500,

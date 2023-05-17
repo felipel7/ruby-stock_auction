@@ -1,5 +1,10 @@
 <%= form_with(model: @lot, class: "form form__lot") do |form|  %>
 
+  <p>
+    <%= form.label :batch_code  %>
+    <%= form.text_field :batch_code, placeholder: "Exe: ABC123456", maxlength: 9 %>
+  </p>
+
   <% Time.use_zone("America/Sao_Paulo") do %>
     <p>
       <%= form.label :start_date  %>

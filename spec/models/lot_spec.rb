@@ -4,6 +4,7 @@ RSpec.describe Lot, type: :model do
   describe "#valid?" do
     it "não é possível criar um novo lote com os dados incorretos" do
       lot = Lot.new(
+        batch_code: "EOR661430",
         start_date: nil,
         end_date: nil,
         min_value: 0,
@@ -23,6 +24,7 @@ RSpec.describe Lot, type: :model do
       admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
 
       lot = Lot.new(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 1.hour.from_now,
         min_value: 150,
@@ -43,6 +45,7 @@ RSpec.describe Lot, type: :model do
       date_now = Time.now
 
       lot = Lot.new(
+        batch_code: "EOR661430",
         start_date: date_past,
         end_date: 1.hour.from_now,
         min_value: 150,
@@ -60,6 +63,7 @@ RSpec.describe Lot, type: :model do
       admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       start_date_time = 1.hour.from_now
       lot = Lot.new(
+        batch_code: "EOR661430",
         start_date: start_date_time,
         end_date: 1.minute.from_now,
         min_value: 150,
@@ -74,9 +78,10 @@ RSpec.describe Lot, type: :model do
       expect(error).to include "Data de encerramento deve ser posterior à data de início"
     end
 
-    it "o código gerado automaticamente deve ter 3 letras e 6 números" do
+    it "o código gerado manualmente deve ter 3 letras e 6 números" do
       admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       lot = Lot.new(
+        batch_code: "EO6614R30",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -86,20 +91,22 @@ RSpec.describe Lot, type: :model do
 
       lot.valid?
 
-      expect(lot.batch_code[0..2]).to match(/[A-Z]{3}/)
-      expect(lot.batch_code[3..-1]).to match(/[0-9]{6}/)
+      expect(lot.batch_code.scan(/[A-Z]/).count).to eq(3)
+      expect(lot.batch_code.scan(/[0-9]/).count).to eq(6)
     end
 
     it "o código do lote deve ser único" do
       admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
       first_lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
         min_allowed_difference: 50,
         register_by_id: admin.id,
       )
-      second_lot = Lot.create!(
+      second_lot = Lot.new(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -107,13 +114,17 @@ RSpec.describe Lot, type: :model do
         register_by_id: admin.id,
       )
 
-      expect(first_lot.batch_code).not_to eq second_lot.batch_code
+      second_lot.valid?
+      error = second_lot.errors.full_messages
+
+      expect(error).to include "Código do Lote já está em uso"
     end
 
     it "o produto não pode estar em dois lotes ao mesmo tempo" do
       admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "75857986010", password: "123123")
 
       first_lot = Lot.create!(
+        batch_code: "HZK119066",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -121,6 +132,7 @@ RSpec.describe Lot, type: :model do
         register_by_id: admin.id,
       )
       second_lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.minute.from_now,
         end_date: 2.hours.from_now,
         min_value: 1000,
@@ -143,6 +155,8 @@ RSpec.describe Lot, type: :model do
 
       expect(second_lot.product_models.present?).to be true
       expect(first_lot.product_models.present?).to be false
+      expect(second_lot.product_models).to include(product)
+      expect(first_lot.product_models).not_to include(product)
     end
   end
 end

@@ -9,14 +9,14 @@ class Lot < ApplicationRecord
   scope :lots_in_progress, -> { where(status: :approved).where("start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now) }
   scope :lots_in_future, -> { where(status: :approved).where("start_date > ?", Time.zone.now) }
 
-  before_validation :generate_code, on: :create
-  validates :batch_code, uniqueness: true
   validates :batch_code, :start_date, :end_date, :min_value, :min_allowed_difference, presence: true
+  validates :batch_code, uniqueness: true
   validates :min_value, :min_allowed_difference, numericality: { greater_than: 0 }
   validates :start_date, comparison: { greater_than: Time.zone.now,
                                        message: "deve ser posterior à hora atual" }, on: :create
   validates :end_date, comparison: { greater_than: :start_date,
                                      message: "deve ser posterior à data de início" }, on: :create
+  validate :batch_code_format
   validate :validate_approval, if: -> { status_changed? && status == "approved" }
   validate :validate_ended_lot, if: -> { status_changed? && (status == "finished" || status == "canceled") }
 
@@ -29,10 +29,16 @@ class Lot < ApplicationRecord
 
   private
 
-  def generate_code
-    letters = [*("A".."Z")].sample(3).join
-    numbers = SecureRandom.random_number(999_999).to_s.rjust(6, "0")
-    self.batch_code = letters + numbers
+  def batch_code_format
+    if self.batch_code.length != 9
+      return self.errors.add(:batch_code, "deve ter 9 caracteres.")
+    end
+
+    if self.batch_code.count("A-Z") < 3
+      self.errors.add(:batch_code, "deve ter pelo menos 3 letras.")
+    elsif self.batch_code.count("0-9") != 6
+      self.errors.add(:batch_code, "deve ter pelo menos 6 números.")
+    end
   end
 
   def validate_approval

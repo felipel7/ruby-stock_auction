@@ -8,8 +8,6 @@ describe "Admin registra um novo lote" do
       password: "123123",
     )
 
-    allow(SecureRandom).to receive(:random_number).and_return("123456")
-
     login_as(admin)
     visit root_path
     within ".menu .menu__item.admin" do
@@ -29,12 +27,13 @@ describe "Admin registra um novo lote" do
     select(year, from: "lot_end_date_1i")
     select("23", from: "lot_end_date_4i")
     select("59", from: "lot_end_date_5i")
+    fill_in "Código do Lote", with: "KAO668595"
     fill_in "Valor mínimo inicial", with: 100
     fill_in "Valor mínimo do lance", with: 10
     click_on "Criar Lote"
 
     expect(page).not_to have_content "Não foi possível cadastrar o lote"
-    expect(page).to have_content "123456"
+    expect(page).to have_content "KAO668595"
     expect(page).to have_content "Criado por: Maria"
   end
 
@@ -99,6 +98,7 @@ describe "Admin registra um novo lote" do
     select(year, from: "lot_end_date_1i")
     select("23", from: "lot_end_date_4i")
     select("59", from: "lot_end_date_5i")
+    fill_in "Código do Lote", with: "KAO668595"
     fill_in "Valor mínimo inicial", with: 100
     fill_in "Valor mínimo do lance", with: 10
     click_on "Criar Lote"

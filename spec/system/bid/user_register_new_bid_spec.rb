@@ -16,6 +16,7 @@ describe "Usuário da um novo lance" do
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.second.from_now,
       end_date: 1.day.from_now,
       min_value: 2500,
@@ -56,6 +57,7 @@ describe "Usuário da um novo lance" do
       category: category,
     )
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.hour.from_now,
       end_date: 1.day.from_now,
       min_value: 2500,
@@ -94,6 +96,7 @@ describe "Usuário da um novo lance" do
       category: category,
     )
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.second.from_now,
       end_date: 1.day.from_now,
       min_value: 2500,
@@ -133,6 +136,7 @@ describe "Usuário da um novo lance" do
       category: category,
     )
     lot = Lot.create!(
+      batch_code: "EOR661430",
       start_date: 1.second.from_now,
       end_date: 1.day.from_now,
       min_value: 2500,

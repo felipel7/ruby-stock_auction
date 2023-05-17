@@ -150,7 +150,7 @@ class LotsController < ApplicationController
   private
 
   def lot_params
-    params.require(:lot).permit(:start_date, :end_date, :min_value, :min_allowed_difference, :photo)
+    params.require(:lot).permit(:batch_code, :start_date, :end_date, :min_value, :min_allowed_difference, :photo)
   end
 
   def set_lot

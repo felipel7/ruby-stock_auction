@@ -14,6 +14,7 @@ RSpec.describe Bid, type: :model do
       admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
       user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.day.from_now,
         end_date: 8.days.from_now,
         min_value: 2500,
@@ -34,6 +35,7 @@ RSpec.describe Bid, type: :model do
       second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
       user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
       lot = Lot.create!(
+        batch_code: "EOR661430",
         start_date: 1.day.from_now,
         end_date: 8.days.from_now,
         min_value: 2500,
