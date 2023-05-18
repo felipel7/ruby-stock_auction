@@ -38,7 +38,7 @@ pt-BR:
       send_paranoid_instructions: Se o seu e-mail existir em nosso banco de dados, você receberá um email com instruções sobre como confirmar sua conta em alguns minutos.
     failure:
       already_authenticated: Você já está autenticado.
-      inactive: A sua conta ainda não foi ativada.
+      inactive: A sua conta está suspensa, CPF foi bloqueado.
       invalid: '%{authentication_keys} ou senha inválidos.'
       last_attempt: Você tem mais uma única tentativa antes de sua conta ser bloqueada.
       locked: A sua conta está bloqueada.

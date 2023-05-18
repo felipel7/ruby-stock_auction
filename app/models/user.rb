@@ -9,6 +9,7 @@ class User < ApplicationRecord
   enum role: { user: 0, admin: 5 }
   after_initialize :set_default_role, :if => :new_record?
   before_validation :valid_cpf
+  before_validation :check_blocked_cpf, on: :create
   before_save :check_email_domain
 
   validates :cpf, presence: true, uniqueness: true, length: { is: 11 }
@@ -21,7 +22,21 @@ class User < ApplicationRecord
     self.email.split("@")[0].capitalize
   end
 
+  def active_for_authentication?
+    super && !blocked_cpf?
+  end
+
+  def blocked_cpf?
+    BlockedCpf.exists?(cpf: self.cpf)
+  end
+
   private
+
+  def check_blocked_cpf
+    if blocked_cpf?
+      self.errors.add(:cpf, "está bloqueado, entre em contato com o suporte.")
+    end
+  end
 
   def set_default_role
     self.role = :user

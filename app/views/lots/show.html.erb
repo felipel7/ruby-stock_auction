@@ -38,8 +38,12 @@
         <div class="bid">
           <h4>Vencedor:</h4>
           <p>
-            <%= @winner.name %>
-            <%= "Parabéns você venceu!" if @winner.id == current_user&.id %>
+            <% if @winner %>
+              <%= @winner.name %>
+              <%= "você foi o vencedor, parabéns!" if @winner.id == current_user&.id %>
+            <% else %>
+              Não houve lances.
+            <% end %>
           </p>
         </div>
       <% else %>

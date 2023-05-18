@@ -1,0 +1,33 @@
+<section class="section">
+  <h2>Lista de usuários</h2>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= t("activerecord.attributes.user.role.#{user.role}") %></td>
+          <td><%= user.blocked_cpf? ? "Bloqueado" : "Ativo" %></td>
+          <td class="table__controls">
+            <%= button_to block_profile_path(user), method: :post, title: "Bloquear" do %>
+              <i class="fa fa-ban"></i>
+            <% end %>
+            <%= button_to unblock_profile_path(user), method: :post, title: "Desbloquear" do %>
+              <i class="fa fa-unlock"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
