@@ -32,13 +32,13 @@ class Lot < ApplicationRecord
 
   def batch_code_format
     if self.batch_code.length != 9
-      return self.errors.add(:batch_code, "deve ter 9 caracteres.")
+      return self.errors.add(:batch_code, "deve ter 9 caracteres")
     end
 
-    if self.batch_code.count("A-Z") < 3
-      self.errors.add(:batch_code, "deve ter pelo menos 3 letras.")
+    if self.batch_code.count("A-Za-z") < 3
+      self.errors.add(:batch_code, "deve ter pelo menos 3 letras")
     elsif self.batch_code.count("0-9") != 6
-      self.errors.add(:batch_code, "deve ter pelo menos 6 números.")
+      self.errors.add(:batch_code, "deve ter pelo menos 6 números")
     end
   end
 
