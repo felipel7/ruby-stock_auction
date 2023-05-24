@@ -34,6 +34,24 @@ class ProductModelsController < ApplicationController
     @product_model = ProductModel.find(params[:id])
   end
 
+  def edit
+    @product_model = ProductModel.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    @product_model = ProductModel.find(params[:id])
+    @categories = Category.all
+
+    if @product_model.update(product_models_params)
+      flash[:notice] = "O Produto foi salvo com sucesso."
+      redirect_to @product_model
+    else
+      flash.now[:alert] = "Não foi possível salvar o produto"
+      render :edit
+    end
+  end
+
   private
 
   def product_models_params

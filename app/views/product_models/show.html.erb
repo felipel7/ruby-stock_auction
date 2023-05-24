@@ -28,7 +28,9 @@
       <dt>Categoria:</dt>
       <dd><%= @product_model.category.name %></dd>
     </div>
-
+    <% if current_user.is_admin? %>
+      <%= link_to "Editar", edit_product_model_path(@product_model), class: "btn btn-primary" %>
+    <% end %>
   </dl>
   <% if @product_model.lot_id.present? %>
     <p>

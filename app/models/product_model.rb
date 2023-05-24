@@ -19,8 +19,10 @@ class ProductModel < ApplicationRecord
   end
 
   def products_uniqueness_in_lot
-    if Lot.joins(:product_models).where(product_models: { id: self.id }).exists?
-      self.errors.add(:product_model, "já foi atribuído a um lote.")
+    lot = Lot.joins(:product_models).where(product_models: { id: self.id }).first
+
+    if lot && lot.id != self.lot.id
+      self.errors.add(:base, "Produto já foi atribuído a um lote.")
     end
   end
 end
