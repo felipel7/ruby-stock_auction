@@ -1,6 +1,34 @@
 @import '../mixins';
 
-// View Index
+/* Bids */
+.section__bid--index {
+  @include section-wrap;
+  gap: 1.5rem;
+
+  form:not(.button_to) {
+    flex-basis: 100%;
+  }
+}
+
+/* Categories */
+.section__categories--index {
+  .btn {
+    display: inline-block;
+    margin-block: 1rem;
+  }
+
+  h2 {
+    padding-block: 1rem;
+  }
+}
+
+/* Devise */
+.section__login {
+  @include center-flex(column);
+}
+
+/* Product Models */
+// Product Models View Index
 .section__product-model--index {
   @include section-wrap;
   gap: 1rem;
@@ -17,7 +45,7 @@
   }
 }
 
-// View Show
+// Product Models View Show
 .section__product-model--show {
   @include section-wrap;
   column-gap: 5rem;

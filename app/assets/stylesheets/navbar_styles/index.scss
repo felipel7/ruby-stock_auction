@@ -70,3 +70,31 @@
     color: inherit;
   }
 }
+
+// Admin menu
+.admin.menu {
+  position: absolute;
+  display: none !important;
+
+  &.show {
+    display: block !important;
+    background-color: $table-border-color;
+    z-index: 10;
+    padding: 1.5rem;
+    border: $border;
+  }
+
+  li {
+    width: 100%;
+    margin: 0 !important;
+
+    a {
+      all: unset;
+      color: $white;
+      cursor: pointer;
+      display: block;
+      font-weight: bold;
+      padding: 1.5rem;
+    }
+  }
+}

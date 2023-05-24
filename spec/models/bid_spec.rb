@@ -51,7 +51,6 @@ RSpec.describe Bid, type: :model do
         height: 80,
         depth: 15,
         category: category,
-        photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/monitor-lg.webp", "image/webp"),
       )
       lot.product_models << product
       lot.approved!
@@ -84,7 +83,6 @@ RSpec.describe Bid, type: :model do
         height: 80,
         depth: 15,
         category: category,
-        photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/monitor-lg.webp", "image/webp"),
       )
       lot.product_models << product
       lot.approved!
