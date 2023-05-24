@@ -24,32 +24,77 @@ RSpec.describe Bid, type: :model do
       )
 
       bid = Bid.new(user: user, lot: lot, amount: 34)
-
       bid.valid?
 
       expect(bid.errors.full_messages).to include "Valor deve ser maior que o mínimo permitido para cada lance."
     end
 
-    it "Não deve ser possível dar lance em um lote que não está em andamento" do
+    it "Não deve ser possível dar lance em um lote que ainda não foi iniciado" do
       first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
       second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
       user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
       lot = Lot.create!(
         batch_code: "EOR661430",
-        start_date: 1.day.from_now,
-        end_date: 8.days.from_now,
+        start_date: 1.hour.from_now,
+        end_date: 2.days.from_now,
         min_value: 2500,
         min_allowed_difference: 35,
         register_by_id: first_admin.id,
         approved_by_id: second_admin.id,
       )
+      category = Category.create!(name: "Eletrônicos")
+      product = ProductModel.create!(
+        name: "Monitor LG",
+        description: "Monitor de 32 polegadas da marca LG...",
+        weight: 1500,
+        width: 100,
+        height: 80,
+        depth: 15,
+        category: category,
+        photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/monitor-lg.webp", "image/webp"),
+      )
+      lot.product_models << product
+      lot.approved!
 
-      lot.update(start_date: 2.days.ago)
-      lot.update(end_date: 1.hour.ago)
       bid = Bid.new(user: user, lot: lot, amount: 35)
       bid.valid?
 
       expect(bid.errors.full_messages).to include "Um lance não pode ser dado em um lote que não está em andamento."
+    end
+
+    it "Não deve ser possível dar lance em um lote que já foi encerrado" do
+      first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+      second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
+      user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
+      lot = Lot.create!(
+        batch_code: "EOR661430",
+        start_date: 1.hour.from_now,
+        end_date: 1.day.from_now,
+        min_value: 2500,
+        min_allowed_difference: 35,
+        register_by_id: first_admin.id,
+        approved_by_id: second_admin.id,
+      )
+      category = Category.create!(name: "Eletrônicos")
+      product = ProductModel.create!(
+        name: "Monitor LG",
+        description: "Monitor de 32 polegadas da marca LG...",
+        weight: 1500,
+        width: 100,
+        height: 80,
+        depth: 15,
+        category: category,
+        photo: Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/products/monitor-lg.webp", "image/webp"),
+      )
+      lot.product_models << product
+      lot.approved!
+
+      travel_to 2.days.from_now do
+        bid = Bid.new(user: user, lot: lot, amount: 35)
+        bid.valid?
+
+        expect(bid.errors.full_messages).to include "Um lance não pode ser dado em um lote que não está em andamento."
+      end
     end
   end
 end
