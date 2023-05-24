@@ -1,6 +1,8 @@
 <section class="section section__categories--index">
   <h2>Editar categoria</h2>
 
+  <%= render 'shared/errors', { obj: @category } %>
+
   <%= form_with(model: @category, class: "form") do |form| %>
     <p>
       <%= form.label :name %>

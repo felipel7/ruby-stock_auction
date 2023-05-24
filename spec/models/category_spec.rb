@@ -6,9 +6,19 @@ RSpec.describe Category, type: :model do
       category = Category.new(name: "")
 
       category.valid?
-      result = category.errors.full_messages
+      errors = category.errors.full_messages
 
-      expect(result).to include "Nome não pode ficar em branco"
+      expect(errors).to include "Nome não pode ficar em branco"
+    end
+
+    it "categoria não pode ser duplicada" do
+      first_category = Category.create!(name: "Esportes")
+      second_category = Category.new(name: "Esportes")
+
+      second_category.valid?
+      errors = second_category.errors.full_messages
+
+      expect(errors).to include "Nome já está em uso"
     end
   end
 end
