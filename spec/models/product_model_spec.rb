@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe ProductModel, type: :model do
+RSpec.describe Product, type: :model do
   describe "#valid?" do
     it "deve falhar se os campos obrigatórios não forem passados" do
-      product = ProductModel.new(
+      product = Product.new(
         name: "",
         description: "",
         sku: "",
@@ -29,7 +29,7 @@ RSpec.describe ProductModel, type: :model do
     it "deve passar caso os campos sejam passados corretamente" do
       category = Category.create!(name: "Eletrônicos")
 
-      product_model = ProductModel.new(
+      product = Product.new(
         name: "Monitor LG",
         description: "Monitor de 24 polegadas da marca LG...",
         weight: 15,
@@ -39,8 +39,8 @@ RSpec.describe ProductModel, type: :model do
         category: category,
       )
 
-      product_model.valid?
-      error = product_model.errors.full_messages
+      product.valid?
+      error = product.errors.full_messages
 
       expect(error).to eq []
       expect(error).not_to include "Nome não pode ficar em branco"
@@ -50,7 +50,7 @@ RSpec.describe ProductModel, type: :model do
     it "deve gerar um código automático alfanumérico com 10 caracteres" do
       category = Category.create!(name: "Eletrônicos")
 
-      product_model = ProductModel.new(
+      product = Product.new(
         name: "Monitor LG",
         description: "Monitor de 24 polegadas da marca LG...",
         weight: 15,
@@ -60,8 +60,8 @@ RSpec.describe ProductModel, type: :model do
         category: category,
       )
 
-      product_model.save!
-      result = product_model.sku
+      product.save!
+      result = product.sku
 
       expect(result).not_to be_empty
       expect(result.length).to eq 10

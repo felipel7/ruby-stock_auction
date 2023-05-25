@@ -140,7 +140,7 @@ RSpec.describe Lot, type: :model do
         register_by_id: admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Smartphone Samsung",
         description: "Smartphone Samsung Galaxy S21 com tela de 6.2 polegadas...",
         weight: 200,
@@ -150,13 +150,13 @@ RSpec.describe Lot, type: :model do
         category: category,
       )
 
-      second_lot.product_models << product
-      first_lot.product_models << product
+      second_lot.products << product
+      first_lot.products << product
 
-      expect(second_lot.product_models.present?).to be true
-      expect(first_lot.product_models.present?).to be false
-      expect(second_lot.product_models).to include(product)
-      expect(first_lot.product_models).not_to include(product)
+      expect(second_lot.products.present?).to be true
+      expect(first_lot.products.present?).to be false
+      expect(second_lot.products).to include(product)
+      expect(first_lot.products).not_to include(product)
     end
   end
 end

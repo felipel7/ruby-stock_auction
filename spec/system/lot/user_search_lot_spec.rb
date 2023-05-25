@@ -5,7 +5,7 @@ describe "Usuário procura através da barra de pesquisa" do
     first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     category = Category.create!(name: "Eletrônicos")
-    first_product = ProductModel.create!(
+    first_product = Product.create!(
       name: "Monitor LG",
       description: "Monitor de 24 polegadas da marca LG...",
       weight: 1500,
@@ -14,7 +14,7 @@ describe "Usuário procura através da barra de pesquisa" do
       depth: 15,
       category: category,
     )
-    second_product = ProductModel.create!(
+    second_product = Product.create!(
       name: "Smartphone Samsung",
       description: "Smartphone Samsung s21...",
       weight: 1000,
@@ -41,16 +41,16 @@ describe "Usuário procura através da barra de pesquisa" do
       register_by_id: second_admin.id,
       approved_by_id: first_admin.id,
     )
-    first_lot.product_models << first_product
-    second_lot.product_models << second_product
+    first_lot.products << first_product
+    second_lot.products << second_product
 
     travel_to 1.hour.from_now do
       first_lot.update(status: :approved)
       second_lot.update(status: :approved)
 
       visit root_path
-      fill_in "Buscar Produto", with: "Samsung"
       within ".search-bar__wrapper" do
+        fill_in "Buscar Produto...", with: "Samsung"
         click_on "search"
       end
 

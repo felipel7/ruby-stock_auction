@@ -10,8 +10,8 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Cadastrar Novo Lote"
     day = 1.day.from_now.day.to_s
@@ -46,8 +46,8 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Cadastrar Novo Lote"
     day = 1.day.from_now.day.to_s
@@ -81,8 +81,8 @@ describe "Admin registra um novo lote" do
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Cadastrar Novo Lote"
     day = 1.day.from_now.day.to_s
@@ -102,8 +102,8 @@ describe "Admin registra um novo lote" do
     fill_in "Valor mínimo inicial", with: 100
     fill_in "Valor mínimo do lance", with: 10
     click_on "Criar Lote"
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Editar"
     fill_in "Valor mínimo inicial", with: 200

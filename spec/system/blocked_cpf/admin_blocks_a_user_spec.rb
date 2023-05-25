@@ -6,8 +6,8 @@ describe "Admin bloqueia um usuário" do
     admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
 
     login_as(admin)
-    visit profiles_path
-    within(".table__controls form[action='/profiles/#{user.id}/block']") do
+    visit admin_profiles_path
+    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
       click_on "Bloquear"
     end
 
@@ -19,11 +19,13 @@ describe "Admin bloqueia um usuário" do
     admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
 
     login_as(admin)
-    visit profiles_path
-    within(".table__controls form[action='/profiles/#{user.id}/block']") do
+    visit admin_profiles_path
+    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
       click_on "Bloquear"
     end
-    click_on "Sair"
+    within "aside" do
+      click_on "Sair"
+    end
     click_on "Entrar"
     fill_in "E-mail", with: user.email
     fill_in "Senha", with: user.password
@@ -39,11 +41,13 @@ describe "Admin bloqueia um usuário" do
     admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
 
     login_as(admin)
-    visit profiles_path
-    within(".table__controls form[action='/profiles/#{user.id}/block']") do
+    visit admin_profiles_path
+    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
       click_on "Bloquear"
     end
-    click_on "Sair"
+    within "aside" do
+      click_on "Sair"
+    end
     click_on "Entrar"
     click_on "Crie uma conta"
     fill_in "E-mail", with: "fernando@gmail.com.br"

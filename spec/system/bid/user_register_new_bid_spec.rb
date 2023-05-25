@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Usuário da um novo lance" do
   it "e falha quando o valor do lance é mais baixo que o mínimo permitido" do
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.new(
+    product = Product.new(
       name: "Monitor LG",
       description: "Monitor de 24 polegadas da marca LG...",
       weight: 15,
@@ -25,13 +25,13 @@ describe "Usuário da um novo lance" do
       approved_by_id: second_admin.id,
     )
     lot.update(status: :approved)
-    lot.product_models << product
+    lot.products << product
     lot.update(start_date: 1.minute.ago)
     lot.reload
 
     login_as(user)
     visit root_path
-    within "nav" do
+    within "aside" do
       click_on "Lotes"
     end
     click_on "Dar Lance"
@@ -47,7 +47,7 @@ describe "Usuário da um novo lance" do
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Monitor LG",
       description: "Monitor de 24 polegadas da marca LG...",
       weight: 1500,
@@ -65,12 +65,12 @@ describe "Usuário da um novo lance" do
       register_by_id: first_admin.id,
       approved_by_id: second_admin.id,
     )
-    lot.product_models << product
+    lot.products << product
     lot.update(status: :approved)
 
     login_as(user)
     visit root_path
-    within "nav" do
+    within "aside" do
       click_on "Lotes"
     end
     click_on "Dar Lance"
@@ -86,7 +86,7 @@ describe "Usuário da um novo lance" do
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Monitor LG",
       description: "Monitor de 24 polegadas da marca LG...",
       weight: 1500,
@@ -104,13 +104,13 @@ describe "Usuário da um novo lance" do
       register_by_id: first_admin.id,
       approved_by_id: second_admin.id,
     )
-    lot.product_models << product
+    lot.products << product
     lot.update(status: :approved)
     lot.update(start_date: 1.minute.ago)
 
     login_as(user)
     visit root_path
-    within "nav" do
+    within "aside" do
       click_on "Lotes"
     end
     click_on "Dar Lance"
@@ -126,7 +126,7 @@ describe "Usuário da um novo lance" do
     second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
     user = User.create!(email: "felipe@gmail.com", cpf: "70587229004", password: "123123")
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Monitor LG",
       description: "Monitor de 24 polegadas da marca LG...",
       weight: 1500,
@@ -144,19 +144,19 @@ describe "Usuário da um novo lance" do
       register_by_id: first_admin.id,
       approved_by_id: second_admin.id,
     )
-    lot.product_models << product
+    lot.products << product
     lot.update(status: :approved)
     lot.update(start_date: 1.minute.ago)
 
     login_as(user)
     visit root_path
-    within "nav" do
+    within "aside" do
       click_on "Lotes"
     end
     click_on "Dar Lance"
     fill_in "bid-input", with: 50
     click_on "Dar Lance"
-    within "nav" do
+    within "aside" do
       click_on "Lotes"
     end
     click_on "Dar Lance"

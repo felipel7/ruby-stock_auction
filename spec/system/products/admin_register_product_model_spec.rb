@@ -8,9 +8,8 @@ describe "Admin registra um novo produto" do
 
     login_as(admin)
     visit root_path
-    find("li", text: "Admin").click
-    within ".menu__item.admin" do
-      click_on "Produtos"
+    within "aside" do
+      click_on "Gerenciar Produtos"
     end
     click_on "Cadastrar Novo Produto"
     fill_in "Nome", with: "Monitor LG"
@@ -36,7 +35,7 @@ describe "Admin registra um novo produto" do
 
     allow(SecureRandom).to receive(:alphanumeric).and_return("GZEGINJIOI")
 
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Monitor LG",
       description: "Monitor de 32 polegadas da marca LG...",
       weight: 1500,
@@ -48,8 +47,8 @@ describe "Admin registra um novo produto" do
 
     login_as(admin)
     visit root_path
-    within ".menu__item.admin" do
-      click_on "Produtos"
+    within "aside" do
+      click_on "Gerenciar Produtos"
     end
     click_on "GZEGINJIOI"
     click_on "Editar"
@@ -70,9 +69,8 @@ describe "Admin registra um novo produto" do
 
     login_as(admin)
     visit root_path
-    find("li", text: "Admin").click
-    within ".menu__item.admin" do
-      click_on "Produtos"
+    within "aside" do
+      click_on "Gerenciar Produtos"
     end
     click_on "Cadastrar Novo Produto"
     fill_in "Nome", with: "Monitor LG"

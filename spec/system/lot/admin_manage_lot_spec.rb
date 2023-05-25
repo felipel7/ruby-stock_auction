@@ -12,7 +12,7 @@ describe "Admin acessa um lote" do
       register_by_id: admin.id,
     )
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Caixa de som JBL",
       description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
       weight: 2393,
@@ -24,8 +24,8 @@ describe "Admin acessa um lote" do
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Adicionar"
@@ -48,7 +48,7 @@ describe "Admin acessa um lote" do
       register_by_id: admin.id,
     )
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Caixa de som JBL",
       description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
       weight: 2393,
@@ -57,12 +57,12 @@ describe "Admin acessa um lote" do
       depth: 13,
       category: category,
     )
-    lot.product_models << product
+    lot.products << product
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Remover"
@@ -84,8 +84,8 @@ describe "Admin acessa um lote" do
 
     login_as(admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Aprovar Lote"
@@ -106,7 +106,7 @@ describe "Admin acessa um lote" do
       register_by_id: first_admin.id,
     )
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Caixa de som JBL",
       description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
       weight: 2393,
@@ -116,11 +116,11 @@ describe "Admin acessa um lote" do
       category: category,
     )
 
-    lot.product_models << product
+    lot.products << product
     login_as(second_admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Aprovar Lote"
@@ -141,7 +141,7 @@ describe "Admin acessa um lote" do
       register_by_id: first_admin.id,
     )
     category = Category.create!(name: "Eletrônicos")
-    product = ProductModel.create!(
+    product = Product.create!(
       name: "Caixa de som JBL",
       description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
       weight: 2393,
@@ -151,18 +151,18 @@ describe "Admin acessa um lote" do
       category: category,
     )
 
-    lot.product_models << product
+    lot.products << product
     login_as(second_admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Aprovar Lote"
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
-    visit manage_lot_path(lot.id)
+    visit manage_admin_lot_path(lot.id)
     click_on "Aprovar Lote"
 
     expect(page).to have_content "O lote já foi aprovado"
@@ -184,8 +184,8 @@ describe "Admin acessa um lote" do
 
     login_as(second_admin)
     visit root_path
-    within ".menu .menu__item.admin" do
-      click_on "Lotes"
+    within "aside" do
+      click_on "Gerenciar Lotes"
     end
     click_on "Gerenciar"
     click_on "Aprovar Lote"
@@ -213,8 +213,8 @@ describe "Admin acessa um lote" do
 
       login_as(second_admin)
       visit root_path
-      within ".menu .menu__item.admin" do
-        click_on "Lotes"
+      within "aside" do
+        click_on "Gerenciar Lotes"
       end
       click_on "Ver"
       click_on "Validar Resultado"
@@ -236,7 +236,7 @@ describe "Admin acessa um lote" do
         approved_by_id: second_admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Caixa de som JBL",
         description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
         weight: 2393,
@@ -245,7 +245,7 @@ describe "Admin acessa um lote" do
         depth: 13,
         category: category,
       )
-      lot.product_models << product
+      lot.products << product
       lot.update(start_date: 1.minute.ago)
       lot.update(status: :approved)
       Bid.create!(lot: lot, user: user, amount: 100)
@@ -253,8 +253,8 @@ describe "Admin acessa um lote" do
 
       login_as(second_admin)
       visit root_path
-      within ".menu .menu__item.admin" do
-        click_on "Lotes"
+      within "aside" do
+        click_on "Gerenciar Lotes"
       end
       click_on "Ver"
       click_on "Validar Resultado"
@@ -276,7 +276,7 @@ describe "Admin acessa um lote" do
         approved_by_id: second_admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Caixa de som JBL",
         description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
         weight: 2393,
@@ -285,7 +285,7 @@ describe "Admin acessa um lote" do
         depth: 13,
         category: category,
       )
-      lot.product_models << product
+      lot.products << product
       lot.update(start_date: 1.minute.ago)
       lot.update(status: :approved)
       Bid.create!(lot: lot, user: user, amount: 100)
@@ -293,8 +293,8 @@ describe "Admin acessa um lote" do
 
       login_as(second_admin)
       visit root_path
-      within ".menu .menu__item.admin" do
-        click_on "Lotes"
+      within "aside" do
+        click_on "Gerenciar Lotes"
       end
       click_on "Ver"
       click_on "Cancelar Lote"
@@ -316,7 +316,7 @@ describe "Admin acessa um lote" do
         approved_by_id: second_admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Caixa de som JBL",
         description: "Caixa de som JBL Xtreme 2 com Bluetooth e bateria de 10.000 mAh...",
         weight: 2393,
@@ -325,15 +325,15 @@ describe "Admin acessa um lote" do
         depth: 13,
         category: category,
       )
-      lot.product_models << product
+      lot.products << product
       lot.update(start_date: 1.minute.ago)
       lot.update(status: :approved)
       lot.update(status: :ended)
 
       login_as(second_admin)
       visit root_path
-      within ".menu .menu__item.admin" do
-        click_on "Lotes"
+      within "aside" do
+        click_on "Gerenciar Lotes"
       end
       click_on "Ver"
       click_on "Cancelar Lote"

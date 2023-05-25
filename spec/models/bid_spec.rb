@@ -43,7 +43,7 @@ RSpec.describe Bid, type: :model do
         approved_by_id: second_admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Monitor LG",
         description: "Monitor de 32 polegadas da marca LG...",
         weight: 1500,
@@ -52,7 +52,7 @@ RSpec.describe Bid, type: :model do
         depth: 15,
         category: category,
       )
-      lot.product_models << product
+      lot.products << product
       lot.approved!
 
       bid = Bid.new(user: user, lot: lot, amount: 35)
@@ -75,7 +75,7 @@ RSpec.describe Bid, type: :model do
         approved_by_id: second_admin.id,
       )
       category = Category.create!(name: "Eletrônicos")
-      product = ProductModel.create!(
+      product = Product.create!(
         name: "Monitor LG",
         description: "Monitor de 32 polegadas da marca LG...",
         weight: 1500,
@@ -84,7 +84,7 @@ RSpec.describe Bid, type: :model do
         depth: 15,
         category: category,
       )
-      lot.product_models << product
+      lot.products << product
       lot.approved!
 
       travel_to 2.days.from_now do
