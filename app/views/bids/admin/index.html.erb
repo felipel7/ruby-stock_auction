@@ -1,23 +1,28 @@
-<section>
+<section class="section admin bid--index">
   <h2>Lista de Lances dos Usuários</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Lote</th>
-        <th>Usuário</th>
-        <th>Valor</th>
-        <th>Horário</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @all_bids.each do |bid| %>
+
+  <% if @all_bids.empty? %>
+    <p>Ainda não foi dado nenhum lance.</p>
+  <% else %>
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td><%= bid.lot.batch_code %></td>
-          <td><%= bid.user.email %></td>
-          <td><%= bid.amount %></td>
-          <td><%= l(bid.created_at, format: :long) %></td>
+          <th>Lote</th>
+          <th>Usuário</th>
+          <th>Valor</th>
+          <th>Horário</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @all_bids.each do |bid| %>
+          <tr>
+            <td><%= bid.lot.batch_code %></td>
+            <td><%= bid.user.email %></td>
+            <td><%= bid.amount %></td>
+            <td><%= l(bid.created_at, format: :long) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </section>

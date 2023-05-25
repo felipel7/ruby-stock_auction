@@ -1,0 +1,41 @@
+<section class="section product-model--show">
+  <h2>Produto - <%= @product.name %></h2>
+
+  <%= render partial: "shared/image", locals: { obj: @product } %>
+
+  <dl class="description__list">
+    <div>
+      <dt>Descrição:</dt>
+      <dd><%= @product.description %></dd>
+    </div>
+
+    <div>
+      <dt>SKU:</dt>
+      <dd><%= @product.sku %></dd>
+    </div>
+
+    <div>
+      <dt>Dimensões:</dt>
+      <dd><%= @product.full_dimensions_desc %></dd>
+    </div>
+
+    <div>
+      <dt>Peso:</dt>
+      <dd><%= @product.weight %>g</dd>
+    </div>
+
+    <div>
+      <dt>Categoria:</dt>
+      <dd><%= @product.category.name %></dd>
+    </div>
+    <% if current_user.is_admin? %>
+      <%= link_to "Editar", edit_admin_product_path(@product), class: "btn btn-primary" %>
+    <% end %>
+  </dl>
+  <% if @product.lot_id.present? %>
+    <p>
+      Compre o produto clicando no seguinte lote:  
+      <%= link_to @product.lot.batch_code, lot_path(@product.lot_id) %>
+    </p>
+  <% end %>
+</section>

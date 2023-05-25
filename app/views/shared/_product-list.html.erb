@@ -1,3 +1,7 @@
+<% if products.empty? %>
+  <p>Não há nenhum produto cadastrado.</p>
+<% end %>
+
 <% products.each do |product| %>
   <article class="card">
     <h3><%= product.name %></h3>

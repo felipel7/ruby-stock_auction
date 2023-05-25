@@ -1,0 +1,62 @@
+<aside class="sidebar">
+  <menu class="list">
+    <h3>Área do usuário</h3>
+
+    <li class="menu__item">
+      <i class="fa fa-cubes"></i>
+      <%= link_to 'Lotes', lots_path %>
+    </li>
+
+    <li class="menu__item">
+      <i class="fa fa-archive"></i>
+      <%= link_to 'Produtos', products_path %>
+    </li>
+
+    <li class="menu__item">
+      <i class="fa fa-money"></i>
+      <%= link_to 'Lances', bids_path %>
+    </li>
+
+    <li class="menu__item">
+      <i class="fa fa-star"></i>
+      <%= link_to 'Favoritos', favorites_path %>
+    </li>
+  </menu>
+
+  <% if current_user&.is_admin? %>
+    <menu class="list">
+      <h3>Área do Admin</h3>
+
+      <li class="menu__item">
+        <i class="fa fa-cubes"></i>
+        <%= link_to 'Gerenciar Lotes', admin_lots_path %>
+      </li>
+
+      <li class="menu__item">
+        <i class="fa fa-archive"></i>
+        <%= link_to 'Gerenciar Produtos', admin_products_path %>
+      </li>
+
+      <li class="menu__item">
+        <i class="fa fa-tags"></i>
+        <%= link_to 'Categorias', categories_path %>
+      </li>
+
+      <li class="menu__item">
+        <i class="fa fa-group"></i>
+        <%= link_to 'Usuários', admin_profiles_path %>
+      </li>
+    </menu>
+  <% end %>
+
+  <% if current_user %>
+    <menu class="list">
+      <h3>Configuração</h3>
+
+      <li class="menu__item">
+        <i class="fa  fa-sign-out"></i>
+        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "link" %>
+      </li>
+    </menu>
+  <% end %>
+</aside>

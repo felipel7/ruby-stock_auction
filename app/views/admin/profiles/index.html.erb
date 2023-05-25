@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section admin profiles--index">
   <h2>Lista de usuários</h2>
 
   <table class="table table-bordered">
@@ -19,10 +19,10 @@
           <td><%= t("activerecord.attributes.user.role.#{user.role}") %></td>
           <td><%= user.blocked_cpf? ? "Bloqueado" : "Ativo" %></td>
           <td class="table__controls">
-            <%= button_to block_profile_path(user), method: :post, title: "Bloquear" do %>
+            <%= button_to block_admin_profile_path(user), method: :post, title: "Bloquear" do %>
               <i class="fa fa-ban"></i>
             <% end %>
-            <%= button_to unblock_profile_path(user), method: :post, title: "Desbloquear" do %>
+            <%= button_to unblock_admin_profile_path(user), method: :post, title: "Desbloquear" do %>
               <i class="fa fa-unlock"></i>
             <% end %>
           </td>

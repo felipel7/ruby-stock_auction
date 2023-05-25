@@ -1,6 +1,6 @@
-<section class="section section__product-model--index">
-  <%= link_to "Cadastrar Novo Produto", new_product_model_path, class:"btn btn-primary" %>
-  <h2>Lista de produtos cadastrados</h2>
+<section class="section admin products--index">
+  <%= link_to "Cadastrar Novo Produto", new_admin_product_path, class:"btn btn-primary rounded" %>
+  <h2>Lista de Produtos Cadastrados:</h2>
 
   <div class="table__container">
     <table class="table table-bordered">
@@ -14,9 +14,9 @@
         </tr>
       </thead>
       <tbody>
-        <% @product_models.each do |product| %>
+        <% @products.each do |product| %>
           <tr>
-            <td><%= link_to product.sku, product_model_path(product) %></td>
+            <td><%= link_to product.sku, admin_product_path(product) %></td>
             <td><%= product.name %></td>
             <td><%= product.lot&.batch_code ? "Não Disponível" : "Disponível" %></td>
             <td><%= product.lot&.batch_code %></td>

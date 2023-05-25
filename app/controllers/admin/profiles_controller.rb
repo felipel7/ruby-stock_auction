@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class Admin::ProfilesController < ApplicationController
   include AuthorizationHelper
 
   before_action :authenticate_user!
@@ -20,18 +20,17 @@ class ProfilesController < ApplicationController
       flash[:notice] = "CPF bloqueado com sucesso."
     end
 
-    redirect_to profiles_path
+    redirect_to admin_profiles_path
   end
 
   def unblock
     return unless current_user.is_admin?
-
     @user = User.find(params[:id])
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 
     @blocked_cpf.destroy
 
     flash[:notice] = "CPF foi desbloqueado com sucesso."
-    redirect_to profiles_path
+    redirect_to admin_profiles_path
   end
 end

@@ -1,4 +1,4 @@
-<section class="section admin section__lot--manage">
+<section class="section admin lot--manage">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <div class="manage--products">
@@ -9,7 +9,7 @@
     <% end %>
 
     <p>Atualizar informações do lote:</p>
-    <%= button_to "Aprovar Lote", approved_lot_path, method: :post, class: "btn btn-success"  %>
+    <%= button_to "Aprovar Lote", approved_admin_lot_path, method: :post, class: "btn btn-success"  %>
 
     <div class='card__container'>
       <% @products.each do |product| %>
@@ -27,7 +27,7 @@
               <li><strong>Categoria:</strong> <%= product.category.name %></li>
             </ul>
             <div class="card__controls">
-              <%= button_to "Remover", remove_product_lot_path(product_model_id: product.id), method: :post, id: "btn-remove" %>
+              <%= button_to "Remover",  remove_product_admin_lot_path(product_id: product.id), method: :post, id: "btn-remove" %>
             </div>
           </div>
         </article>
@@ -35,13 +35,13 @@
     </div>
   </section>
 
-  <section class="section section__lot--manage">
+  <section class="section lot--manage">
     <h2>Produtos disponíveis para adicionar ao lote:</h2>
 
     <% if @available_products.empty? %>
       <p>
         Não há produtos disponíveis no momento, crie um novo 
-        <%= link_to "clicando aqui", new_product_model_path %>.
+        <%= link_to "clicando aqui", new_admin_product_path %>.
       </p>
     <% else %>
       <div class="table__container">
@@ -62,8 +62,8 @@
                 <td><%= product.category.name %></td>
                 <td class="table__controls">
                   <div>
-                    <%= link_to "Ver", product_model_path(product), class: "btn btn-secondary"  %>
-                    <%= button_to "Adicionar", add_product_lot_path(product_model_id: product.id), method: :post, class: "btn btn-primary"  %>
+                    <%= link_to "Ver", product_path(product), class: "btn btn-secondary"  %>
+                    <%= button_to "Adicionar", add_product_admin_lot_path(product_id: product.id), method: :post, class: "btn btn-primary add"  %>
                   </div>
                 </td>
               </tr>

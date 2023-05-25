@@ -1,0 +1,18 @@
+<section class="section admin lot--index">
+  <h2>Gerenciar Lotes</h2>
+
+  <%= link_to "Cadastrar Novo Lote", new_admin_lot_path, class:"btn btn-primary rounded" %>
+
+  <div class="filter--controls"> Filtrar:
+    <%= link_to "Todos", admin_lots_path(status: nil), class: "btn btn-sm btn-secondary rounded" %>
+    <%= link_to "Pendentes", admin_lots_path(status: "pending"), class: "btn btn-sm btn-secondary rounded" %>
+    <%= link_to "Aprovados", admin_lots_path(status: "approved"), class: "btn btn-sm btn-secondary rounded" %>
+    <%= link_to "Encerrados", admin_lots_path(status: "ended"), class: "btn btn-sm btn-secondary rounded" %>
+  </div>
+
+  <%= render  partial: 'card', locals: { admin: true, lots: @lots } %>
+
+  <% if @lots.empty? %>
+    <p>Crie um novo <%= link_to "clicando aqui", new_admin_lot_path %>.</p>
+  <% end %>
+</section>

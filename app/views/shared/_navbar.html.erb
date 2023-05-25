@@ -1,0 +1,33 @@
+<header class="header">
+  <nav class="header__nav">
+
+    <h1 class="nav__brand">
+      <%= link_to root_path do %>
+        Leilão do<br/>
+        Galpão <i class="fa fa-gavel"></i>
+      <% end %>
+    </h1>
+
+    <%= render 'shared/search-bar' %>
+
+    <div class="nav__auth">
+      <% if current_user %>
+        <i class="fa fa-bell-o" aria-hidden="true"></i>
+        <div class="user-info">
+          <p><%= current_user.name %></p>
+          <small><%= current_user.email %></small>
+        </div>
+
+        <div class="logout">
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn" %>
+          <i class="fa fa-sign-out"></i>
+        </div>
+      <% else %>
+        <div class="login">
+          <%= button_to 'Entrar', new_user_session_path, class: "btn btn-login" %>
+          <i class="fa fa-sign-in"></i>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</header>

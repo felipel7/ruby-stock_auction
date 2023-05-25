@@ -1,4 +1,4 @@
-<%= form_with(model: @product_model, class: "form") do |form|  %>
+<%= form_with(model: @product, url: @product.persisted? ? admin_product_path(@product) : admin_products_path, class: "form", local: true) do |form|  %>
   <p>
     <%= form.label :name  %>
     <%= form.text_field :name %>

@@ -10,49 +10,20 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag 'main' %>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Unbounded:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header class="header">
-      <nav class="header__nav">
-
-        <h1 class="nav__brand">
-          <%= link_to root_path do %>
-            Leilão do<br/>
-            Galpão
-          <% end %>
-        </h1>
-
-        <menu class="list menu">
-          <li class="menu__item"><%= link_to 'Lotes', lots_path %></li>
-          <li class="menu__item"><%= link_to 'Produtos', product_models_path %></li>
-          <li class="menu__item"><%= link_to 'Lances', bids_path %></li>
-          <% if current_user && current_user.is_admin? %>
-            <li class="menu__item admin">
-              Admin
-              <%= render "shared/admin-menu" %>
-            </li>
-          <% else %>
-            <li class="menu__item"><%= link_to 'Favoritos', favorites_path %></li>
-          <% end %>
-        </menu>
-
-        <div class="nav__auth">
-          <% if current_user %>
-            <p><%= current_user.name %></p>
-            <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline" %>
-          <% else %>
-            <%= button_to 'Entrar', new_user_session_path, class: "btn btn-outline" %>
-          <% end %>
-        </div>
-      </nav>
-    </header>
+    <%= render 'shared/navbar' %>
 
     <main>
       <% flash.each do |type, msg|%>
         <div class="flash__container <%= type %> full-bleed" >
           <p><%= msg %></p>
         </div>
+      <% end %>
+
+      <% unless hide_sidebar_on_devise_pages? %>
+        <%= render 'shared/sidebar' %>
       <% end %>
 
       <%= yield %>

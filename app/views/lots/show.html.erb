@@ -1,4 +1,4 @@
-<section class="section section__lot--show">
+<section class="section lot--show">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <%= render partial: "shared/image", locals: { obj: @lot } %>
@@ -12,7 +12,7 @@
     <dl class="description__list">
       <div>
         <dt>Total:</dt>
-        <dd><%= pluralize(@lot.product_models.count, "produto", "produtos") %></dd>
+        <dd><%= pluralize(@lot.products.count, "produto", "produtos") %></dd>
       </div>
 
       <div class="countdown__container">
@@ -63,10 +63,10 @@
   </div>
 </section>
 
-<section class="section section__lot--show">
+<section class="section lot--show">
   <h2>Produtos Disponíveis neste Lote:</h2>
 
-  <%= render partial: "shared/card-list", locals: { products: @lot.product_models } %>
+  <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
 </section>
 
 <script>

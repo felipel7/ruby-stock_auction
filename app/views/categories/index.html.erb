@@ -1,6 +1,6 @@
-<section class="section section__categories--index">
-  <%= link_to "Cadastrar Nova Categoria", new_category_path, class:"btn btn-primary" %>
-  <h2>Lista de Categorias</h2>
+<section class="section admin categories--index">
+  <%= link_to "Cadastrar Nova Categoria", new_category_path, class:"btn btn-primary rounded" %>
+  <h2>Lista de Categorias:</h2>
 
   <table class="table table-bordered">
     <thead>
@@ -12,7 +12,7 @@
       <% @categories.each do |category| %>
         <tr>
           <td><%= category.name %></td>
-          <td><%= category.product_models.count %></td>
+          <td><%= category.products.count %></td>
           <td><%= link_to "Editar", edit_category_path(category)  %></td>
         </tr>
       <% end %>

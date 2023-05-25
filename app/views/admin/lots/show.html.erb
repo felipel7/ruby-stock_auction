@@ -1,4 +1,4 @@
-<section class="section admin section__lot--show">
+<section class="section admin lot--show">
   <h2>Lote: <%= @lot.batch_code %></h2>
 
   <%= render 'shared/errors', { obj: @lot } %>
@@ -32,8 +32,8 @@
 
     <% if @lot.status == "ended" %>
       <div class="lot__controls">
-        <%= button_to "Validar Resultado", ended_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
-        <%= button_to "Cancelar Lote", ended_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
+        <%= button_to "Validar Resultado", ended_admin_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
+        <%= button_to "Cancelar Lote", ended_admin_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
       </div>
     <% elsif @lot.status == "finished" %>
       <div>
@@ -42,18 +42,18 @@
       </div>
     <% end %>
 
-    <% if @lot.product_models.empty? %>
-      <%= link_to "Adicionar Produtos", manage_lot_path(@lot), class: "btn btn-primary" %>
+    <% if @lot.products.empty? %>
+      <%= link_to "Adicionar Produtos", manage_admin_lot_path(@lot), class: "btn btn-primary" %>
     <% end %>
   </dl>
 </section>
 
-<section class="section admin section__lot--show">
+<section class="section admin lot--show">
   <h2>Produtos contidos neste lote:</h2>
 
-  <% if @lot.product_models.empty? %>
+  <% if @lot.products.empty? %>
     <p>Não há produtos neste lote.</p>
   <% end %>
 
-  <%= render partial: "shared/card-list", locals: { products: @lot.product_models } %>
+  <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
 </section>

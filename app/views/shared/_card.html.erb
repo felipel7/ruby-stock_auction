@@ -30,7 +30,7 @@
 
       <div class="card__controls">
         <%= link_to(lot_path(lot), class: "btn btn-bid") do %>
-          <i class="fa fa-gavel" style="margin-left: 5px;"></i>
+          <i class="fa fa-gavel"></i>
           <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
         <% end %>
 
