@@ -1,7 +1,7 @@
 class Lot < ApplicationRecord
   belongs_to :user, foreign_key: :register_by_id
   belongs_to :approved_by, class_name: "User", foreign_key: "approved_by_id", optional: true
-  has_many :product_models
+  has_many :products
   has_many :bids
   has_many :favorites
   has_one_attached :photo
@@ -54,8 +54,8 @@ class Lot < ApplicationRecord
   end
 
   def has_products
-    if self.product_models.empty?
-      self.errors.add(:product_models, "deve ser incluído para que um lote possa ser aprovado")
+    if self.products.empty?
+      self.errors.add(:products, "deve ser incluído para que um lote possa ser aprovado")
     end
   end
 

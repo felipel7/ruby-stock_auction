@@ -1,4 +1,4 @@
-class ProductModel < ApplicationRecord
+class Product < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :lot, optional: true
   has_one_attached :photo
@@ -19,7 +19,7 @@ class ProductModel < ApplicationRecord
   end
 
   def products_uniqueness_in_lot
-    lot = Lot.joins(:product_models).where(product_models: { id: self.id }).first
+    lot = Lot.joins(:products).where(products: { id: self.id }).first
 
     if lot && lot.id != self.lot.id
       self.errors.add(:base, "Produto já foi atribuído a um lote.")

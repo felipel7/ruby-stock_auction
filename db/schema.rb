@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_134518) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_165714) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_134518) do
     t.index ["register_by_id"], name: "index_lots_on_register_by_id"
   end
 
-  create_table "product_models", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "weight"
@@ -97,8 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_134518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lot_id"
-    t.index ["category_id"], name: "index_product_models_on_category_id"
-    t.index ["lot_id"], name: "index_product_models_on_lot_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["lot_id"], name: "index_products_on_lot_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,6 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_134518) do
   add_foreign_key "favorites", "users"
   add_foreign_key "lots", "users", column: "approved_by_id"
   add_foreign_key "lots", "users", column: "register_by_id"
-  add_foreign_key "product_models", "categories"
-  add_foreign_key "product_models", "lots"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "lots"
 end

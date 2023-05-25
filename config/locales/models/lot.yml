@@ -11,8 +11,8 @@ pt-BR:
         min_allowed_difference: 'Valor mínimo do lance'
         register_by: 'Administrador que criou'
         approved_by: 'Administrador que aprovou'
-        product_model_id: 'Produto'
-        product_models: 'Produto'
+        product_id: 'Produto'
+        products: 'Produto'
         photo: 'Foto'
         status:
           pending: 'Pendente'

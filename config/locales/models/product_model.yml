@@ -1,9 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      product_model: 'Produto'
+      product: 'Produto'
     attributes:
-      product_model:
+      product:
         name: 'Nome'
         description: 'Descrição'
         height: 'Altura'
