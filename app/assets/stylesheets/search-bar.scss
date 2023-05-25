@@ -3,46 +3,36 @@
 
 .search-bar__wrapper {
   @include center-flex;
-  justify-content: space-between;
-  background: $input-background;
+  background: $grey-750;
   border-radius: 0.5rem;
-  border: 1px solid $table-border-color;
-  color: $input-color;
-  margin-block: 2rem;
-  width: fit-content;
-  transition: all 0.2s ease;
-
-  &:hover,
-  &:focus,
-  form:focus-within {
-    background-color: $white;
-    border-radius: 0.5rem;
-    border-color: rgba($primary-color, 0.4);
-    box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
-    -webkit-box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
-  }
+  border-radius: 5rem;
+  min-width: 40rem;
 
   input {
     all: unset;
-    display: block;
+    display: inline-block;
+    font-weight: 400;
     outline: none;
-    padding: 1rem 0 1rem 1.5rem;
-    transition: background-color 0.2s ease, color 0.2s;
-    min-width: 25rem;
+    padding-block: 1.75rem;
+
+    &::placeholder {
+      color: $placeholder-color;
+    }
+  }
+
+  form,
+  label {
+    @include center-flex;
+    width: 100%;
   }
 
   label {
     @include center-flex;
+    justify-content: space-between;
+    padding-inline: 3rem 1rem;
   }
 
-  button {
-    background: $primary-color;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    height: 3rem;
-
-    i {
-      font-size: 2rem;
-    }
+  i {
+    font-size: 2rem;
   }
 }

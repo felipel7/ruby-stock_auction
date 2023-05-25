@@ -1,41 +1,46 @@
 /* Variables */
-$page-width: 1024px;
-
-/* 
- * Schema 
- */
+$page-width: 1480px;
 
 /* Colors */
+$grey-900: #181b23;
+$grey-800: #1f2029;
+$grey-750: #1a202c;
+$grey-700: #353646;
+$grey-600: #4b4d63;
+$grey-500: #616480;
+$grey-400: #797d9a;
+$grey-300: #9699b0;
+$grey-200: #b3b5c6;
+$grey-100: #d1d2dc;
+$grey-50: #eeeef2;
+
+$cyan-500: #00b5d8;
+
+$pink-500: #d53f8c;
+
+$purple-500: #9f7aea;
+
+$placeholder-color: #a0aec0;
+
+/* Border */
+$border: 1px solid $grey-600;
+$border-color: $grey-600;
+$border-radius-sm: 0.5rem;
+$border-radius-lg: 1rem;
+
 $white: #ffffff;
-$grey-500: #848484;
-$grey-900: #111111;
 $green-500: #2ec52e;
 $green-700: #28a745;
 $red-500: #fa583c;
 $red-700: #f94424;
-$yellow-500: #ebc02c;
 
-// $primary-color: #3498db;
 $primary-color: #2c73eb;
 $secondary-color: #95a5a6;
 $accent-color: #e67e22;
 $text-color: #212529;
 
-/* Sidebar */
-$sidebar-bg-color: #2c3e50;
-$sidebar-hover-bg-color: #34495e;
-
 /* Table */
-$table-head-bg-color: #f8f9fa;
-$table-border-color: #dee2e6;
+$table-head-bg-color: $grey-900;
+$table-border-color: $grey-600;
 
-/* Border */
-$border: 1px solid rgba(0, 0, 0, 0.125);
-$border-color: #6c757d;
-
-/* Form */
-$input-background: #f3f3f4;
-$input-color: #0d0c22;
-
-/* Buttons */
-$btn-dark-color: #2c3e50;
+$input-border: 2px solid $cyan-500;

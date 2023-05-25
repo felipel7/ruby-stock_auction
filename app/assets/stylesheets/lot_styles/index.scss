@@ -1,21 +1,8 @@
 @import '../config';
 @import '../mixins';
 
-// View index
-.section__lot--index {
-  @include section-wrap;
-  justify-content: flex-start;
-  gap: 1.5rem;
-
-  a.btn.btn-primary {
-    order: -1;
-    padding-block: 0.75rem;
-  }
-}
-
 // View show
-.section__lot--show {
-  @include section-wrap;
+.section.lot--show {
   gap: 2rem;
 
   h2 {
@@ -133,15 +120,16 @@
 
 .admin .filter--controls {
   flex-basis: 100%;
+  margin-block: 2rem;
 }
 
 // Admin View manage/show
-.section__lot--manage {
+.section.lot--manage {
   @include section-wrap;
 }
 
 // Admin-lot View index
-.section.admin.section__lot--manage {
+.section.lot--manage {
   article {
     margin-block: 2rem;
   }

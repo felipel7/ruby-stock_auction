@@ -5,22 +5,27 @@
 .btn,
 .btn[type='submit'] {
   cursor: pointer;
-  font-weight: bold;
-  padding: 0.5rem 2rem;
+  font-weight: 500;
+  padding: 1rem 2.5rem;
   transition: filter 0.2s ease;
-  color: $white;
+  color: $grey-50;
+  letter-spacing: 0.65px;
 
   &:hover {
     filter: brightness(0.85);
   }
 }
 
+.btn-sm {
+  padding: 0.5rem 2rem;
+}
+
 .btn-primary {
-  background-color: $primary-color;
+  background-color: $cyan-500;
 }
 
 .btn-secondary {
-  background-color: $secondary-color;
+  background-color: $grey-600;
 }
 
 .btn-accent {
@@ -50,4 +55,8 @@
 .btn-large {
   padding: 1rem 10rem;
   text-align: center;
+}
+
+.btn.rounded {
+  border-radius: $border-radius-sm;
 }

@@ -8,24 +8,61 @@
     @include center-flex(column);
     align-items: flex-start;
 
+    label {
+      margin-block-end: 1rem;
+      font-weight: 500;
+    }
+
+    margin-block-end: 2rem;
+
     input,
     select {
-      background: $input-background;
-      color: $input-color;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      outline: none;
-      margin-block: 0.5rem 1rem;
-      border: 1px solid $table-border-color;
-      transition: background-color 0.2s ease, color 0.2s;
+      padding-inline: 1.5rem;
+      border-radius: $border-radius-sm;
+      outline: 0;
+      border: 0;
 
-      &:hover,
+      &:not([type='checkbox']) {
+        height: 4.5rem;
+        width: 100%;
+      }
+
       &:focus {
-        background: $white;
-        border-color: rgba($primary-color, 0.4);
-        background-color: #fff;
-        box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
-        -webkit-box-shadow: 0 0 0 4px rgba($primary-color, 0.1);
+        border: $input-border;
+      }
+
+      &:active,
+      &:focus {
+        background: $grey-750;
+      }
+    }
+
+    input[type='checkbox'] {
+      display: none;
+
+      & + label {
+        position: relative;
+        padding-left: 3rem;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2rem;
+          height: 2rem;
+          background-color: $grey-500;
+          border-radius: $border-radius-sm;
+        }
+      }
+
+      &:checked + label::before {
+        background-color: $cyan-500;
+        content: '✔';
+        font-size: 1.85rem;
+        text-align: center;
       }
     }
   }
@@ -33,9 +70,7 @@
   .check-box__container {
     @include center-flex;
     align-items: baseline;
-    align-self: flex-start;
     justify-content: flex-start;
-    gap: 1rem;
   }
 
   .actions {

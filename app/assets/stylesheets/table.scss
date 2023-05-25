@@ -1,12 +1,15 @@
 @import 'config';
 
 .table {
-  background-color: $white;
   border-collapse: collapse;
   margin-bottom: 1rem;
   max-width: 100%;
   width: 100%;
   position: relative;
+
+  a {
+    color: $purple-500;
+  }
 
   th {
     background-color: $table-head-bg-color;
@@ -36,7 +39,7 @@
       }
     }
 
-    button {
+    button:not(.add) {
       all: unset;
       cursor: pointer;
     }
@@ -53,8 +56,6 @@
 }
 
 .table__container {
-  max-height: 50vh;
-  overflow: auto;
   width: 100%;
 
   & ~ .btn {

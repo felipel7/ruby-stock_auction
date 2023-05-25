@@ -2,39 +2,117 @@
 @import 'mixins';
 
 .card {
-  width: 30rem;
-  overflow: hidden;
+  border-radius: $border-radius-lg;
   border: $border;
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-  border-radius: 0.5rem;
+  overflow: hidden;
   position: relative;
+  width: 34rem;
 
-  h3 {
-    padding: 2rem;
-    white-space: nowrap;
-    font-size: 1.75rem;
-    background: rgba(0, 0, 0, 0.1);
-    transition: background-color 0.25s ease;
+  header {
+    color: $grey-750;
+    text-transform: uppercase;
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
+    a {
+      color: $purple-500;
+      text-decoration: none;
+    }
+
+    h3 {
+      background: rgba($grey-750, 0.1);
+      font-size: 2rem;
+      left: 0;
+      padding: 2rem;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: background-color 0.25s ease;
+
+      &:hover {
+        background-color: rgba($grey-750, 0.15);
+      }
     }
   }
 
-  figure {
-    img {
-      object-fit: contain;
-      height: 27rem;
-      width: 100%;
-      border-bottom: $border;
-    }
+  img {
+    border-bottom: $border;
+    height: 25rem;
+    object-fit: cover;
   }
 
   .card__body {
     padding: 2rem;
 
-    .list li {
-      padding-block: 0.25rem;
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      padding-block: 0.35rem;
+
+      time {
+        flex-basis: 100%;
+      }
+
+      dt {
+        font-weight: 600;
+      }
     }
+
+    .countdown__section {
+      background-color: $grey-750;
+      border-radius: $border-radius-lg;
+      color: $grey-50;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      position: absolute;
+      top: 18.5rem;
+      width: calc(100% - 4rem);
+
+      .countdown__item {
+        padding: 0 auto;
+
+        & ~ .countdown__item {
+          border-left: $border;
+        }
+
+        .label {
+          font-size: 1.1rem;
+        }
+      }
+
+      .countdown__label {
+        background-color: rgba($grey-750, 0.75);
+        border-radius: $border-radius-sm;
+        font-size: 1.4rem;
+        font-weight: normal;
+        left: 0;
+        letter-spacing: 1.1px;
+        padding: 0.5rem;
+        position: absolute;
+        top: -2.6rem;
+
+        &.ended {
+          background-color: $purple-500;
+          font-weight: 500;
+          top: 5rem;
+        }
+      }
+    }
+
+    .card__controls {
+      @include center-flex;
+      margin-top: 1.5rem;
+      justify-content: space-between;
+    }
+  }
+
+  button,
+  .btn.favorite {
+    padding: 0.5rem 1rem;
+    border-radius: $border-radius-sm;
+    background-color: $pink-500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-bid {
+    background-color: $purple-500;
   }
 }

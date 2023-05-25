@@ -1,8 +1,13 @@
 @import 'config';
 
 .flash__container {
+  position: absolute;
   color: $white;
   font-weight: bold;
+  max-height: 4rem;
+  left: 0;
+  right: 0;
+  width: 100%;
 
   @media screen and(max-width: 1080px) {
     padding-inline: 2rem;
@@ -27,7 +32,7 @@
   border: $border;
   border-radius: 0.5rem;
   padding: 1rem;
-  margin-block: 1rem 2rem;
+  margin: 1rem auto 2rem;
   border-color: $red-500;
   color: $red-700;
   background: rgba($red-500, 0.075);
@@ -36,8 +41,8 @@
   li {
     margin-block: 0.35rem;
 
-    &::after {
-      content: '*';
+    &::before {
+      content: '* ';
     }
   }
 }
