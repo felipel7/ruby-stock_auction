@@ -128,3 +128,40 @@ describe "Usuário favorita um lote" do
     end
   end
 end
+
+describe "Admin favorita um lote" do
+  it "e recebe uma mensagem de erro" do
+    first_admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+    second_admin = User.create!(email: "felipe@leilaodogalpao.com.br", cpf: "14367226085", password: "123123")
+    category = Category.create!(name: "Eletrônicos")
+    first_product = Product.create!(
+      name: "Monitor LG",
+      description: "Monitor de 24 polegadas da marca LG...",
+      weight: 1500,
+      width: 100,
+      height: 80,
+      depth: 15,
+      category: category,
+    )
+    lot = Lot.create!(
+      batch_code: "EOR661430",
+      start_date: 1.minute.from_now,
+      end_date: 1.day.from_now,
+      min_value: 1200,
+      min_allowed_difference: 35,
+      register_by_id: first_admin.id,
+      approved_by_id: second_admin.id,
+    )
+    lot.products << first_product
+    lot.approved!
+
+    travel_to 1.hour.from_now do
+      login_as(first_admin)
+      visit root_path
+      all(".favorite")[0].click
+
+      expect(current_path).to eq root_path
+      expect(page).to have_content "Admin não pode favoritar um lote."
+    end
+  end
+end
