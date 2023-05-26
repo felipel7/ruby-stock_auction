@@ -39,9 +39,19 @@
       }
     }
 
-    button:not(.add) {
+    .btn {
+      color: $grey-50 !important;
+      padding-block: 0.5rem;
+    }
+
+    button[title='Bloquear'],
+    button[title='Desbloquear'] {
       all: unset;
       cursor: pointer;
+    }
+
+    button[title='Bloquear'] {
+      color: $red-700;
     }
   }
 }

@@ -3,6 +3,7 @@
 
 .form {
   padding-block: 1rem;
+  width: 100%;
 
   p {
     @include center-flex(column);
@@ -65,6 +66,10 @@
         text-align: center;
       }
     }
+
+    input[type='file'] {
+      padding: 1rem;
+    }
   }
 
   .check-box__container {
@@ -86,27 +91,17 @@
   }
 
   textarea {
-    min-height: 5rem;
-    max-height: 20rem;
-    min-width: 10rem;
-    max-width: 100%;
-    padding: 1rem;
-  }
-}
+    border-radius: $border-radius-sm;
+    border: 0;
+    max-height: 20rem !important;
+    min-height: 5rem !important;
+    outline: 0;
+    padding: 2rem;
+    width: 50vw !important;
 
-.form__lot {
-  flex-wrap: wrap;
-
-  p {
-    align-items: baseline;
-    column-gap: 1rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  label {
-    flex-basis: 100%;
+    &:focus {
+      border: 2px solid $cyan-500;
+    }
   }
 }
 

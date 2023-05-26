@@ -1,4 +1,4 @@
-<%= form_with(model: @lot, url: @lot.persisted? ? admin_lot_path(@lot) : admin_lots_path, class: "form form__lot") do |form|  %>
+<%= form_with(model: @lot, url: @lot.persisted? ? admin_lot_path(@lot) : admin_lots_path, class: "form") do |form|  %>
 
   <p>
     <%= form.label :batch_code  %>
@@ -6,12 +6,12 @@
   </p>
 
   <% Time.use_zone("America/Sao_Paulo") do %>
-    <p>
+    <p class="select__date">
       <%= form.label :start_date  %>
       <%= form.datetime_select :start_date %>
     </p>
 
-    <p>
+    <p class="select__date">
       <%= form.label :end_date  %>
       <%= form.datetime_select :end_date %>
     </p>

@@ -1,73 +1,75 @@
-<section class="section lot--show">
-  <h2>Lote: <%= @lot.batch_code %></h2>
+<div class='container'>
+  <section class="section lot--show">
+    <h2>Lote: <%= @lot.batch_code %></h2>
 
-  <%= render partial: "shared/image", locals: { obj: @lot } %>
+    <%= render partial: "shared/image", locals: { obj: @lot } %>
 
-  <div>
-    <p class="initial-value">
-      Preço Inicial: 
-      <span class="value"><%= number_to_currency(@lot.min_value, locale: :'pt-BR') %></span>
-    </p>
+    <div class="lot--details">
+      <p class="initial-value">
+        Preço Inicial: 
+        <span class="value"><%= number_to_currency(@lot.min_value, locale: :'pt-BR') %></span>
+      </p>
 
-    <dl class="description__list">
-      <div>
-        <dt>Total:</dt>
-        <dd><%= pluralize(@lot.products.count, "produto", "produtos") %></dd>
-      </div>
-
-      <div class="countdown__container">
-        <dt><%= @lot_ended ? "Encerrado" : "Tempo Restante" %>:</dt>
-        <dd><%= distance_of_time_in_words(Time.zone.now, @lot.end_date) %></dd>
-
-        <div class="countdown__section">
-          <%= format_time_left(@time_left).html_safe unless @lot_ended %>
+      <dl class="description__list">
+        <div>
+          <dt>Total:</dt>
+          <dd><%= pluralize(@lot.products.count, "produto", "produtos") %></dd>
         </div>
-      </div>
 
-      <div class="end-time">
-        <dt>Data de encerramento:</dt>
-        <dd><%= l(@lot.end_date, format: :long) %></dd>
-      </div>
+        <div class="countdown__container">
+          <dt><%= @lot_ended ? "Encerrado" : "Tempo Restante" %>:</dt>
+          <dd><%= distance_of_time_in_words(Time.zone.now, @lot.end_date) %></dd>
 
-      <div class="current-value">
-        <dt>Lance atual:</dt>
-        <dd><%= number_to_currency(@current_bid, locale: :'pt-BR') %></dd>
-      </div>
+          <div class="countdown__section">
+            <%= format_time_left(@time_left).html_safe unless @lot_ended %>
+          </div>
+        </div>
 
-      <% if @lot_ended %>
-        <div class="bid">
-          <h4>Vencedor:</h4>
-          <p>
-            <% if @winner %>
-              <%= @winner.name %>
-              <%= "você foi o vencedor, parabéns!" if @winner.id == current_user&.id %>
-            <% else %>
-              Não houve lances.
+        <div class="end-time">
+          <dt>Data de encerramento:</dt>
+          <dd><%= l(@lot.end_date, format: :long) %></dd>
+        </div>
+
+        <div class="current-value">
+          <dt>Lance atual:</dt>
+          <dd><%= number_to_currency(@current_bid, locale: :'pt-BR') %></dd>
+        </div>
+
+        <% if @lot_ended %>
+          <div class="bid">
+            <h4>Vencedor:</h4>
+            <p>
+              <% if @winner %>
+                <%= @winner.name %>
+                <%= "você foi o vencedor, parabéns!" if @winner.id == current_user&.id %>
+              <% else %>
+                Não houve lances.
+              <% end %>
+            </p>
+          </div>
+        <% else %>
+          <div class="bid">
+            <%= form_with(url: bids_path(id: @lot.id), html: { class: "form bid__form"} ) do |form|  %>
+              <div class="bid__controls">
+                <button type="button" onclick="decrement()"> - </button>
+                <span>R$</span>
+                <%= form.number_field :amount, min: @lot.min_allowed_difference, value: @lot.min_allowed_difference, id: "bid-input" %>
+                <button type="button" onclick="increment()"> + </button>
+              </div>
+              <%= form.submit "Dar Lance", disabled: @lot.end_date > Time.zone.now ? false : true %>
             <% end %>
-          </p>
-        </div>
-      <% else %>
-        <div class="bid">
-          <%= form_with(url: bids_path(id: @lot.id), html: { class: "form bid__form"} ) do |form|  %>
-            <div class="bid__controls">
-              <button type="button" onclick="decrement()"> - </button>
-              <span>R$</span>
-              <%= form.number_field :amount, min: @lot.min_allowed_difference, value: @lot.min_allowed_difference, id: "bid-input" %>
-              <button type="button" onclick="increment()"> + </button>
-            </div>
-            <%= form.submit "Dar Lance", disabled: @lot.end_date > Time.zone.now ? false : true %>
-          <% end %>
-        </div>
-      <% end %>
-    </dl>
-  </div>
-</section>
+          </div>
+        <% end %>
+      </dl>
+    </div>
+  </section>
 
-<section class="section lot--show">
-  <h2>Produtos Disponíveis neste Lote:</h2>
+  <section class="section lot--show">
+    <h2>Produtos Disponíveis neste Lote:</h2>
 
-  <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
-</section>
+    <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
+  </section>
+</div>
 
 <script>
   const input = document.getElementById("bid-input")

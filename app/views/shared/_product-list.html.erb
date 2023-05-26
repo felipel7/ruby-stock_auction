@@ -1,19 +1,9 @@
-<% if products.empty? %>
-  <p>Não há nenhum produto cadastrado.</p>
-<% end %>
-
 <% products.each do |product| %>
   <article class="card">
-    <h3><%= product.name %></h3>
     <header>
+      <h4><%= product.name %></h4>
+      <%= render partial: "shared/image", locals: { obj: product } %>
     </header>
-    <figure>
-      <% if product.photo.attached? %>
-        <%= image_tag product.photo %>
-      <% else  %>
-        <%= image_tag("default.png") %>
-      <% end %>
-    </figure>
     <div class="card__body">
       <ul class="list">
         <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>

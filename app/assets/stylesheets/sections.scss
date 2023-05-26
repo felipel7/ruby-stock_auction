@@ -15,11 +15,6 @@
   margin-block: 3rem;
 }
 
-/* Bids */
-.section.bid--index {
-  align-content: flex-start;
-}
-
 /* Devise */
 .login__container {
   @include center-flex(column);
@@ -38,7 +33,9 @@
     margin-block-end: 10rem;
 
     & form {
-      width: 100%;
+      input.btn-primary {
+        padding-block: 0.5rem;
+      }
     }
 
     & > a {
@@ -86,17 +83,52 @@
   }
 }
 
-// Lot index
 .lot__container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-block-start: 2rem;
+}
+
+// Lot edit
+.section.lot-form,
+.section.admin.products--edit {
+  .form {
+    width: 100%;
+
+    label {
+      white-space: nowrap;
+    }
+  }
+
+  .select__date {
+    @include center-flex;
+    gap: 1rem;
+  }
+}
+
+.section.admin.bid--index {
+  height: fit-content;
 }
 
 .section.admin.lot--index,
-.section.favorites--index,
-.section.profiles--index,
+.section.admin.lot--show,
+.section.admin.bid--index,
 .section.categories--index,
-.section.products--index {
+.section.favorites--index,
+.section.product-model--show,
+.section.profiles--index,
+.section.products--index,
+.section.bid--index {
   align-content: flex-start;
+  height: fit-content;
+}
+
+.section.admin.lot--index,
+.section.product-model--show,
+.section.lot--manage,
+.section.bid--index {
+  p a {
+    color: $purple-500;
+  }
 }

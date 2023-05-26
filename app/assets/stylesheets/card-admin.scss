@@ -2,15 +2,7 @@
 @import 'mixins';
 
 .section.admin .card {
-  height: 41rem;
-
-  header {
-    height: 25rem;
-
-    img {
-      height: 100%;
-    }
-  }
+  height: fit-content;
 
   .card__body {
     div {

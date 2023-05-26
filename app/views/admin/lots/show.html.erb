@@ -1,59 +1,64 @@
-<section class="section admin lot--show">
-  <h2>Lote: <%= @lot.batch_code %></h2>
-
+<div class="container">
   <%= render 'shared/errors', { obj: @lot } %>
-  <%= render partial: "shared/image", locals: { obj: @lot } %>
 
-  <dl class="description__list">
-    <div>
-      <dt>Data de início:</dt>
-      <dd><%= l(@lot.start_date, format: :long) %></dd>
-    </div>
+  <section class="section admin lot--show">
+    <h2>Lote: <%= @lot.batch_code %></h2>
 
-    <div>
-      <dt>Data de encerramento:</dt>
-      <dd><%= l(@lot.end_date, format: :long) %></dd>
-    </div>
+    <%= render partial: "shared/image", locals: { obj: @lot } %>
 
-    <div>
-      <dt>Status:</dt>
-      <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
-    </div>
-
-    <div>
-      <dt>Criado por:</dt>
-      <dd><%= @lot.user.name %></dd>
-    </div>
-
-    <div>
-      <dt>Aprovado por:</dt>
-      <dd><%= @lot.approved_by&.name || "Esse lote ainda não foi aprovado" %></dd>
-    </div>
-
-    <% if @lot.status == "ended" %>
-      <div class="lot__controls">
-        <%= button_to "Validar Resultado", ended_admin_lot_path(status: :finished), method: :post, class: "btn btn-success" %>
-        <%= button_to "Cancelar Lote", ended_admin_lot_path(status: :canceled), method: :post, class: "btn btn-danger" %>
-      </div>
-    <% elsif @lot.status == "finished" %>
+    <dl class="description__list">
       <div>
-        <dt>Vencedor:</dt>
-        <dd><%= @lot.bids.last&.user&.name || "Não houve nenhum lance." %></dd>
+        <dt>Data de início:</dt>
+        <dd><%= l(@lot.start_date, format: :long) %></dd>
       </div>
-    <% end %>
+
+      <div>
+        <dt>Data de encerramento:</dt>
+        <dd><%= l(@lot.end_date, format: :long) %></dd>
+      </div>
+
+      <div>
+        <dt>Status:</dt>
+        <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
+      </div>
+
+      <div>
+        <dt>Criado por:</dt>
+        <dd><%= @lot.user.name %></dd>
+      </div>
+
+      <div>
+        <dt>Aprovado por:</dt>
+        <dd><%= @lot.approved_by&.name || "Esse lote ainda não foi aprovado" %></dd>
+      </div>
+
+      <% if @lot.status == "ended" %>
+        <div class="lot__controls">
+          <%= button_to "Validar Resultado", ended_admin_lot_path(status: :finished), method: :post, class: "btn btn-success rounded" %>
+          <%= button_to "Cancelar Lote", ended_admin_lot_path(status: :canceled), method: :post, class: "btn btn-danger rounded" %>
+        </div>
+      <% elsif @lot.status == "finished" %>
+        <div>
+          <dt>Vencedor:</dt>
+          <dd><%= @lot.bids.last&.user&.name || "Não houve nenhum lance." %></dd>
+        </div>
+      <% end %>
+
+      <% if @lot.products.empty? %>
+        <div>
+          <%= link_to "Adicionar Produtos", manage_admin_lot_path(@lot), class: "btn btn-primary rounded" %>
+        </div>
+      <% end %>
+    </dl>
+  </section>
+
+  <section class="section admin lot--show">
+    <h2>Produtos contidos neste lote:</h2>
 
     <% if @lot.products.empty? %>
-      <%= link_to "Adicionar Produtos", manage_admin_lot_path(@lot), class: "btn btn-primary" %>
+      <p>Não há produtos neste lote.</p>
     <% end %>
-  </dl>
-</section>
 
-<section class="section admin lot--show">
-  <h2>Produtos contidos neste lote:</h2>
-
-  <% if @lot.products.empty? %>
-    <p>Não há produtos neste lote.</p>
-  <% end %>
-
-  <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
-</section>
+    <%= render partial: "shared/product-list", locals: { products: @lot.products } %>
+  </section>
+</div>

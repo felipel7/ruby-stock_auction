@@ -2,7 +2,7 @@
   <section class="section lot--index">
     <h2>Lotes em Andamento:</h2>
 
-    <%= render  'shared/card', { lots: @lots.lots_in_progress } %>
+    <%= render 'shared/card', { lots: @lots.lots_in_progress } %>
 
     <% if @lots.lots_in_progress.empty? %>
       <p>Não há lotes em andamento no momento.</p>

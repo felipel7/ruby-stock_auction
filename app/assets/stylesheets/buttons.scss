@@ -4,12 +4,13 @@
 /* Buttons */
 .btn,
 .btn[type='submit'] {
+  color: $grey-50;
   cursor: pointer;
   font-weight: 500;
+  letter-spacing: 0.65px;
   padding: 1rem 2.5rem;
   transition: filter 0.2s ease;
-  color: $grey-50;
-  letter-spacing: 0.65px;
+  white-space: nowrap;
 
   &:hover {
     filter: brightness(0.85);
@@ -50,11 +51,6 @@
     background: $primary-color;
     color: $white;
   }
-}
-
-.btn-large {
-  padding: 1rem 10rem;
-  text-align: center;
 }
 
 .btn.rounded {

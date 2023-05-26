@@ -1,5 +1,5 @@
 <% lots.each do |lot| %>
-  <article class="card card__admin">
+  <article class="card">
     <header>
       <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
       <% if lot.photo.attached? %>

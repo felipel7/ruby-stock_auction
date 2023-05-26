@@ -28,14 +28,9 @@
       <dt>Categoria:</dt>
       <dd><%= @product.category.name %></dd>
     </div>
-    <% if current_user.is_admin? %>
-      <%= link_to "Editar", edit_admin_product_path(@product), class: "btn btn-primary" %>
-    <% end %>
+
+    <div>
+      <%= link_to "Editar", edit_admin_product_path(@product), class: "btn btn-primary rounded" %>
+    </div>
   </dl>
-  <% if @product.lot_id.present? %>
-    <p>
-      Compre o produto clicando no seguinte lote:  
-      <%= link_to @product.lot.batch_code, lot_path(@product.lot_id) %>
-    </p>
-  <% end %>
 </section>

@@ -20,7 +20,7 @@ class BidsController < ApplicationController
     @lot = Lot.find(params[:id])
 
     if current_user&.is_admin?
-      flash[:notice] = "Administradores não podem dar lances."
+      flash[:alert] = "Administradores não podem dar lances."
       redirect_to root_path
     else
       @bid = Bid.new(user: current_user, lot: @lot, amount: params[:amount].to_i)

@@ -121,7 +121,7 @@ class Admin::LotsController < ApplicationController
     else
       flash[:alert] = "#{@lot.errors&.full_messages[0]}"
     end
-    redirect_to @lot
+    redirect_to admin_lot_path(@lot)
   end
 
   private

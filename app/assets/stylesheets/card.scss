@@ -13,22 +13,29 @@
     text-transform: uppercase;
 
     a {
-      color: $purple-500;
       text-decoration: none;
+      color: $purple-500;
     }
 
-    h3 {
-      background: rgba($grey-750, 0.1);
+    h3,
+    h4 {
+      background: rgba($grey-500, 0.3);
+      color: $purple-500;
       font-size: 2rem;
       left: 0;
       padding: 2rem;
       position: absolute;
       right: 0;
+      text-shadow: 1px 1px 0.5px $grey-900;
       top: 0;
       transition: background-color 0.25s ease;
 
       &:hover {
-        background-color: rgba($grey-750, 0.15);
+        background-color: rgba($grey-500, 0.5);
+      }
+
+      span {
+        color: $grey-50;
       }
     }
   }
@@ -36,6 +43,7 @@
   img {
     border-bottom: $border;
     height: 25rem;
+    width: 100%;
     object-fit: cover;
   }
 
@@ -102,6 +110,12 @@
       margin-top: 1.5rem;
       justify-content: space-between;
     }
+
+    .list {
+      li {
+        margin-block: 0.5rem;
+      }
+    }
   }
 
   button,
@@ -114,5 +128,6 @@
 
   .btn-bid {
     background-color: $purple-500;
+    padding: 0.75rem 1.5rem;
   }
 }
