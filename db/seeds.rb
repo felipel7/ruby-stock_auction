@@ -58,6 +58,12 @@ fifth_product = Product.create!(
 )
 
 # Usuários regulares
+first_user = User.create!(
+  email: "felipe@gmail.com",
+  cpf: "33665186005",
+  password: "123123",
+)
+
 second_user = User.create!(
   email: "maria@gmail.com",
   cpf: "39889813033",
