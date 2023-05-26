@@ -96,9 +96,16 @@ Na aplicação, os usuários têm a opção de realizar lances em lotes específ
 - Um usuário não pode fazer um lance se o último lance registrado for dele mesmo. Isso evita que um usuário aumente o valor do seu próprio lance ou que ele de lances duplicados sem querer.
 
 <details>
-  <summary>Imagem da tela de lances:</summary>
-  
-  <img alt="lances" src="docs/media/lances.png" />
+Nova Versão:
+<summary>Imagem da tela de lances:</summary>
+
+<img alt="lances" src="docs/media/lances-v2.png" />
+
+<br />
+
+Primeira Versão:
+<img alt="lances" src="docs/media/lances.png" />
+
 </details>
 
 - O usuário pode visualizar todas os lances que deu na tela de lances. Essa tela apresenta duas informações principais:
@@ -107,9 +114,18 @@ Na aplicação, os usuários têm a opção de realizar lances em lotes específ
   - **Todos os lances** dados pelo usuário, incluindo lances em lotes que ele ganhou e lotes em que foi superado por outros lances.
 
 <details>
-  <summary>Imagem da tela de histórico de lances:</summary>
+
+Nova Versão:
+
+<summary>Imagem da tela de histórico de lances:</summary>
   
-  <img alt="histórico de lances" src="docs/media/historico-lances.png" />
+  <img alt="histórico de lances" src="docs/media/historico-lances-v2.png" />
+
+<br />
+
+Primeira Versão:
+<img alt="histórico de lances" src="docs/media/historico-lances.png" />
+
 </details>
 <br>
 <br>
@@ -160,20 +176,22 @@ Abra o navegador e digite `http://localhost:3000`
 
 **Entrar como usuário regular:**
 
-E-mail usuário:
+E-mail usuários:
 
-```
+```bash
 felipe@gmail.com
+# ou
+maria@gmail.com
 ```
 
 <br/>
 
 **Entrar como administrador:**
 
-E-mail administrador:
+E-mail administradores:
 
-```
+```bash
 maria@leilaodogalpao.com.br
+# ou
+fernando@leilaodogalpao.com.br
 ```
-
-Todas as senhas são: "123123"
