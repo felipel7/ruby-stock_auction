@@ -7,7 +7,7 @@ describe "Admin bloqueia um usuário" do
 
     login_as(admin)
     visit admin_profiles_path
-    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
+    within(".table__controls form[action$='#{user.id}/block']") do
       click_on "Bloquear"
     end
 
@@ -20,7 +20,7 @@ describe "Admin bloqueia um usuário" do
 
     login_as(admin)
     visit admin_profiles_path
-    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
+    within(".table__controls form[action$='#{user.id}/block']") do
       click_on "Bloquear"
     end
     within "aside" do
@@ -42,7 +42,7 @@ describe "Admin bloqueia um usuário" do
 
     login_as(admin)
     visit admin_profiles_path
-    within(".table__controls form[action='/admin/profiles/#{user.id}/block']") do
+    within(".table__controls form[action$='#{user.id}/block']") do
       click_on "Bloquear"
     end
     within "aside" do
@@ -59,5 +59,52 @@ describe "Admin bloqueia um usuário" do
     end
 
     expect(page).to have_content "CPF está bloqueado, entre em contato com o suporte."
+  end
+
+  it "e não consegue bloquear um usuário que já está bloqueado" do
+    user = User.create!(email: "felipe@gmail.com.br", cpf: "81140180037", password: "123123")
+    admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+
+    login_as(admin)
+    visit admin_profiles_path
+    within(".table__controls form[action$='#{user.id}/block']") do
+      click_on "Bloquear"
+      click_on "Bloquear"
+    end
+
+    expect(page).to have_content "CPF já está bloqueado."
+    expect(page).not_to have_content "CPF bloqueado com sucesso."
+  end
+
+  it "e desbloqueia um usuário com sucesso" do
+    user = User.create!(email: "felipe@gmail.com.br", cpf: "81140180037", password: "123123")
+    admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+
+    login_as(admin)
+    visit admin_profiles_path
+    within(".table__controls form[action$='#{user.id}/block']") do
+      click_on "Bloquear"
+    end
+    within(".table__controls form[action$='#{user.id}/unblock']") do
+      click_on "Desbloquear"
+    end
+
+    expect(page).to have_content "CPF foi desbloqueado com sucesso."
+    expect(page).not_to have_content "CPF bloqueado com sucesso."
+  end
+
+  it "e não consegue desbloquear um usuário que não está bloqueado" do
+    user = User.create!(email: "felipe@gmail.com.br", cpf: "81140180037", password: "123123")
+    admin = User.create!(email: "maria@leilaodogalpao.com.br", cpf: "03507869098", password: "123123")
+
+    login_as(admin)
+    visit admin_profiles_path
+    within(".table__controls form[action$='#{user.id}/unblock']") do
+      click_on "Desbloquear"
+      click_on "Desbloquear"
+    end
+
+    expect(page).to have_content "Não é possível desbloquear um CPF que não está bloqueado."
+    expect(page).not_to have_content "CPF foi desbloqueado com sucesso."
   end
 end

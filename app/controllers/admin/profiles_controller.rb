@@ -28,9 +28,12 @@ class Admin::ProfilesController < ApplicationController
     @user = User.find(params[:id])
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 
-    @blocked_cpf.destroy
+    if @blocked_cpf&.destroy
+      flash[:notice] = "CPF foi desbloqueado com sucesso."
+    else
+      flash[:alert] = "Não é possível desbloquear um CPF que não está bloqueado."
+    end
 
-    flash[:notice] = "CPF foi desbloqueado com sucesso."
     redirect_to admin_profiles_path
   end
 end
