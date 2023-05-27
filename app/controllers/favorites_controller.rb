@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :check_admin, except: [:index]
+  before_action :check_admin, only: [:create]
 
   def index
     @favorite_lots = Lot.joins(:favorites).where(favorites: { user_id: current_user.id })

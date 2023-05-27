@@ -1,9 +1,12 @@
 class Admin::LotsController < ApplicationController
   include AuthorizationHelper
 
-  before_action :authenticate_user!
-  before_action :set_lot, except: [:index, :new, :create]
   before_action -> { check_admin_role(current_user) }
+  before_action :authenticate_user!
+  before_action :set_lot, only: [
+                            :show, :edit, :update, :approved, :manage,
+                            :add_product, :remove_product, :ended,
+                          ]
 
   def index
     @lots = Lot.all
@@ -13,8 +16,7 @@ class Admin::LotsController < ApplicationController
     render :index
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @lot = Lot.new
@@ -33,8 +35,7 @@ class Admin::LotsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @lot.status != "pending"
