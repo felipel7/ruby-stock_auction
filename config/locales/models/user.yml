@@ -8,3 +8,8 @@ pt-BR:
         role:
           user: 'Regular'
           admin: 'Administrador'
+    errors:
+      user:
+        messages:
+          blocked_cpf: 'CPF está bloqueado, entre em contato com o suporte.'
+          invalid_cpf: 'CPF inválido'

@@ -7,16 +7,21 @@ class Lot < ApplicationRecord
   has_one_attached :photo
 
   enum status: { pending: 0, approved: 2, ended: 4, finished: 6, canceled: 8 }, _default: :pending
-  scope :lots_in_progress, -> { where(status: :approved).where("start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now) }
   scope :lots_in_future, -> { where(status: :approved).where("start_date > ?", Time.zone.now) }
+  scope :lots_in_progress, -> { where(status: :approved).where("start_date <= ? AND end_date >= ?", Time.zone.now, Time.zone.now) }
 
   validates :batch_code, :start_date, :end_date, :min_value, :min_allowed_difference, presence: true
   validates :batch_code, uniqueness: true
   validates :min_value, :min_allowed_difference, numericality: { greater_than: 0 }
-  validates :start_date, comparison: { greater_than: Time.zone.now,
-                                       message: "deve ser posterior à hora atual" }, on: :create
-  validates :end_date, comparison: { greater_than: :start_date,
-                                     message: "deve ser posterior à data de início" }, on: :create
+  validates :start_date, comparison: {
+                           greater_than: Time.zone.now,
+                           message: I18n.t("activerecord.errors.lot.messages.start_date"),
+                         }, on: :create
+  validates :end_date, comparison: {
+                         greater_than: :start_date,
+                         message: I18n.t("activerecord.errors.lot.messages.end_date"),
+                       }, on: :create
+
   validate :batch_code_format
   validate :validate_approval, if: -> { status_changed? && status == "approved" }
   validate :validate_ended_lot, if: -> { status_changed? && (status == "finished" || status == "canceled") }
@@ -32,13 +37,13 @@ class Lot < ApplicationRecord
 
   def batch_code_format
     if self.batch_code.length != 9
-      return self.errors.add(:batch_code, "deve ter 9 caracteres")
+      return self.errors.add(:batch_code, I18n.t("activerecord.errors.lot.messages.batch_code.length"))
     end
 
     if self.batch_code.count("A-Za-z") < 3
-      self.errors.add(:batch_code, "deve ter pelo menos 3 letras")
+      self.errors.add(:batch_code, I18n.t("activerecord.errors.lot.messages.batch_code.letters_length"))
     elsif self.batch_code.count("0-9") != 6
-      self.errors.add(:batch_code, "deve ter pelo menos 6 números")
+      self.errors.add(:batch_code, I18n.t("activerecord.errors.lot.messages.batch_code.numbers_length"))
     end
   end
 
@@ -49,21 +54,21 @@ class Lot < ApplicationRecord
 
   def admin_approval
     if self.register_by_id == self.approved_by_id
-      self.errors.add(:approved_by, "deve ser diferente do admin que cadastrou o lote")
+      self.errors.add(:base, I18n.t("activerecord.errors.lot.messages.same_admin"))
     end
   end
 
   def has_products
     if self.products.empty?
-      self.errors.add(:products, "deve ser incluído para que um lote possa ser aprovado")
+      self.errors.add(:base, I18n.t("activerecord.errors.lot.messages.empty_lot"))
     end
   end
 
   def validate_ended_lot
     if self.status == "finished" && self.bids.empty?
-      self.errors.add(:base, "Não é possível validar o resultado de um lote sem lances.")
+      self.errors.add(:base, I18n.t("activerecord.errors.lot.messages.bid_required"))
     elsif self.status == "canceled" && !self.bids.empty?
-      self.errors.add(:base, "O cancelamento só é permitido quando não existem lances associados.")
+      self.errors.add(:base, I18n.t("activerecord.errors.lot.messages.cancel_with_active_bids"))
     end
   end
 end

@@ -8,24 +8,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def new
-    @product = Product.new
-    @categories = Category.all
-  end
-
-  def create
-    @product = Product.new(products_params)
-
-    if @product.save
-      flash[:notice] = "O produto foi cadastrado com sucesso"
-      redirect_to admin_product_path(@product)
-    else
-      flash[:alert] = "Não foi possível cadastrar o produto"
-      @categories = Category.all
-      render :new
-    end
-  end
-
   def show
     @product = Product.find(params[:id])
   end

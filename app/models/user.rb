@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   def check_blocked_cpf
     if blocked_cpf?
-      self.errors.add(:cpf, "está bloqueado, entre em contato com o suporte.")
+      self.errors.add(:base, I18n.t("activerecord.errors.user.messages.blocked_cpf"))
     end
   end
 
@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   def valid_cpf
     if self.cpf.nil?
-      return self.errors.add(:cpf, " inválido")
+      return self.errors.add(:base, I18n.t("activerecord.errors.user.messages.invalid_cpf"))
     end
 
     cpf_numbers = self.cpf[0..8]
@@ -78,7 +78,7 @@ class User < ApplicationRecord
     result = first_digit.to_s + second_digit.to_s != cpf_code
 
     if result
-      self.errors.add(:cpf, "inválido")
+      self.errors.add(:base, I18n.t("activerecord.errors.user.messages.invalid_cpf"))
     end
   end
 end

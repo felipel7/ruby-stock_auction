@@ -20,3 +20,16 @@ pt-BR:
           ended: 'Encerrado'
           finished: 'Finalizado'
           canceled: 'Cancelado'
+    errors:
+      lot:
+        messages:
+          start_date: 'deve ser posterior à hora atual'
+          end_date: 'deve ser posterior à data de início'
+          same_admin: 'O administrador deve ser distinto daquele que registrou o lote'
+          empty_lot: 'Um produto deve ser incluído para que um lote possa ser aprovado'
+          bid_required: 'Não é possível validar o resultado de um lote sem lances.'
+          cancel_with_active_bids: 'O cancelamento só é permitido quando não existem lances associados.'
+          batch_code:
+            length: 'deve ter 9 caracteres'
+            letters_length: 'deve ter pelo menos 3 letras'
+            numbers_length: 'deve ter pelo menos 6 números'

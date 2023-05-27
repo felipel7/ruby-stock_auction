@@ -38,7 +38,7 @@ describe "Usuário da um novo lance" do
       click_on "Dar Lance"
 
       expect(page).to have_content "Não foi possível dar o lance"
-      expect(page).to have_content "Valor deve ser maior que o mínimo permitido para cada lance"
+      expect(page).to have_content "O valor deve ser maior que o mínimo permitido para cada lance"
     end
   end
 

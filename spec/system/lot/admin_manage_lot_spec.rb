@@ -90,7 +90,7 @@ describe "Admin acessa um lote" do
     click_on "Gerenciar"
     click_on "Aprovar Lote"
 
-    expect(page).to have_content "Administrador que aprovou deve ser diferente do admin que cadastrou o lote"
+    expect(page).to have_content "O administrador deve ser distinto daquele que registrou o lote"
     expect(lot.reload.approved_by).to be nil
   end
 
@@ -192,7 +192,7 @@ describe "Admin acessa um lote" do
 
     expect(page).not_to have_content "O lote foi aprovado com sucesso."
     expect(page).to have_content "O lote não pode ser aprovado."
-    expect(page).to have_content "Produto deve ser incluído para que um lote possa ser aprovado"
+    expect(page).to have_content "Um produto deve ser incluído para que um lote possa ser aprovado"
   end
 
   context "encerrado" do

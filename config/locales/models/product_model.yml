@@ -13,3 +13,7 @@ pt-BR:
         sku: 'Código'
         category: 'Categoria'
         category_id: 'Categoria'
+    errors:
+      product:
+        messages:
+          product_not_available: 'Produto já foi atribuído a um lote.'

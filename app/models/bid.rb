@@ -12,20 +12,20 @@ class Bid < ApplicationRecord
   def check_min_bid_allowed_difference
     allowed_diff = self.lot&.min_allowed_difference
     if allowed_diff.to_i > self.amount.to_i
-      self.errors.add(:amount, "deve ser maior que o mínimo permitido para cada lance.")
+      self.errors.add(:base, I18n.t("activerecord.errors.bid.messages.minimum_bid_diff"))
     end
   end
 
   def lot_available_for_bidding
     unless Lot.lots_in_progress.include?(self.lot)
-      self.errors.add(:base, "Um lance não pode ser dado em um lote que não está em andamento.")
+      self.errors.add(:base, I18n.t("activerecord.errors.bid.messages.lot_not_in_progress"))
     end
   end
 
   def check_last_bid_user
     last_bid = self.lot.bids.last if self.lot&.bids
     if last_bid && last_bid.user == self.user
-      errors.add(:base, "O usuário já possui o último lance.")
+      errors.add(:base, I18n.t("activerecord.errors.bid.messages.user_already_last_bid"))
     end
   end
 end

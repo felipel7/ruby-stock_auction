@@ -5,3 +5,9 @@ pt-BR:
     attributes:
       bid:
         amount: 'Valor'
+    errors:
+      bid:
+        messages:
+          minimum_bid_diff: 'O valor deve ser maior que o mínimo permitido para cada lance.'
+          lot_not_in_progress: 'Um lance não pode ser dado em um lote que não está em andamento.'
+          user_already_last_bid: 'O usuário já possui o último lance.'

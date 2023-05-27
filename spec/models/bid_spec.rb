@@ -26,7 +26,7 @@ RSpec.describe Bid, type: :model do
       bid = Bid.new(user: user, lot: lot, amount: 34)
       bid.valid?
 
-      expect(bid.errors.full_messages).to include "Valor deve ser maior que o mínimo permitido para cada lance."
+      expect(bid.errors.full_messages).to include "O valor deve ser maior que o mínimo permitido para cada lance."
     end
 
     it "Não deve ser possível dar lance em um lote que ainda não foi iniciado" do
