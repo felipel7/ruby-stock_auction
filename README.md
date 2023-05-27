@@ -1,5 +1,16 @@
 # Leilão do Galpão
 
+<br>
+
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-funcionalidades-principais">Funcionalidades Principais</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#️-arquitetura-do-projeto">Arquitetura do Projeto</a>
+</p>
+
+<br>
+<br>
+
 ## Resumo
 
 Este projeto consiste no desenvolvimento de uma aplicação web utilizando Ruby on Rails, com o objetivo de criar um sistema de leilão para comercializar itens abandonados em galpões. A aplicação terá dois perfis de usuário: administradores, responsáveis pelo cadastro e gestão dos leilões, e visitantes, que poderão criar contas, buscar produtos, ver detalhes e fazer ofertas. O projeto conta com uma lista de tarefas a serem implementadas, com algumas funcionalidades adicionais consideradas bônus.
@@ -61,17 +72,11 @@ Este projeto consiste no desenvolvimento de uma aplicação web utilizando Ruby 
 <br>
 <br>
 
-## Funcionalidades Principais
+## 📋 Funcionalidades Principais
 
-### Geral
+### Cadastro de usuários
 
 A aplicação possui dois tipos de usuários: regulares e administradores. Os usuários regulares podem se cadastrar utilizando qualquer endereço de e-mail, enquanto os administradores devem se cadastrar com um e-mail do domínio _"leilaodogalpao.com.br"_. Além do e-mail, todos os usuários devem fornecer um CPF único e válido para realizar o cadastro.
-
-A interface das telas varia de acordo com o tipo de usuário. Por exemplo, na tela de produtos, os administradores visualizam uma tabela com informações adicionais sobre cada produto, enquanto os usuários regulares veem uma visualização mais detalhada.
-
-Existem também algumas telas adicionais disponíveis exclusivamente para os administradores. Embora a ideia inicial fosse criar um dashboard completo, atualmente foi implementado apenas um menu suspenso. Os administradores têm acesso a uma tela de usuários, onde podem acompanhar informações relevantes. Nessa tela, também é possível bloquear ou desbloquear um CPF/usuário, oferecendo maior controle sobre o sistema.
-
-Outra funcionalidade é a tela de categorias, na qual os administradores podem criar e editar categorias conforme necessário.
 
 ### Status dos Lotes
 
@@ -95,42 +100,23 @@ Na aplicação, os usuários têm a opção de realizar lances em lotes específ
 
 - Um usuário não pode fazer um lance se o último lance registrado for dele mesmo. Isso evita que um usuário aumente o valor do seu próprio lance ou que ele de lances duplicados sem querer.
 
-<details>
-Nova Versão:
-<summary>Imagem da tela de lances:</summary>
-
-<img alt="lances" src="docs/media/lances-v2.png" />
-
-<br />
-
-Primeira Versão:
-<img alt="lances" src="docs/media/lances.png" />
-
-</details>
+> Imagem da tela de lances:
+>
+>  <img alt="lances" src="docs/media/lances.png" />
 
 - O usuário pode visualizar todas os lances que deu na tela de lances. Essa tela apresenta duas informações principais:
 
   - **Todos os lances que o usuário está ganhando**, ou seja, será mostrado todos os lotes que o usuário está vencendo/venceu, independentemente se o lote esteja encerrado ou não.
   - **Todos os lances** dados pelo usuário, incluindo lances em lotes que ele ganhou e lotes em que foi superado por outros lances.
 
-<details>
+> Imagem da tela de histórico de lances:
+>
+>  <img alt="histórico de lances" src="docs/media/historico-lances.png" />
 
-Nova Versão:
-
-<summary>Imagem da tela de histórico de lances:</summary>
-  
-  <img alt="histórico de lances" src="docs/media/historico-lances-v2.png" />
-
-<br />
-
-Primeira Versão:
-<img alt="histórico de lances" src="docs/media/historico-lances.png" />
-
-</details>
 <br>
 <br>
 
-## Arquitetura do Projeto
+## 🏗️ Arquitetura do Projeto
 
 Durante a realização deste projeto, percebi que tomei algumas decisões inadequadas em relação ao início do desenvolvimento. Por não ter experiência prévia com bancos de dados, acabei cometendo erros na escolha dos modelos e, como resultado, enfrentei dificuldades ao longo do caminho para alcançar o funcionamento desejado. Embora não esteja certo se a implementação está ok, estou satisfeito com o progresso que fiz até o momento. Mas aguardo um feedback para saber como deveria ser feito ou o que eu poderia melhorar. :)
 
@@ -195,3 +181,13 @@ maria@leilaodogalpao.com.br
 # ou
 fernando@leilaodogalpao.com.br
 ```
+
+Todos as senhas são **123123**
+
+<br>
+
+Feito com carinho ♡ por Felipe Silva :) [Linkedin](https://www.linkedin.com/in/ggfelipesilva/)
+
+[⬆ Voltar ao topo](#Resumo)
+
+<br>
