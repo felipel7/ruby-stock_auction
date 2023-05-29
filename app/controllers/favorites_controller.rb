@@ -4,6 +4,9 @@ class FavoritesController < ApplicationController
 
   def index
     @favorite_lots = Lot.joins(:favorites).where(favorites: { user_id: current_user.id })
+    favorite_lot_ids = @favorite_lots.pluck(:id)
+
+    @recommended_lots = Lot.where(status: :ended).where.not(id: favorite_lot_ids)
   end
 
   def create

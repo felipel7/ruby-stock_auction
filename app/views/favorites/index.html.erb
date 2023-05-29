@@ -1,9 +1,21 @@
-<section class="section favorites--index">
-  <h2>Lotes Favoritados:</h2>
+<div class='container'>
+  <section class="section favorites--index">
+    <h2>Lotes Favoritados:</h2>
 
-  <%= render 'shared/card', { lots: @favorite_lots } %>
+    <%= render 'shared/card', { lots: @favorite_lots } %>
 
-  <% if @favorite_lots.empty? %>
-    <p>Não há nenhum lote favoritado no momento.</p>
-  <% end %>
-</section>
+    <% if @favorite_lots.empty? %>
+      <p>A lista de favoritos está vazia.</p>
+    <% end %>
+  </section>
+
+  <section class="section recommended favorites--index">
+    <h2>Lotes Recomendados:</h2>
+
+    <%= render 'shared/card', { lots: @recommended_lots } %>
+
+    <% if @recommended_lots.empty? %>
+      <p>Não há nenhum lote para ser recomendado.</p>
+    <% end %>
+  </section>
+</div>
