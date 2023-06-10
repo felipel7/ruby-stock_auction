@@ -19,15 +19,11 @@
 
     h3,
     h4 {
-      background: rgba($grey-500, 0.3);
-      color: $purple-500;
-      font-size: 2rem;
-      left: 0;
-      padding: 2rem;
-      position: absolute;
-      right: 0;
+      background: rgba($grey-500, 0.2);
+      color: $grey-50;
+      font-size: 1.8rem;
+      padding: 1.5rem;
       text-shadow: 1px 1px 0.5px $grey-900;
-      top: 0;
       transition: background-color 0.25s ease;
 
       &:hover {
@@ -36,6 +32,10 @@
 
       span {
         color: $grey-50;
+      }
+
+      a {
+        color: inherit;
       }
     }
   }
@@ -71,7 +71,7 @@
       flex-wrap: nowrap;
       justify-content: space-evenly;
       position: absolute;
-      top: 18.5rem;
+      top: 23rem;
       width: calc(100% - 4rem);
 
       .countdown__item {
@@ -100,8 +100,12 @@
         &.ended {
           background-color: $purple-500;
           font-weight: 500;
-          top: 5rem;
+          top: 6rem;
         }
+      }
+
+      &.ended {
+        background-color: transparent;
       }
     }
 

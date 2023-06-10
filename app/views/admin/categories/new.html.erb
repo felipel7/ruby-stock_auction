@@ -3,12 +3,12 @@
 
   <%= render 'shared/errors', { obj: @category } %>
 
-  <%= form_with(model: @category, class: "form") do |form| %>
+  <%= form_with(model: @category, url: admin_categories_path, class: "form") do |form| %>
     <p>
       <%= form.label :name %>
       <%= form.text_field :name %>
     </p>
 
-    <%= form.submit "Criar nova Categoria", class: "btn btn-primary" %>
+    <%= form.submit "Criar nova Categoria", class: "btn btn-primary rounded" %>
   <% end %>
 </section>

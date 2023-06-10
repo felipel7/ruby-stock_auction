@@ -19,13 +19,13 @@ class LotsController < ApplicationController
   def search
     query = params[:query]
     @lots = Lot.joins(:products).where(
-      "batch_code LIKE ? OR products.name LIKE ?", "%#{query}%", "%#{query}%"
+      ['batch_code LIKE ? OR products.name LIKE ?', "%#{query}%", "%#{query}%"]
     ).distinct
     @lots.where(status: :approved).each { |lot| lot.update_status }
 
     if current_user&.is_admin?
       @lots = Lot.where(status: params[:status]) unless params[:status].nil?
-      return render "admin/lots/index"
+      return render 'admin/lots/index'
     end
     render :index
   end

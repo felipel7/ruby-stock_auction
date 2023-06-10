@@ -1,1 +1,1 @@
-window.addEventListener('load', () => {});
+

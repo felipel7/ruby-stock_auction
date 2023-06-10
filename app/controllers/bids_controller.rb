@@ -8,7 +8,7 @@ class BidsController < ApplicationController
 
     if current_user&.is_admin?
       @all_bids = Bid.all
-      render "bids/admin/index"
+      render 'bids/admin/index'
     end
   end
 
@@ -20,12 +20,12 @@ class BidsController < ApplicationController
     @lot = Lot.find(params[:id])
 
     if current_user&.is_admin?
-      flash[:alert] = "Administradores não podem dar lances."
+      flash[:warning] = 'Administradores não podem dar lances.'
       redirect_to root_path
     else
       @bid = Bid.new(user: current_user, lot: @lot, amount: params[:amount].to_i)
       if @bid.save
-        flash[:notice] = "O lance foi atualizado com sucesso."
+        flash[:notice] = 'O lance foi atualizado com sucesso.'
       else
         flash[:alert] = "Não foi possível dar o lance. #{@bid.errors&.full_messages[0]}"
       end

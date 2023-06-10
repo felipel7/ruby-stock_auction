@@ -6,17 +6,21 @@
     </header>
 
     <div class="card__body">
-      <div class="countdown__section">
-        <% if Time.zone.now > lot.start_date && Time.zone.now < lot.end_date %>
+      <% if Time.zone.now > lot.start_date && Time.zone.now < lot.end_date %>
+        <div class="countdown__section">
           <%= format_time_left(lot.end_date - Time.zone.now, false).html_safe %>
           <p class="countdown__label">Tempo restante:</p>
-        <% elsif Time.zone.now < lot.start_date %>
+        </div>
+      <% elsif Time.zone.now < lot.start_date %>
+        <div class="countdown__section">
           <%= format_time_left(lot.start_date - Time.zone.now, false).html_safe %>
           <p class="countdown__label">Falta para iniciar:</p>
-        <% else %>
+        </div>
+      <% else %>
+        <div class="countdown__section ended">
           <p class="countdown__label ended">Lances encerrados!</p>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <div>
         <strong>Lance Inicial:&nbsp;</strong>

@@ -7,10 +7,10 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Lote</th>
-          <th>Usuário</th>
-          <th>Valor</th>
-          <th>Horário</th>
+          <th><%= Lot.model_name.human %></th>
+          <th><%= Lot.human_attribute_name(:user) %></th>
+          <th><%= Lot.human_attribute_name(:amount) %></th>
+          <th><%= Lot.human_attribute_name(:time) %></th>
         </tr>
       </thead>
       <tbody>

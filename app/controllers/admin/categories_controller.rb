@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
   include AuthorizationHelper
 
   before_action -> { check_admin_role(current_user) }
@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new()
+    @category = Category.new
   end
 
   def create
@@ -16,10 +16,9 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      flash[:notice] = "Categoria salva com sucesso"
-      redirect_to categories_path
+      redirect_to admin_categories_path, notice: t('categories.success.save')
     else
-      flash.now[:alert] = "Não foi possível salvar a categoria"
+      flash.now[:alert] = t('categories.error.save')
       render :new
     end
   end
@@ -33,10 +32,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
-      flash[:notice] = "Categoria foi atualizada com sucesso."
-      redirect_to categories_path
+      redirect_to admin_categories_path, notice: t('categories.success.update')
     else
-      flash.now[:alert] = "Não foi possível editar a categoria."
+      flash.now[:alert] = t('categories.error.update')
       render :edit
     end
   end

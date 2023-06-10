@@ -14,10 +14,10 @@ class Admin::ProfilesController < ApplicationController
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 
     if @blocked_cpf
-      flash[:alert] = "CPF já está bloqueado."
+      flash[:warning] = t('profiles.blocked.warning.save')
     else
       @blocked_cpf = BlockedCpf.create!(cpf: @user.cpf)
-      flash[:notice] = "CPF bloqueado com sucesso."
+      flash[:notice] = t('profiles.blocked.success.save')
     end
 
     redirect_to admin_profiles_path
@@ -29,9 +29,9 @@ class Admin::ProfilesController < ApplicationController
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 
     if @blocked_cpf&.destroy
-      flash[:notice] = "CPF foi desbloqueado com sucesso."
+      flash[:notice] = t('profiles.unblocked.success.save')
     else
-      flash[:alert] = "Não é possível desbloquear um CPF que não está bloqueado."
+      flash[:warning] = t('profiles.unblocked.warning.save')
     end
 
     redirect_to admin_profiles_path

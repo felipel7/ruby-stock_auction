@@ -9,14 +9,11 @@
   right: 0;
   width: 100%;
 
-  @media screen and(max-width: 1080px) {
-    padding-inline: 2rem;
-  }
-
   & > p {
     margin-inline: auto;
     max-width: $page-width;
-    padding-block: 1rem;
+    padding-block: 0.8rem;
+    text-align: center;
   }
 
   &.notice {
@@ -25,6 +22,11 @@
 
   &.alert {
     background-color: $red-500;
+  }
+
+  &.warning {
+    background-color: $yellow-500;
+    color: $text-color;
   }
 }
 

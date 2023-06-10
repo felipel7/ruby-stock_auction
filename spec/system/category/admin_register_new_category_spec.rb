@@ -13,7 +13,7 @@ describe "Admin registra uma nova categoria" do
     fill_in "Nome", with: "Eletrônicos"
     click_on "Criar nova Categoria"
 
-    expect(current_path).to eq categories_path
+    expect(current_path).to eq admin_categories_path
     expect(page).to have_content "Categoria salva com sucesso"
     expect(page).to have_content "Eletrônicos"
   end

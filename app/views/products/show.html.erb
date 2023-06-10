@@ -5,27 +5,27 @@
 
   <dl class="description__list">
     <div>
-      <dt>Descrição:</dt>
+      <dt><%= Product.human_attribute_name(:description) %>:</dt>
       <dd><%= @product.description %></dd>
     </div>
 
     <div>
-      <dt>SKU:</dt>
+      <dt><%= Product.human_attribute_name(:code) %>:</dt>
       <dd><%= @product.sku %></dd>
     </div>
 
     <div>
-      <dt>Dimensões:</dt>
+      <dt><%= Product.human_attribute_name(:dimensions) %>:</dt>
       <dd><%= @product.full_dimensions_desc %></dd>
     </div>
 
     <div>
-      <dt>Peso:</dt>
+      <dt><%= Product.human_attribute_name(:weight) %>:</dt>
       <dd><%= @product.weight %>g</dd>
     </div>
 
     <div>
-      <dt>Categoria:</dt>
+      <dt><%= Product.human_attribute_name(:category) %>:</dt>
       <dd><%= @product.category.name %></dd>
     </div>
   </dl>

@@ -1,15 +1,27 @@
 <% products.each do |product| %>
   <article class="card">
     <header>
-      <h4><%= product.name %></h4>
+      <h4><%= link_to product.name, product_path(product) %></h4>
       <%= render partial: "shared/image", locals: { obj: product } %>
     </header>
+
     <div class="card__body">
       <ul class="list">
-        <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>
-        <li><strong>Código:</strong> <%= product.sku %></li>
-        <li><strong>Peso:</strong> <%= product.weight %>g</li>
-        <li><strong>Categoria:</strong> <%= product.category.name %></li>
+        <li>
+          <strong><%= Product.human_attribute_name(:description) %>:</strong>
+          <%= product.full_dimensions_desc %></li>
+        <li>
+          <strong><%= Product.human_attribute_name(:sku) %>:</strong>
+          <%= product.sku %>
+        </li>
+        <li>
+          <strong><%= Product.human_attribute_name(:weight) %>:</strong>
+          <%= product.weight %>g
+        </li>
+        <li>
+          <strong><%= Product.human_attribute_name(:category) %>:</strong>
+          <%= product.category.name %>
+        </li>
       </ul>
     </div>
   </article>

@@ -2,22 +2,22 @@
   <menu class="list">
     <h3>Área do usuário</h3>
 
-    <li class="menu__item">
+    <li class="menu__item <%= 'active' if current_page?(lots_path) %>">
       <i class="fa fa-cubes"></i>
       <%= link_to 'Lotes', lots_path %>
     </li>
 
-    <li class="menu__item">
-      <i class="fa fa-archive"></i>
+    <li class="menu__item <%= 'active' if current_page?(products_path) %>">
+      <i class="fa fa-gift"></i>
       <%= link_to 'Produtos', products_path %>
     </li>
 
-    <li class="menu__item">
-      <i class="fa fa-money"></i>
+    <li class="menu__item <%= 'active' if current_page?(bids_path) %>">
+      <i class="fa fa-gavel"></i>
       <%= link_to 'Lances', bids_path %>
     </li>
 
-    <li class="menu__item">
+    <li class="menu__item <%= 'active' if current_page?(favorites_path) %>">
       <i class="fa fa-star"></i>
       <%= link_to 'Favoritos', favorites_path %>
     </li>
@@ -27,22 +27,22 @@
     <menu class="list">
       <h3>Área do Admin</h3>
 
-      <li class="menu__item">
+      <li class="menu__item <%= 'active' if current_page?(admin_lots_path) %>">
         <i class="fa fa-cubes"></i>
         <%= link_to 'Gerenciar Lotes', admin_lots_path %>
       </li>
 
-      <li class="menu__item">
+      <li class="menu__item <%= 'active' if current_page?(admin_products_path) %>">
         <i class="fa fa-archive"></i>
         <%= link_to 'Gerenciar Produtos', admin_products_path %>
       </li>
 
-      <li class="menu__item">
+      <li class="menu__item <%= 'active' if current_page?(admin_categories_path) %>">
         <i class="fa fa-tags"></i>
-        <%= link_to 'Categorias', categories_path %>
+        <%= link_to 'Categorias', admin_categories_path %>
       </li>
 
-      <li class="menu__item">
+      <li class="menu__item <%= 'active' if current_page?(admin_profiles_path) %>">
         <i class="fa fa-group"></i>
         <%= link_to 'Usuários', admin_profiles_path %>
       </li>

@@ -191,7 +191,7 @@ describe "Admin acessa um lote" do
     click_on "Aprovar Lote"
 
     expect(page).not_to have_content "O lote foi aprovado com sucesso."
-    expect(page).to have_content "O lote não pode ser aprovado."
+    expect(page).to have_content "O lote não pôde ser aprovado."
     expect(page).to have_content "Um produto deve ser incluído para que um lote possa ser aprovado"
   end
 

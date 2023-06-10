@@ -45,7 +45,8 @@
         }
       }
 
-      &:hover {
+      &:hover,
+      &.active {
         color: $cyan-500;
       }
     }

@@ -56,7 +56,7 @@ describe "Admin registra um novo produto" do
     fill_in "Descrição", with: "Monitor de 32 polegadas da marca Dell..."
     click_on "Salvar Produto"
 
-    expect(page).to have_content "O Produto foi salvo com sucesso."
+    expect(page).to have_content "O produto foi atualizado com sucesso."
     expect(page).to have_content "Produto - Monitor Dell"
     expect(page).to have_content "Descrição: Monitor de 32 polegadas da marca Dell"
     expect(page).not_to have_content "Monitor LG"

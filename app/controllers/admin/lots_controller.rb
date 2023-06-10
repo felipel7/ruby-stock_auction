@@ -27,10 +27,9 @@ class Admin::LotsController < ApplicationController
     @lot.register_by_id = current_user.id
 
     if @lot.save
-      flash[:notice] = "O lote foi cadastrado com sucesso."
-      redirect_to admin_lot_path(@lot)
+      redirect_to admin_lot_path(@lot), notice: t('lot.success.save')
     else
-      flash[:alert] = "Não foi possível cadastrar o lote."
+      flash[:alert] = t('lot.error.save')
       render :new
     end
   end
@@ -38,16 +37,15 @@ class Admin::LotsController < ApplicationController
   def edit; end
 
   def update
-    if @lot.status != "pending"
-      flash[:alert] = "Não é possível atualizar um lote durante essa fase."
-      return redirect_to admin_lot_path(@lot)
+    if @lot.status != 'pending'
+      return redirect_to admin_lot_path(@lot), alert: t('lot.error.update_not_allowed')
     end
 
     if @lot.update(lot_params)
-      flash[:notice] = "O lote foi atualizado com sucesso."
+      flash[:notice] = t('lot.success.update')
       redirect_to admin_lot_path(@lot)
     else
-      flash.now[:alert] = "Não foi possível atualizar o lote."
+      flash.now[:alert] = t('lot.error.update')
       render :edit
     end
   end
@@ -55,24 +53,23 @@ class Admin::LotsController < ApplicationController
   def manage
     @products = Product.where(lot_id: params[:id])
     @available_products = Product.where(lot_id: nil)
-    render "manage"
+    render 'manage'
   end
 
   def approved
-    if @lot.status != "pending"
-      flash.now[:alert] = "O lote já foi aprovado ou está finalizado."
+    if @lot.status != 'pending'
+      flash.now[:alert] = t('lot.error.lot_approved_or_finalized')
       return render :show
     end
 
     @lot.approved_by = current_user
 
     if @lot.update(status: :approved)
-      flash[:notice] = "O lote foi aprovado com sucesso."
-      redirect_to admin_lot_path(@lot)
+      redirect_to admin_lot_path(@lot), notice: t('lot.success.approved')
     else
       @lot.approved_by = nil
       @lot.reload
-      flash.now[:alert] = "O lote não pode ser aprovado."
+      flash.now[:alert] = t('lot.error.approved')
       render :show
     end
   end
@@ -83,29 +80,26 @@ class Admin::LotsController < ApplicationController
 
     @product = Product.find(params[:product_id])
 
-    if @lot.status == "pending"
-      flash.now[:notice] = "O produto foi adicionado com sucesso."
+    if @lot.status == 'pending'
+      flash.now[:notice] = t('lot.success.add_product')
       @lot.products << @product
-      render "manage"
+      render 'manage'
     else
-      flash[:alert] = "Não é permitido adicionar um produto durante essa fase."
-      render :show
+      render :show, alert: t('lot.error.add_product')
     end
   end
 
   def remove_product
     @products = Product.where(lot_id: params[:id])
     @available_products = Product.where(lot_id: nil)
-
     @product = Product.find(params[:product_id])
 
-    if @lot.status == "pending"
-      flash.now[:notice] = "O produto foi removido com sucesso."
+    if @lot.status == 'pending'
+      flash.now[:notice] = t('lot.success.remove_product')
       @lot.products.delete(@product)
-      render "manage"
+      render 'manage'
     else
-      flash[:alert] = "Não é permitido remover um produto durante essa fase."
-      render :show
+      render :show, alert: t('lot.error.remove_product')
     end
   end
 
@@ -113,12 +107,12 @@ class Admin::LotsController < ApplicationController
     @status = params[:status]
     if @lot.bids.present?
       @winner = @lot.bids.last.user
-    elsif @status == "canceled"
+    elsif @status == 'canceled'
       @lot.products.destroy_all
     end
 
     if @lot.update(status: @status)
-      flash[:notice] = "O lote foi atualizado com sucesso."
+      flash[:notice] = t('lot.success.update')
     else
       flash[:alert] = "#{@lot.errors&.full_messages[0]}"
     end

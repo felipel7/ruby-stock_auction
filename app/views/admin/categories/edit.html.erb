@@ -3,7 +3,7 @@
 
   <%= render 'shared/errors', { obj: @category } %>
 
-  <%= form_with(model: @category, class: "form") do |form| %>
+  <%= form_with(model: @category, url: admin_category_path(@category), class: "form") do |form| %>
     <p>
       <%= form.label :name %>
       <%= form.text_field :name %>

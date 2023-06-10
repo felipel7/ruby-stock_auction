@@ -22,7 +22,7 @@ class Product < ApplicationRecord
     lot = Lot.joins(:products).where(products: { id: self.id }).first
 
     if lot && lot.id != self.lot.id
-      self.errors.add(:base, I18n.t("activerecord.errors.product.messages.product_not_available"))
+      errors.add(:base, I18n.t('product.product_not_available'))
     end
   end
 end

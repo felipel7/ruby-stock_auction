@@ -17,11 +17,10 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(products_params)
 
     if @product.save
-      flash[:notice] = "O produto foi cadastrado com sucesso"
-      redirect_to @product
+      redirect_to @product, notice: t('products.success.save')
     else
-      flash[:alert] = "Não foi possível cadastrar o produto"
       @categories = Category.all
+      flash[:alert] = t('products.error.save')
       render :new
     end
   end
@@ -40,10 +39,9 @@ class Admin::ProductsController < ApplicationController
     @categories = Category.all
 
     if @product.update(products_params)
-      flash[:notice] = "O Produto foi salvo com sucesso."
-      redirect_to @product
+      redirect_to @product, notice: t('products.success.update')
     else
-      flash.now[:alert] = "Não foi possível salvar o produto"
+      flash.now[:alert] = t('products.error.update')
       render :edit
     end
   end

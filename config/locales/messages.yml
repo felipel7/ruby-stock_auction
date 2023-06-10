@@ -1,0 +1,49 @@
+pt-BR:
+  categories:
+    success:
+      save: 'Categoria salva com sucesso'
+      update: 'Categoria foi atualizada com sucesso.'
+    error:
+      save: 'Não foi possível salvar a categoria'
+      update: 'Não foi possível editar a categoria.'
+  lot:
+    success:
+      save: 'O lote foi cadastrado com sucesso.'
+      update: 'O lote foi atualizado com sucesso.'
+      approved: 'O lote foi aprovado com sucesso.'
+      add_product: 'O produto foi adicionado com sucesso.'
+      remove_product: 'O produto foi removido com sucesso.'
+    error:
+      save: 'Não foi possível cadastrar o lote.'
+      update: 'Não foi possível atualizar o lote.'
+      update_not_allowed: 'Não é possível atualizar um lote durante essa fase.'
+      approved: 'O lote não pôde ser aprovado.'
+      add_product: 'Não é permitido adicionar um produto durante essa fase.'
+      remove_product: 'Não é permitido remover um produto durante essa fase.'
+      lot_approved_or_finalized: 'O lote já foi aprovado ou está finalizado.'
+  products:
+    success:
+      save: 'O produto foi cadastrado com sucesso'
+      update: 'O produto foi atualizado com sucesso.'
+    error:
+      save: 'Não foi possível cadastrar o produto'
+      update: 'Não foi possível atualizar o produto'
+  profiles:
+    blocked:
+      success:
+        save: 'CPF bloqueado com sucesso.'
+      warning:
+        save: 'CPF já está bloqueado.'
+    unblocked:
+      success:
+        save: 'CPF foi desbloqueado com sucesso.'
+      warning:
+        save: 'Não é possível desbloquear um CPF que não está bloqueado.'
+  favorites:
+    success:
+      save: 'Lote foi adicionado aos favoritos.'
+    error:
+      save: 'Erro ao adicionar produto aos favoritos.'
+    warning:
+      save: 'O Lote foi removido dos favoritos com sucesso.'
+      admin_save: 'Admin não pode favoritar um lote.'

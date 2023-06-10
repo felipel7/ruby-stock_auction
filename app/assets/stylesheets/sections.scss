@@ -49,6 +49,7 @@
 // Products View Index
 .section.products--index {
   gap: 2rem;
+  margin-block-start: 4.5rem;
 
   .btn-primary {
     padding-block: 1rem;
@@ -87,7 +88,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-block-start: 2rem;
+  margin-block-start: 1.5rem;
 }
 
 // Lot edit
@@ -122,6 +123,18 @@
 .section.bid--index {
   align-content: flex-start;
   height: fit-content;
+}
+
+.section.bid--index,
+.section.favorites--index {
+  margin-block-start: 1.5rem;
+}
+
+.section.admin.bid--index,
+.section.admin.lot--index,
+.section.categories--index,
+.section.profiles--index {
+  margin-block-start: 4.5rem;
 }
 
 .section.admin.lot--index,

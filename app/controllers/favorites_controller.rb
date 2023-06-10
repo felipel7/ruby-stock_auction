@@ -15,15 +15,13 @@ class FavoritesController < ApplicationController
 
     if @favorite
       @favorite.destroy
-      flash[:notice] = "O Lote foi removido dos favoritos com sucesso."
-      redirect_to root_path
+      redirect_to root_path, notice: t('favorites.warning.save')
     else
       @favorite = Favorite.new(user: current_user, lot: @lot)
       if @favorite.save
-        flash[:notice] = "Lote foi adicionado aos favoritos."
-        redirect_to favorites_path
+        redirect_to favorites_path, notice: t('favorites.success.save')
       else
-        flash[:alert] = "Erro ao adicionar produto aos favoritos."
+        flash[:alert] = t('favorites.error.save')
         redirect_to root_path
       end
     end
@@ -33,7 +31,7 @@ class FavoritesController < ApplicationController
 
   def check_admin
     if current_user.is_admin?
-      flash[:alert] = "Admin não pode favoritar um lote."
+      flash[:warning] = t('favorites.warning.admin_save')
       redirect_to root_path
     end
   end

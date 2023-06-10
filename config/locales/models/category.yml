@@ -5,3 +5,5 @@ pt-BR:
     attributes:
       category:
         name: 'Nome'
+        total: 'Total de Produtos'
+        actions: 'Ações'
