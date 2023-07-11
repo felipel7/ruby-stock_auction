@@ -9,7 +9,8 @@ class Admin::ProfilesController < ApplicationController
   end
 
   def block
-    return unless current_user.is_admin?
+    return unless current_user.admin?
+
     @user = User.find(params[:id])
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 
@@ -24,7 +25,8 @@ class Admin::ProfilesController < ApplicationController
   end
 
   def unblock
-    return unless current_user.is_admin?
+    return unless current_user.admin?
+
     @user = User.find(params[:id])
     @blocked_cpf = BlockedCpf.find_by(cpf: @user.cpf)
 

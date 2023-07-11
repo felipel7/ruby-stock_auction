@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :create]
+  before_action :authenticate_user!, only: %i[index create]
   before_action :check_admin, only: [:create]
 
   def index
@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
 
   def create
     @lot = Lot.find(params[:lot_id])
-    @favorite = current_user&.favorites.find_by(lot: @lot)
+    @favorite = current_user&.favorites&.find_by(lot: @lot)
 
     if @favorite
       @favorite.destroy
@@ -30,9 +30,9 @@ class FavoritesController < ApplicationController
   private
 
   def check_admin
-    if current_user.is_admin?
-      flash[:warning] = t('favorites.warning.admin_save')
-      redirect_to root_path
-    end
+    return unless current_user.admin?
+
+    flash[:warning] = t('favorites.warning.admin_save')
+    redirect_to root_path
   end
 end

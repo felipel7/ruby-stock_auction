@@ -47,3 +47,8 @@ pt-BR:
     warning:
       save: 'O Lote foi removido dos favoritos com sucesso.'
       admin_save: 'Admin não pode favoritar um lote.'
+  bids:
+    success:
+      save: 'O lance foi atualizado com sucesso.'
+    warning:
+      save: 'Administradores não podem dar lances.'

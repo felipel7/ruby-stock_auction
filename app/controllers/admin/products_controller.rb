@@ -8,8 +8,17 @@ class Admin::ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def new
     @product = Product.new
+    @categories = Category.all
+  end
+
+  def edit
+    @product = Product.find(params[:id])
     @categories = Category.all
   end
 
@@ -23,15 +32,6 @@ class Admin::ProductsController < ApplicationController
       flash[:alert] = t('products.error.save')
       render :new
     end
-  end
-
-  def show
-    @product = Product.find(params[:id])
-  end
-
-  def edit
-    @product = Product.find(params[:id])
-    @categories = Category.all
   end
 
   def update

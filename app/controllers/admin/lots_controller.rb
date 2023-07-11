@@ -3,14 +3,14 @@ class Admin::LotsController < ApplicationController
 
   before_action -> { check_admin_role(current_user) }
   before_action :authenticate_user!
-  before_action :set_lot, only: [
-                            :show, :edit, :update, :approved, :manage,
-                            :add_product, :remove_product, :ended,
-                          ]
+  before_action :set_lot, only: %i[
+    show edit update approved manage
+    add_product remove_product ended
+  ]
 
   def index
     @lots = Lot.all
-    @lots.where(status: :approved).each { |lot| lot.update_status }
+    @lots.where(status: :approved).each(&:update_status)
     @lots = Lot.where(status: params[:status]) unless params[:status].nil?
 
     render :index
@@ -21,6 +21,8 @@ class Admin::LotsController < ApplicationController
   def new
     @lot = Lot.new
   end
+
+  def edit; end
 
   def create
     @lot = Lot.new(lot_params)
@@ -34,12 +36,8 @@ class Admin::LotsController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
-    if @lot.status != 'pending'
-      return redirect_to admin_lot_path(@lot), alert: t('lot.error.update_not_allowed')
-    end
+    return redirect_to admin_lot_path(@lot), alert: t('lot.error.update_not_allowed') if @lot.status != 'pending'
 
     if @lot.update(lot_params)
       flash[:notice] = t('lot.success.update')
@@ -114,7 +112,7 @@ class Admin::LotsController < ApplicationController
     if @lot.update(status: @status)
       flash[:notice] = t('lot.success.update')
     else
-      flash[:alert] = "#{@lot.errors&.full_messages[0]}"
+      flash[:alert] = @lot.errors&.full_messages[0].to_s
     end
     redirect_to admin_lot_path(@lot)
   end

@@ -11,6 +11,10 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
   def create
     category_params = params.require(:category).permit(:name)
     @category = Category.new(category_params)
@@ -21,10 +25,6 @@ class Admin::CategoriesController < ApplicationController
       flash.now[:alert] = t('categories.error.save')
       render :new
     end
-  end
-
-  def edit
-    @category = Category.find(params[:id])
   end
 
   def update

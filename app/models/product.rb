@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   validate :products_uniqueness_in_lot
 
   def full_dimensions_desc
-    "#{self.width}cm x #{self.height}cm x #{self.depth}cm"
+    "#{width}cm x #{height}cm x #{depth}cm"
   end
 
   private
@@ -19,10 +19,10 @@ class Product < ApplicationRecord
   end
 
   def products_uniqueness_in_lot
-    lot = Lot.joins(:products).where(products: { id: self.id }).first
+    lot = Lot.joins(:products).where(products: { id: }).first
 
-    if lot && lot.id != self.lot.id
-      errors.add(:base, I18n.t('product.product_not_available'))
-    end
+    return unless lot && lot.id != self.lot.id
+
+    errors.add(:base, I18n.t('product.product_not_available'))
   end
 end
