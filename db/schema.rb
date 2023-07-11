@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_165714) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_134116) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_165714) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -82,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_165714) do
     t.integer "register_by_id"
     t.integer "approved_by_id"
     t.index ["approved_by_id"], name: "index_lots_on_approved_by_id"
+    t.index ["batch_code"], name: "index_lots_on_batch_code"
     t.index ["register_by_id"], name: "index_lots_on_register_by_id"
   end
 
@@ -111,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_165714) do
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cpf"], name: "index_users_on_cpf"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
