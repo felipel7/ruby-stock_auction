@@ -23,6 +23,9 @@ gem 'devise'
 gem 'font-awesome-rails'
 gem 'image_processing', '>= 1.2'
 gem 'sass-rails'
+gem "hotwire-rails", "~> 0.1.3"
+gem "jsbundling-rails", "~> 1.1"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

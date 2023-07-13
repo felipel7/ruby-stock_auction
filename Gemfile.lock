@@ -99,6 +99,10 @@ GEM
       railties (>= 3.2, < 8.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -107,6 +111,8 @@ GEM
     io-console (0.6.0)
     irb (1.6.4)
       reline (>= 0.3.0)
+    jsbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -217,9 +223,15 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-x86_64-linux)
+    stimulus-rails (1.2.1)
+      railties (>= 6.0.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
+    turbo-rails (1.4.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -239,7 +251,9 @@ DEPENDENCIES
   debug
   devise
   font-awesome-rails
+  hotwire-rails (~> 0.1.3)
   image_processing (>= 1.2)
+  jsbundling-rails (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rspec-rails

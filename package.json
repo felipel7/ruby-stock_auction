@@ -1,0 +1,30 @@
+{
+  "name": "auction-app",
+  "version": "1.0.0",
+  "description": "<br>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipel7/ruby-treinadev-stock_auction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipel7/ruby-treinadev-stock_auction/issues"
+  },
+  "homepage": "https://github.com/felipel7/ruby-treinadev-stock_auction#readme",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "esbuild": "^0.18.11"
+  }
+}
