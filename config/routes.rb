@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "lots#index"
-  get "search", to: "lots#search", as: :search
+  root to: 'lots#index'
+  get 'search', to: 'lots#search', as: :search
 
   resources :favorites, only: [:index, :create]
 

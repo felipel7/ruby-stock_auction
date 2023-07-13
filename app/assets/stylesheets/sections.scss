@@ -101,11 +101,6 @@
       white-space: nowrap;
     }
   }
-
-  .select__date {
-    @include center-flex;
-    gap: 1rem;
-  }
 }
 
 .section.admin.bid--index {

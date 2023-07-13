@@ -246,10 +246,11 @@ describe 'Admin acessa um lote' do
         category:
       )
       lot.products << product
-      lot.update(start_date: 1.minute.ago)
-      lot.update(status: :approved)
-      Bid.create!(lot:, user:, amount: 100)
-      lot.update(status: :ended)
+      travel_to 1.hour.from_now do
+        lot.approved!
+        Bid.create!(lot:, user:, amount: 100)
+        lot.ended!
+      end
 
       login_as(second_admin)
       visit root_path
@@ -286,10 +287,11 @@ describe 'Admin acessa um lote' do
         category:
       )
       lot.products << product
-      lot.update(start_date: 1.minute.ago)
-      lot.update(status: :approved)
-      Bid.create!(lot:, user:, amount: 100)
-      lot.update(status: :ended)
+      travel_to 1.hour.from_now do
+        lot.approved!
+        Bid.create!(lot:, user:, amount: 100)
+        lot.ended!
+      end
 
       login_as(second_admin)
       visit root_path
@@ -326,9 +328,10 @@ describe 'Admin acessa um lote' do
         category:
       )
       lot.products << product
-      lot.update(start_date: 1.minute.ago)
-      lot.update(status: :approved)
-      lot.update(status: :ended)
+      travel_to 1.hour.from_now do
+        lot.approved!
+        lot.ended!
+      end
 
       login_as(second_admin)
       visit root_path

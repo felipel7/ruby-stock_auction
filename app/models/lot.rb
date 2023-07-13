@@ -19,11 +19,11 @@ class Lot < ApplicationRecord
   validates :start_date, comparison: {
     greater_than: Time.zone.now,
     message: I18n.t('lot.start_date')
-  }, on: :create
+  }
   validates :end_date, comparison: {
     greater_than: :start_date,
     message: I18n.t('lot.end_date')
-  }, on: :create
+  }
 
   validate :batch_code_format
   validate :validate_approval, if: -> { status_changed? && status == 'approved' }
