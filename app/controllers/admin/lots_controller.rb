@@ -4,9 +4,9 @@ class Admin::LotsController < ApplicationController
   before_action -> { check_admin_role(current_user) }
   before_action :authenticate_user!
   before_action :set_lot, only: %i[
-    show edit update approved manage
-    add_product remove_product ended
-  ]
+                            show edit update approved manage
+                            add_product remove_product ended
+                          ]
 
   def index
     @lots = Lot.all
@@ -79,9 +79,9 @@ class Admin::LotsController < ApplicationController
     @product = Product.find(params[:product_id])
 
     if @lot.status == 'pending'
-      flash.now[:notice] = t('lot.success.add_product')
+      flash[:notice] = t('lot.success.add_product')
       @lot.products << @product
-      render 'manage'
+      redirect_to manage_admin_lot_path(params[:id])
     else
       render :show, alert: t('lot.error.add_product')
     end
@@ -93,9 +93,9 @@ class Admin::LotsController < ApplicationController
     @product = Product.find(params[:product_id])
 
     if @lot.status == 'pending'
-      flash.now[:notice] = t('lot.success.remove_product')
+      flash[:notice] = t('lot.success.remove_product')
       @lot.products.delete(@product)
-      render 'manage'
+      redirect_to manage_admin_lot_path(params[:id])
     else
       render :show, alert: t('lot.error.remove_product')
     end

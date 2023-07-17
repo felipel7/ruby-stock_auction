@@ -2,7 +2,7 @@
   <section class="section lot--index">
     <h2>Lotes em Andamento:</h2>
 
-    <%= render 'shared/card', { lots: @lots.lots_in_progress } %>
+    <%= render 'shared/lot-card', { lots: @lots.lots_in_progress } %>
 
     <% if @lots.lots_in_progress.empty? %>
       <p>Não há lotes em andamento no momento.</p>
@@ -12,7 +12,7 @@
   <section class="section lot--index">
     <h2>Lotes Futuros:</h2>
 
-    <%= render 'shared/card', { lots: @lots.lots_in_future } %>
+    <%= render 'shared/lot-card', { lots: @lots.lots_in_future } %>
 
     <% if @lots.lots_in_future.empty? %>
       <p>No momento, não existe nenhum lote programado para iniciar em breve.</p>

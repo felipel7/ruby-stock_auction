@@ -19,7 +19,7 @@
 
       <div>
         <dt>Status:</dt>
-        <dd><%= t("activerecord.attributes.lot.status.#{@lot.status}") %></dd>
+        <dd class="<%= @lot.status %>"><%= t("lot.status.#{@lot.status}") %></dd>
       </div>
 
       <div>

@@ -1,6 +1,4 @@
 <section class="section admin lot--index">
-  <h2>Gerenciar Lotes</h2>
-
   <%= link_to "Cadastrar Novo Lote", new_admin_lot_path, class:"btn btn-primary rounded" %>
 
   <div class="filter--controls"> Filtrar:
@@ -10,9 +8,10 @@
     <%= link_to "Encerrados", admin_lots_path(status: "ended"), class: "btn btn-sm btn-secondary rounded" %>
   </div>
 
-  <%= render  partial: 'card', locals: { admin: true, lots: @lots } %>
-
-  <% if @lots.empty? %>
-    <p>Crie um novo <%= link_to "clicando aqui", new_admin_lot_path %>.</p>
-  <% end %>
+  <div class='card__wrapper'>
+    <%= render  partial: 'shared/admin-lot-card', locals: { admin: true, lots: @lots } %>
+    <% if @lots.empty? %>
+      <p style="justify-self: start;">Crie um novo <%= link_to "clicando aqui", new_admin_lot_path %>.</p>
+    <% end %>
+  </div>
 </section>

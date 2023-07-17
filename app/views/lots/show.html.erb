@@ -19,10 +19,6 @@
         <div class="countdown__container">
           <dt><%= @lot_ended ? "Encerrado" : "Tempo Restante" %>:</dt>
           <dd><%= distance_of_time_in_words(Time.zone.now, @lot.end_date) %></dd>
-
-          <div class="countdown__section">
-            <%= format_time_left(@time_left).html_safe unless @lot_ended %>
-          </div>
         </div>
 
         <div class="end-time">

@@ -1,0 +1,29 @@
+<% lots.each do |lot| %>
+  <article class="admin card">
+    <figure>
+      <%= render partial: "shared/image", locals: { obj: lot } %>
+    </figure>
+
+    <div class="card__body">
+      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
+
+      <div class="status">
+        <dt>Status:</dt>
+        <dd class="<%= lot.status %>">
+          <%= t("lot.status.#{lot.status}") %>
+        </dd>
+      </div>
+
+      <div class="admin-card__controls">
+        <% if admin %>
+          <%= link_to "Ver", admin_lot_path(lot)  %>
+
+          <% if lot.status == "pending" %>
+            <%= link_to "Editar", edit_admin_lot_path(lot)  %>
+            <%= link_to "Gerenciar", manage_admin_lot_path(lot)  %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </article>
+<% end %>

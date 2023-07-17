@@ -17,9 +17,10 @@ pt-BR:
         start_date: 'Data de início'
         time: 'Horário do Lance'
         user: 'Usuário'
-        status:
-          pending: 'Pendente'
-          approved: 'Aprovado'
-          ended: 'Encerrado'
-          finished: 'Finalizado'
-          canceled: 'Cancelado'
+  lot:
+    status:
+      pending: 'Pendente'
+      approved: 'Aprovado'
+      ended: 'Encerrado'
+      finished: 'Finalizado'
+      canceled: 'Cancelado'

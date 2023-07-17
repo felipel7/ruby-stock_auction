@@ -6,7 +6,8 @@
   background: $grey-750;
   border-radius: $border-radius-lg;
   gap: 2rem;
-  padding: 3rem;
+  padding-block: 3rem;
+  padding-inline: 5rem;
 }
 
 .section,
@@ -138,5 +139,26 @@
 .section.bid--index {
   p a {
     color: $purple-500;
+  }
+}
+
+.section.lot--show {
+  gap: 2rem;
+
+  h2 {
+    padding-block-end: 1rem;
+  }
+
+  img {
+    object-fit: cover;
+    max-width: 40rem;
+  }
+
+  > div {
+    flex-basis: 50%;
+  }
+
+  dl div {
+    margin-block: 1.5rem;
   }
 }

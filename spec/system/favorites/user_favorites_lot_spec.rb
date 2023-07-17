@@ -51,7 +51,7 @@ describe 'Usuário favorita um lote' do
 
       login_as(user)
       visit root_path
-      all('.favorite')[0].click
+      all('.btn-favorite')[0].click
 
       expect(current_path).to eq favorites_path
       expect(page).to have_content 'Lote foi adicionado aos favoritos.'
@@ -114,10 +114,10 @@ describe 'Usuário favorita um lote' do
 
       login_as(user)
       visit root_path
-      all('.favorite')[0].click
+      all('.btn-favorite')[0].click
       visit root_path
-      all('.favorite')[0].click
-      all('.favorite')[1].click
+      all('.btn-favorite')[0].click
+      all('.btn-favorite')[1].click
 
       expect(page).to have_content 'Lote: HZK119066'
       expect(page).to have_content 'R$ 2.500,00'
@@ -197,7 +197,7 @@ describe 'Usuário favorita um lote' do
     travel_to 1.hour.from_now do
       login_as(user)
       visit root_path
-      all('.favorite')[0].click # favorita o primeiro lote
+      all('.btn-favorite')[0].click
       first_lot.ended!
       second_lot.ended!
       third_lot.ended!
@@ -246,7 +246,7 @@ describe 'Admin favorita um lote' do
     travel_to 1.hour.from_now do
       login_as(first_admin)
       visit root_path
-      all('.favorite')[0].click
+      all('.btn-favorite')[0].click
 
       expect(current_path).to eq root_path
       expect(page).to have_content 'Admin não pode favoritar um lote.'

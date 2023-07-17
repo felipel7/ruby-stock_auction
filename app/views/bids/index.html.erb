@@ -1,7 +1,7 @@
 <div class='container'>
   <section class="section bid--index">
     <h2>Meus Lances Vencedores</h2>
-    <%= render 'shared/card', { lots: @winning_lots } %>
+    <%= render 'shared/lot-card', { lots: @winning_lots } %>
 
     <% if @winning_lots.empty? %>
       <p>Você ainda não venceu nenhum lance.</p>
@@ -10,7 +10,7 @@
 
   <section class="section bid--index">
     <h2>Meu Histórico de Lances</h2>
-    <%= render 'shared/card', { lots: @lots } %>
+    <%= render 'shared/lot-card', { lots: @lots } %>
 
     <% if @lots.empty? %>
       <p>Você ainda não deu nenhum lance.

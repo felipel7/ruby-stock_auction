@@ -1,27 +1,5 @@
-@import '../config';
-@import '../mixins';
-
-// View show
-.section.lot--show {
-  gap: 2rem;
-
-  h2 {
-    padding-block-end: 1rem;
-  }
-
-  img {
-    object-fit: cover;
-    max-width: 40rem;
-  }
-
-  > div {
-    flex-basis: 50%;
-  }
-
-  dl div {
-    margin-block: 1.5rem;
-  }
-}
+@import 'config';
+@import 'mixins';
 
 .section.lot--show {
   .lot--details {
@@ -114,22 +92,22 @@
     box-shadow: 0 0 25px rgba($grey-700, 0.5);
     color: $grey-200;
   }
-}
 
-.countdown__section {
-  font-weight: bold;
-  color: lighten($grey-900, 15);
+  .countdown__section {
+    font-weight: bold;
+    color: lighten($grey-900, 15);
 
-  .label {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    font-weight: lighter;
+    .label {
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: lighter;
+    }
+
+    .countdown__item {
+      @include center-flex(column);
+      padding-inline: 1rem;
+    }
   }
-}
-
-.countdown__item {
-  @include center-flex(column);
-  padding-inline: 1rem;
 }
 
 .admin .filter--controls {
@@ -137,40 +115,9 @@
   margin-block: 2rem;
 }
 
-// Admin View manage/show
-.section.lot--manage {
-  @include section-wrap;
-}
-
-// Admin-lot View index
-.section.lot--manage {
-  article {
-    margin-block: 2rem;
-  }
-
-  .card__container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-}
-
 .manage--products {
-  p {
-    padding-block: 1rem;
-  }
-
-  .card__controls-btn[type='submit'],
-  #btn-remove {
-    background-color: transparent;
-    cursor: pointer;
-    border: 1px solid $pink-500;
-    border-radius: 0.5rem;
-    color: $pink-500;
-
-    &:hover {
-      background-color: $pink-500;
-      color: $white;
-    }
+  > p,
+  > form {
+    margin-block: 1.5rem;
   }
 }

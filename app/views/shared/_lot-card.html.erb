@@ -1,0 +1,40 @@
+<% lots.each do |lot| %>
+  <article class="card">
+    <figure>
+      <%= render partial: "shared/image", locals: { obj: lot } %>
+    </figure>
+
+    <div class="card__body">
+      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
+      <p><%= number_to_currency(lot.min_value, locale: :'pt-BR') %><small>Lance Inicial</small></p>
+
+      <div class="card__controls">
+        <%= link_to(lot_path(lot), class: "btn btn-bid") do %>
+          <i class="fa fa-gavel"></i>
+          <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
+        <% end %>
+
+        <%= button_to favorites_path(lot_id: lot.id), method: :post, class: 'btn btn-favorite' do %>
+          <% if current_user&.favorites&.exists?(lot_id: lot.id) %>
+            <i class="fa fa-heart"></i>
+          <% else %>
+            <i class="fa fa-heart-o"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% seconds_until_target_time = lot.end_date.to_i - Time.zone.now.to_i %>
+      <% seconds_until_target_time = Time.zone.now.to_i - lot.start_date.to_i if Time.zone.now < lot.start_date %>
+      <%= content_tag(
+          :div, "", 
+          data: {
+            controller: "countdown",
+            countdown_target: "countdown",
+            seconds_until_end_value: seconds_until_target_time
+          }, 
+          class: 'countdown'
+        ) 
+      %>
+    </div>
+  </article>
+<% end %>

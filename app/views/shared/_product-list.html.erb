@@ -1,28 +1,31 @@
-<% products.each do |product| %>
-  <article class="card">
-    <header>
-      <h4><%= link_to product.name, product_path(product) %></h4>
-      <%= render partial: "shared/image", locals: { obj: product } %>
-    </header>
+<div class='card__wrapper'>
+  <% products.each do |product| %>
+    <article class="product-card card">
+      <figure>
+        <%= render partial: "shared/image", locals: { obj: product } %>
+      </figure>
 
-    <div class="card__body">
-      <ul class="list">
-        <li>
-          <strong><%= Product.human_attribute_name(:description) %>:</strong>
-          <%= product.full_dimensions_desc %></li>
-        <li>
-          <strong><%= Product.human_attribute_name(:sku) %>:</strong>
-          <%= product.sku %>
-        </li>
-        <li>
-          <strong><%= Product.human_attribute_name(:weight) %>:</strong>
-          <%= product.weight %>g
-        </li>
-        <li>
-          <strong><%= Product.human_attribute_name(:category) %>:</strong>
-          <%= product.category.name %>
-        </li>
-      </ul>
-    </div>
-  </article>
-<% end %>
+      <div class="product-card__body card__body">
+        <h3><%= link_to product.name, product_path(product) %></h3>
+        
+        <ul class="list">
+          <li>
+            <strong><%= Product.human_attribute_name(:description) %>:</strong>
+            <%= product.full_dimensions_desc %></li>
+          <li>
+            <strong><%= Product.human_attribute_name(:sku) %>:</strong>
+            <%= product.sku %>
+          </li>
+          <li>
+            <strong><%= Product.human_attribute_name(:weight) %>:</strong>
+            <%= product.weight %>g
+          </li>
+          <li>
+            <strong><%= Product.human_attribute_name(:category) %>:</strong>
+            <%= product.category.name %>
+          </li>
+        </ul>
+      </div>
+    </article>
+  <% end %>
+</div>

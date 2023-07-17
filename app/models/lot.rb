@@ -1,7 +1,7 @@
 class Lot < ApplicationRecord
   belongs_to :user, foreign_key: :register_by_id, inverse_of: false
   belongs_to :approved_by, class_name: 'User', optional: true
-  has_many :products, dependent: :destroy
+  has_many :products, dependent: :nullify
   has_many :bids, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one_attached :photo
