@@ -1,21 +1,20 @@
-<div class="lot__container">
-  <section class="section lot--index">
-    <h2>Lotes em Andamento:</h2>
+<section class="my-4 max-w-screen-xl mx-auto">
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Lotes em Andamento:</h2>
 
-    <%= render 'shared/lot-card', { lots: @lots.lots_in_progress } %>
+  <%= render 'shared/lot-card', { lots: @lots.lots_in_progress } %>
 
-    <% if @lots.lots_in_progress.empty? %>
-      <p>Não há lotes em andamento no momento.</p>
-    <% end %>
-  </section>
+  <% if @lots.lots_in_progress.empty? %>
+    <p>Não há lotes em andamento no momento.</p>
+  <% end %>
+</section>
 
-  <section class="section lot--index">
-    <h2>Lotes Futuros:</h2>
+<section class="mt-10 max-w-screen-xl mx-auto">
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Lotes Futuros:</h2>
 
-    <%= render 'shared/lot-card', { lots: @lots.lots_in_future } %>
+  <%= render 'shared/lot-card', { lots: @lots.lots_in_future } %>
 
-    <% if @lots.lots_in_future.empty? %>
-      <p>No momento, não existe nenhum lote programado para iniciar em breve.</p>
-    <% end %>
-  </section>
-</div>
+  <% if @lots.lots_in_future.empty? %>
+    <p>No momento, não existe nenhum lote programado para iniciar em breve.</p>
+  <% end %>
+</section>
+

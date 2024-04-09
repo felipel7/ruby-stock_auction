@@ -1,38 +1,45 @@
-<section class="section product-model--show">
-  <h2>Produto - <%= @product.name %></h2>
+<div class="my-4 max-w-screen-xl flex flex-col gap-6 py-12 text-white">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <figure class="h-64">
+      <%= render partial: "shared/image", locals: { obj: @product } %>
+    </figure>
 
-  <%= render partial: "shared/image", locals: { obj: @product } %>
+    <section>
+      <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Produto - <%= @product.name %></h2>
 
-  <dl class="description__list">
-    <div>
-      <dt><%= Product.human_attribute_name(:description) %>:</dt>
-      <dd><%= @product.description %></dd>
-    </div>
+      <ul class="font-mono">
+        <li>
+          <strong class="font-sans"><%= Product.human_attribute_name(:description) %>:</strong>
+          <%= @product.description %>
+        </li>
 
-    <div>
-      <dt><%= Product.human_attribute_name(:code) %>:</dt>
-      <dd><%= @product.sku %></dd>
-    </div>
+        <li>
+          <strong class="font-sans"><%= Product.human_attribute_name(:code) %>:</strong>
+          <%= @product.sku %>
+        </li>
 
-    <div>
-      <dt><%= Product.human_attribute_name(:dimensions) %>:</dt>
-      <dd><%= @product.full_dimensions_desc %></dd>
-    </div>
+        <li>
+          <strong class="font-sans"><%= Product.human_attribute_name(:dimensions) %>:</strong>
+          <%= @product.full_dimensions_desc %>
+        </li>
 
-    <div>
-      <dt><%= Product.human_attribute_name(:weight) %>:</dt>
-      <dd><%= @product.weight %>g</dd>
-    </div>
+        <li>
+          <strong class="font-sans"><%= Product.human_attribute_name(:weight) %>:</strong>
+          <%= number_with_precision(@product.weight, precision: 0) %>g
+        </li>
 
-    <div>
-      <dt><%= Product.human_attribute_name(:category) %>:</dt>
-      <dd><%= @product.category.name %></dd>
-    </div>
-  </dl>
-  <% if @product.lot_id.present? %>
-    <p>
-      Compre o produto clicando no seguinte lote:  
-      <%= link_to @product.lot.batch_code, lot_path(@product.lot_id) %>
-    </p>
-  <% end %>
-</section>
+        <li>
+          <strong class="font-sans"><%= Product.human_attribute_name(:category) %>:</strong>
+          <%= @product.category.name %>
+        </li>
+      </ul>
+
+      <% if @product.lot_id.present? %>
+        <p class="my-6 flex flex-wrap gap-2 items-center">
+          Produto disponível no lote:
+          <%= link_to @product.lot.batch_code, lot_path(@product.lot_id), class: 'text-white transition bg-purple-500 hover:bg-purple-600 rounded-md px-6 py-2 font-semibold' %>
+        </p>
+      <% end %>
+    </section>
+  </div>
+</div>

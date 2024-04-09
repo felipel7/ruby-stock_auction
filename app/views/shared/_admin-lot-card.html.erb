@@ -1,29 +1,61 @@
-<% lots.each do |lot| %>
-  <article class="admin card">
-    <figure>
-      <%= render partial: "shared/image", locals: { obj: lot } %>
-    </figure>
+<div class="max-w-screen-xl dark:text-white grid grid-flow-row sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% lots.each do |lot| %>
+    <article class="card flex-grow flex gap-3 flex-col justify-between p-6 rounded-lg shadow dark:bg-darker-900">
+      <figure class="h-44">
+        <%= render partial: "shared/image", locals: { obj: lot } %>
+      </figure>
 
-    <div class="card__body">
-      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
+      <div>
+        <p>
+          <strong class="font-sans tracking-wide opacity-60 text-white">
+            Lote:
+          </strong>
+          <%= link_to lot.batch_code, lot_path(lot), class: 'tracking-wide font-mono text-lg font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+        </p>
 
-      <div class="status">
-        <dt>Status:</dt>
-        <dd class="<%= lot.status %>">
-          <%= t("lot.status.#{lot.status}") %>
-        </dd>
-      </div>
+        <div>
+          <p class="font-mono
+            <% case lot.status %>
+            <% when 'approved' %>
+              text-green-500
+            <% when 'pending' %>
+              text-yellow-500
+            <% else %>
+              text-red-400
+            <% end %>">
+            <strong class="font-sans tracking-wide opacity-60 text-white">Status:</strong>
+            <%= t("lot.status.#{lot.status}") %>
+          </p>
+        </div>
 
-      <div class="admin-card__controls">
-        <% if admin %>
-          <%= link_to "Ver", admin_lot_path(lot)  %>
+        <div class="mt-4 mb-2 inline-flex rounded-md shadow-sm" role="group">
+          <% if admin %>
+            <%= link_to admin_lot_path(lot), class: 'inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700' do %>
+              <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              </svg>
+              Ver
+            <% end %>
 
-          <% if lot.status == "pending" %>
-            <%= link_to "Editar", edit_admin_lot_path(lot)  %>
-            <%= link_to "Gerenciar", manage_admin_lot_path(lot)  %>
+
+            <% if lot.status == "pending" %>
+              <%= link_to edit_admin_lot_path(lot), class: 'inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700' do %>
+                <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                </svg>
+                Editar
+              <% end %>
+              <%= link_to manage_admin_lot_path(lot), class: 'inline-flex items-center  px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700' do %>
+                <svg class="w-4 h-4 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
+                </svg>
+                Gerenciar
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-  </article>
-<% end %>
+    </article>
+  <% end %>
+</div>

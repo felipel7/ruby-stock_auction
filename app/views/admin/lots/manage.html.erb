@@ -1,72 +1,67 @@
-<div class="container">
-  <section class="section admin lot--manage">
-    <h2>Produtos contidos neste lote:</h2>
+<section>
+  <h2>Produtos contidos neste lote:</h2>
 
-    <div class="manage--products">
-      <% if @products.empty? %>
-        <p>Não há produtos neste lote.</p>
-      <% end %>
+  <div>
+    <% if @products.empty? %>
+      <p>Não há produtos neste lote.</p>
+    <% end %>
 
-      <p>Atualizar informações do lote:</p>
-      <%= button_to "Aprovar Lote", approved_admin_lot_path, method: :post, class: "btn btn-success rounded", data: { turbo: false  }  %>
+    <p>Atualizar informações do lote:</p>
+    <%= button_to "Aprovar Lote", approved_admin_lot_path, method: :post, class: "btn btn-success rounded", data: { turbo: false  }  %>
 
-      <div class='card__container'>
-        <% @products.each do |product| %>
-          <article class="card">
-            <figure>
-              <%= render partial: "shared/image", locals: { obj:product } %>
-            </figure>
+    <% @products.each do |product| %>
+      <article>
+        <figure>
+          <%= render partial: "shared/image", locals: { obj:product } %>
+        </figure>
 
-            <div class="manage card__body">
-              <h3><%= product.name %> - <%= product.sku %></h3>
-              <ul class="list">
-                <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>
-                <li><strong>Peso:</strong> <%= product.weight %>g</li>
-                <li><strong>Categoria:</strong> <%= product.category.name %></li>
-              </ul>
-              <div class="manage-card__controls">
-                <%= button_to "Remover",  remove_product_admin_lot_path(product_id: product.id), method: :post, id: "btn-remove", class: "btn", data: { turbo: false  } %>
-              </div>
-            </div>
-          </article>
-        <% end %>
-      </div>
-    </section>
-
-    <section class="section lot--manage">
-      <h2>Produtos disponíveis para adicionar ao lote:</h2>
-
-      <% if @available_products.empty? %>
-        <p>
-          Não há produtos disponíveis no momento, crie um novo 
-          <%= link_to "clicando aqui", new_admin_product_path %>.
-        </p>
-      <% else %>
-        <div class="table__container">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @available_products.each do |product| %>
-                <tr>
-                  <td><%= product.sku %></td>
-                  <td><%= product.name %></td>
-                  <td><%= product.category.name %></td>
-                  <td class="table__controls">
-                    <%= link_to "Ver", admin_product_path(product), class: "btn btn-secondary rounded"  %>
-                    <%= button_to "Adicionar ao Lote", add_product_admin_lot_path(product_id: product.id), method: :post, class: "btn btn-primary rounded", data: { turbo: false  }  %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+        <div>
+          <h3><%= product.name %> - <%= product.sku %></h3>
+          <ul>
+            <li><strong>Dimensões:</strong> <%= product.full_dimensions_desc %></li>
+            <li><strong>Peso:</strong> <%= product.weight %>g</li>
+            <li><strong>Categoria:</strong> <%= product.category.name %></li>
+          </ul>
+          <div>
+            <%= button_to "Remover",  remove_product_admin_lot_path(product_id: product.id), method: :post, id: "btn-remove", class: "btn", data: { turbo: false  } %>
+          </div>
         </div>
-      <% end %>
-  </section>
-</div>
+      </article>
+    <% end %>
+  </div>
+
+  <h2>Produtos disponíveis para adicionar ao lote:</h2>
+
+  <% if @available_products.empty? %>
+    <p>
+      Não há produtos disponíveis no momento, crie um novo
+      <%= link_to "clicando aqui", new_admin_product_path %>.
+    </p>
+  <% else %>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @available_products.each do |product| %>
+            <tr>
+              <td><%= product.sku %></td>
+              <td><%= product.name %></td>
+              <td><%= product.category.name %></td>
+              <td class="table__controls">
+                <%= link_to "Ver", admin_product_path(product), class: "btn btn-secondary rounded"  %>
+                <%= button_to "Adicionar ao Lote", add_product_admin_lot_path(product_id: product.id), method: :post, class: "btn btn-primary rounded", data: { turbo: false  }  %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>

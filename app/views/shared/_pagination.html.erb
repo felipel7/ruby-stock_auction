@@ -1,0 +1,9 @@
+<div class="max-w-screen-xl flex flex-col items-center my-4">
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+      Página <span class="font-semibold text-gray-900 dark:text-white"><%= pagination.page %></span> de <span class="font-semibold text-gray-900 dark:text-white"><%= pagination.total_pages %></span>
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+    <%= link_to "Anterior", products_path(page: pagination.previous_page), class: "#{'pointer-events-none opacity-60 cursor-not-allowed' unless pagination.previous_page?} flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white", data: { turbo: false } %>
+    <%= link_to "Próxima", products_path(page: pagination.next_page), class: "#{'pointer-events-none opacity-60 cursor-not-allowed' unless pagination.next_page?} flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white", data: { turbo: false } %>
+  </div>
+</div>

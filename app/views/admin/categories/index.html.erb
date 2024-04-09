@@ -1,21 +1,35 @@
-<section class="section admin categories--index">
-  <%= link_to 'Cadastrar Nova Categoria', new_admin_category_path, class:"btn btn-primary rounded" %>
-  <h2>Lista de Categorias:</h2>
-
-  <table class="table table-bordered">
-    <thead>
-      <th><%= Category.human_attribute_name(:name) %></th>
-      <th><%= Category.human_attribute_name(:total) %></th>
-      <th><%= Category.human_attribute_name(:actions) %></th>
+<section class="my-4 max-w-screen-xl mx-auto">
+  <h2 class="title dark:text-white text-2xl font-semibold tracking-wide">Lista de Categorias:</h2>
+  <div class="relative overflow-x-auto sm:rounded-lg">
+    <div class="gap-2 flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 shadow-md">
+      <%= link_to 'Cadastrar Nova Categoria', new_admin_category_path, class: "order-2 transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2" %>
+      <label for="table-search" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Procurar</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+        </div>
+        <input type="text" id="table-search" class="p-2.5 bg-gray-50 block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-dark-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Procurar categoria">
+      </div>
+    </div>
+  </div>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+    <tr class="bg-white dark:bg-dark-900">
+      <th scope="col" class="px-6 py-3"><%= Category.human_attribute_name(:name) %></th>
+      <th scope="col" class="px-6 py-3"><%= Category.human_attribute_name(:total) %></th>
+      <th scope="col" class="px-6 py-3"><%= Category.human_attribute_name(:actions) %></th>
+    </tr>
     </thead>
     <tbody>
-      <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.name %></td>
-          <td><%= category.products.count %></td>
-          <td><%= link_to 'Editar', edit_admin_category_path(category)  %></td>
-        </tr>
-      <% end %>
+    <% @categories.each do |category| %>
+      <tr class="bg-white border-t bg-white dark:bg-darker-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-darker-800">
+        <td class="px-6 py-4 gap-2"><%= category.name %></td>
+        <td class="px-6 py-4 gap-2"><%= category.products.count %></td>
+        <td class="px-6 py-4 gap-2"><%= link_to 'Editar', edit_admin_category_path(category), class: 'text-blue-600 dark:text-blue-500 hover:underline' %></td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 </section>

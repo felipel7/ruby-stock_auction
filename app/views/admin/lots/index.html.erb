@@ -1,17 +1,18 @@
-<section class="section admin lot--index">
-  <%= link_to "Cadastrar Novo Lote", new_admin_lot_path, class:"btn btn-primary rounded" %>
-
-  <div class="filter--controls"> Filtrar:
-    <%= link_to "Todos", admin_lots_path(status: nil), class: "btn btn-sm btn-secondary rounded" %>
-    <%= link_to "Pendentes", admin_lots_path(status: "pending"), class: "btn btn-sm btn-secondary rounded" %>
-    <%= link_to "Aprovados", admin_lots_path(status: "approved"), class: "btn btn-sm btn-secondary rounded" %>
-    <%= link_to "Encerrados", admin_lots_path(status: "ended"), class: "btn btn-sm btn-secondary rounded" %>
+<div class="max-w-screen-xl mx-auto my-4 items-center">
+  <div class="flex justify-between my-3 flex-wrap gap-2">
+    <%= link_to "Cadastrar Novo Lote", new_admin_lot_path, class:"md:order-2 whitespace-nowrap flex items-center h-12 transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2" %>
+    <div class="flex items-center justify-center flex-wrap">
+      <%= link_to "Todos", admin_lots_path(status: nil), class: "text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-dark-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-purple-500 dark:focus:ring-purple-800 #{ 'dark:border-purple-500 dark:text-purple-500  dark:hover:bg-purple-500 dark:focus:ring-purple-800 border-purple-600 text-purple-700 hover:text-white dark:hover:text-white' if params[:status].nil? }" %>
+      <%= link_to "Pendentes", admin_lots_path(status: "pending"), class: "text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-dark-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-purple-500 dark:focus:ring-purple-800 #{ 'dark:border-purple-500 dark:text-purple-500  dark:hover:bg-purple-500 dark:focus:ring-purple-800 border-purple-600 text-purple-700 hover:text-white dark:hover:text-white' if params[:status] == 'pending' }" %>
+      <%= link_to "Aprovados", admin_lots_path(status: "approved"), class: "text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-dark-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-purple-500 dark:focus:ring-purple-800 #{ 'dark:border-purple-500 dark:text-purple-500  dark:hover:bg-purple-500 dark:focus:ring-purple-800 border-purple-600 text-purple-700 hover:text-white dark:hover:text-white' if params[:status] == 'approved' }" %>
+      <%= link_to "Encerrados", admin_lots_path(status: "ended"), class: "text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-dark-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 dark:hover:bg-purple-500 dark:focus:ring-purple-800 #{ 'dark:border-purple-500 dark:text-purple-500  dark:hover:bg-purple-500 dark:focus:ring-purple-800 border-purple-600 text-purple-700 hover:text-white dark:hover:text-white' if params[:status] == 'ended' }" %>
+    </div>
   </div>
 
-  <div class='card__wrapper'>
+  <div>
     <%= render  partial: 'shared/admin-lot-card', locals: { admin: true, lots: @lots } %>
     <% if @lots.empty? %>
-      <p style="justify-self: start;">Crie um novo <%= link_to "clicando aqui", new_admin_lot_path %>.</p>
+      <p style="justify-self: start">Crie um novo <%= link_to "clicando aqui", new_admin_lot_path %>.</p>
     <% end %>
   </div>
-</section>
+</div>

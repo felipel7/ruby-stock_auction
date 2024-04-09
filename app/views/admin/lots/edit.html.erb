@@ -1,9 +1,7 @@
-<div class="container">
+<section class="my-4 max-w-screen-xl mx-auto">
   <%= render 'shared/errors', { obj: @lot } %>
 
-  <section class="section admin lot-form">
-    <h2>Editar Lote - <%= @lot.batch_code %></h2>
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Editar Lote - <%= @lot.batch_code %></h2>
 
-    <%= render 'form' %>
-  </section>
-</div>
+  <%= render 'form' %>
+</section>

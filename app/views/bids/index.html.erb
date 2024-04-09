@@ -1,6 +1,6 @@
-<div class='container'>
-  <section class="section bid--index">
-    <h2>Meus Lances Vencedores</h2>
+<div class='my-4 max-w-screen-xl mx-auto'>
+  <section>
+    <h2 class="mb-2 title dark:text-white text-2xl font-semibold tracking-wide">Meus lances vencedores</h2>
     <%= render 'shared/lot-card', { lots: @winning_lots } %>
 
     <% if @winning_lots.empty? %>
@@ -8,8 +8,8 @@
     <% end %>
   </section>
 
-  <section class="section bid--index">
-    <h2>Meu Histórico de Lances</h2>
+  <section class="my-8">
+    <h2 class="mb-2 title dark:text-white text-2xl font-semibold tracking-wide">Meu histórico de lances</h2>
     <%= render 'shared/lot-card', { lots: @lots } %>
 
     <% if @lots.empty? %>

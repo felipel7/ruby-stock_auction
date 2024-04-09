@@ -1,7 +1,7 @@
 <section class="login__container">
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div  class="login__content">
+  <div>
     <h2>Esqueceu sua senha?</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form" }) do |f| %>
@@ -11,7 +11,7 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </p>
 
-      <div class="actions">
+      <div>
         <%= f.submit "Enviar instruções para o email", class: "btn btn-primary" %>
       </div>
     <% end %>

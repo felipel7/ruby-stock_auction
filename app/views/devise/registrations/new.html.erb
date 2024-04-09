@@ -1,39 +1,62 @@
-<section class="login__container">
+<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div  class="login__content">
-    <h2>Criar uma conta</h2>
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-700 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+    </div>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form "}) do |f| %>
+    <section class="relative px-4 py-10 bg-white dark:bg-dark-900 shadow-lg sm:rounded-3xl sm:p-20">
+      <h2 class="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Criar uma conta</h2>
 
-      <p>
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </p>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <p>
+            <%= f.label :first_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
+          <p>
+            <%= f.label :last_name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= f.text_field :last_name, autocomplete: "last_name", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
+        </div>
 
-      <p>
-        <%= f.label :cpf %>
-        <%= f.text_field :cpf, maxlength: '11' %>
-      </p>
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <p>
+            <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= f.email_field :email, autocomplete: "email", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
 
-      <p>
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </p>
+          <p>
+            <%= f.label :cpf, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= f.text_field :cpf, maxlength: '11', class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
+        </div>
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+          <p>
+            <%= f.label :password, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <% if @minimum_password_length %>
+              <em class="block mt-1 text-xs font-medium text-gray-900 dark:text-white">(<%= @minimum_password_length %>
+                characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
 
-      <p>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </p>
-
-      <div class="actions">
-        <%= f.submit "Criar conta", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+          <p>
+            <%= f.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <% if @minimum_password_length %>
+              <em class="mb-1 block text-xs font-medium text-gray-900 dark:text-white">(<%= @minimum_password_length %>
+                characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+          </p>
+        </div>
+        <div class="mb-4">
+          <%= f.submit 'Criar conta', class: "!w-full justify-center flex gap-2 items-center !font-semibold text-md cursor-pointer text-white tracking-wide bg-purple-700 transition hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 rounded-lg sm:w-auto px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </section>
   </div>
-</section>
+</div>
+

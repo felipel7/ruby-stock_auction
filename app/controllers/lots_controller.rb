@@ -29,4 +29,8 @@ class LotsController < ApplicationController
     end
     render :index
   end
+
+  def page_params
+    params.permit(:page).merge(per_page: POSTS_PER_PAGE)
+  end
 end

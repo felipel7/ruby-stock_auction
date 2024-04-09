@@ -1,33 +1,78 @@
-<section class="section admin profiles--index">
-  <h2>Lista de usuários</h2>
+<section class="my-4 max-w-screen-xl mx-auto">
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Lista de usuários</h2>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th><%= User.human_attribute_name(:name) %></th>
-        <th><%= User.human_attribute_name(:email) %></th>
-        <th><%= User.human_attribute_name(:type) %></th>
-        <th><%= User.human_attribute_name(:status) %></th>
-        <th><%= User.human_attribute_name(:actions) %></th>
+  <div class="relative overflow-x-auto sm:rounded-lg">
+    <div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 shadow-md">
+      <label for="table-search" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Procurar</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+        </div>
+        <input type="text" id="table-search" class="ml-[2px] p-2.5 bg-gray-50 block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-dark-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Procurar usuário">
+      </div>
+    </div>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+      <tr class="bg-white dark:bg-dark-900">
+        <th scope="col" class="px-6 py-3">
+          Nome
+        </th>
+        <th scope="col" class="px-6 py-3 hidden md:table-cell">
+          Tipo
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Status
+        </th>
+        <th colspan="2" scope="col" class="text-center uppercase px-6 py-3">
+          Ações
+        </th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= t("activerecord.attributes.user.role.#{user.role}") %></td>
-          <td><%= user.blocked_cpf? ? "Bloqueado" : "Ativo" %></td>
-          <td class="table__controls">
-            <%= button_to block_admin_profile_path(user), method: :post, title: "Bloquear" do %>
-              <i class="fa fa-ban"></i>
-            <% end %>
-            <%= button_to unblock_admin_profile_path(user), method: :post, title: "Desbloquear" do %>
-              <i class="fa fa-unlock"></i>
-            <% end %>
+        <tr class="bg-white border-t bg-white dark:bg-darker-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-darker-800">
+          <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+            <img class="w-10 h-10 rounded-full" src="https://picsum.photos/200/300" alt="Jese image">
+            <div class="ps-3">
+              <div class="text-base font-semibold"><%= user.name %></div>
+              <div class="font-normal text-gray-500"><%= user.email %></div>
+            </div>
+          </th>
+          <td class="px-6 py-4 hidden md:table-cell">
+            <%= t("activerecord.attributes.user.role.#{user.role}") %>
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex items-center">
+              <div class="h-2.5 w-2.5 rounded-full  me-2 <%= user.blocked_cpf? ? "bg-red-500" : "bg-green-500" %>"></div>
+              <%= user.blocked_cpf? ? "Bloqueado" : "Ativo" %>
+            </div>
+          </td>
+          <td class="px-6 gap-2">
+            <div class="block md:flex md:justify-evenly gap-6">
+              <%= button_to block_admin_profile_path(user), method: :post, class: 'text-right flex gap-2 items-center font-medium text-blue-600 dark:text-blue-500 hover:underline' do %>
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
+                </svg>
+                Bloquear
+              <% end %>
+
+              <%= button_to unblock_admin_profile_path(user), method: :post, class: 'flex gap-2 items-center font-medium text-blue-600 dark:text-blue-500 hover:underline' do %>
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M15 7a2 2 0 1 1 4 0v4a1 1 0 1 0 2 0V7a4 4 0 0 0-8 0v3H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2V7Zm-5 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
+                </svg>
+                Desbloquear
+              <% end %>
+            </div>
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </section>
+
+
+
+

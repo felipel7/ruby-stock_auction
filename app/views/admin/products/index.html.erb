@@ -1,28 +1,42 @@
-<section class="section admin products--index">
-  <%= link_to "Cadastrar Novo Produto", new_admin_product_path, class:"btn btn-primary rounded" %>
-  <h2>Lista de Produtos Cadastrados:</h2>
+<section class="my-4 max-w-screen-xl mx-auto">
+  <h2 class="title dark:text-white text-2xl font-semibold tracking-wide">Lista de produtos cadastrados</h2>
 
-  <div class="table__container">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th><%= Product.human_attribute_name(:sku) %></th>
-          <th><%= Product.human_attribute_name(:name) %></th>
-          <th><%= Product.human_attribute_name(:status) %></th>
-          <th><%= Product.human_attribute_name(:lot) %></th>
-          <th><%= Product.human_attribute_name(:category) %></th>
-        </tr>
+  <div class="relative overflow-x-auto sm:rounded-lg">
+    <div class="gap-2 flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 shadow-md">
+      <%= link_to "Cadastrar Novo Produto", new_admin_product_path, class: "order-2 transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2" %>
+      <label for="table-search" class="sr-only block mb-2 text-sm font-medium text-gray-900 dark:text-white">Procurar</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+        </div>
+        <input type="text" id="table-search" class="p-2.5 bg-gray-50 block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-dark-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Procurar produto">
+      </div>
+    </div>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+      <tr class="bg-white dark:bg-dark-900">
+        <th scope="col" class="px-6 py-3"><%= Product.human_attribute_name(:sku) %></th>
+        <th scope="col" class="px-6 py-3"><%= Product.human_attribute_name(:name) %></th>
+        <th scope="col" class="px-6 py-3"><%= Product.human_attribute_name(:status) %></th>
+        <th scope="col" class="px-6 py-3"><%= Product.human_attribute_name(:lot) %></th>
+        <th scope="col" class="px-6 py-3"><%= Product.human_attribute_name(:category) %></th>
+      </tr>
       </thead>
       <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= link_to product.sku, admin_product_path(product) %></td>
-            <td><%= product.name %></td>
-            <td><%= product.lot&.batch_code ? "Não Disponível" : "Disponível" %></td>
-            <td><%= product.lot&.batch_code || "-" %></td>
-            <td><%= product.category.name %></td>
-          </tr>
-        <% end %>
+      <% @products.each do |product| %>
+        <tr class="bg-white border-t bg-white dark:bg-darker-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-darker-800">
+          <td class="px-6 py-4 gap-2"><%= link_to product.sku, admin_product_path(product) %></td>
+          <td class="px-6 py-4 gap-2"><%= product.name %></td>
+          <td class="px-6 py-4 gap-2 flex items-center gap-1">
+            <div class="h-2.5 w-2.5 rounded-full  me-2 <%= product.lot&.batch_code ? "bg-red-500" : "bg-green-500" %>"></div>
+            <%= product.lot&.batch_code ? "Não Disponível" : "Disponível" %>
+          </td>
+          <td class="px-6 py-4 gap-2"><%= product.lot&.batch_code || "-" %></td>
+          <td class="px-6 py-4 gap-2"><%= product.category.name %></td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

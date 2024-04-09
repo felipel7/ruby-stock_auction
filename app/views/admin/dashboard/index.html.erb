@@ -1,0 +1,72 @@
+<div class="mt-12 max-w-screen-xl mx-auto">
+  <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2">
+    <!-- Gerenciar Produtos -->
+    <div id="product" class="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-dark-900 shadow-md">
+      <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M10 2a3 3 0 0 0-3 3v1H5a3 3 0 0 0-3 3v2.382l1.447.723.005.003.027.013.12.056c.108.05.272.123.486.212.429.177 1.056.416 1.834.655C7.481 13.524 9.63 14 12 14c2.372 0 4.52-.475 6.08-.956.78-.24 1.406-.478 1.835-.655a14.028 14.028 0 0 0 .606-.268l.027-.013.005-.002L22 11.381V9a3 3 0 0 0-3-3h-2V5a3 3 0 0 0-3-3h-4Zm5 4V5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1h6Zm6.447 7.894.553-.276V19a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5.382l.553.276.002.002.004.002.013.006.041.02.151.07c.13.06.318.144.557.242.478.198 1.163.46 2.01.72C7.019 15.476 9.37 16 12 16c2.628 0 4.98-.525 6.67-1.044a22.95 22.95 0 0 0 2.01-.72 15.994 15.994 0 0 0 .707-.312l.041-.02.013-.006.004-.002.001-.001-.431-.866.432.865ZM12 10a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="p-4 text-right" >
+        <p class="opacity-60 block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Produtos</p>
+        <%= link_to admin_products_path, class: 'transition hover:text-purple-500 block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900' do %>
+          Gerenciar
+        <% end %>
+      </div>
+      <div class="border-t border-gray-700 p-4">
+        <%= link_to 'Página de produtos →', products_path, class: 'block antialiased block font-medium dark:text-purple-300 hover:underline cursor-pointer' %>
+      </div>
+    </div>
+    <!-- Gerenciar Usuario -->
+    <div id="user" class="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-dark-900 shadow-md">
+      <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-6 h-6 text-white">
+          <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <div class="p-4 text-right">
+        <p class="opacity-60 block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Usuário</p>
+        <%= link_to admin_profiles_path, class: 'transition hover:text-purple-500 block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900' do %>
+          Gerenciar
+        <% end %>
+      </div>
+      <div class="border-t border-gray-700 p-4">
+        <%= link_to 'Página de lances dos usuários →', bids_path, class: 'block antialiased block font-medium dark:text-purple-300 hover:underline cursor-pointer' %>
+      </div>
+    </div>
+    <!-- Gerenciar Lotes -->
+    <div id="lot" class="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-dark-900 shadow-md">
+      <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+        <svg class="text-inherit flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+          <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="p-4 text-right">
+        <p class="opacity-60 block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Lotes</p>
+        <%= link_to admin_lots_path, class: 'transition hover:text-purple-500 block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900' do %>
+          Gerenciar
+        <% end %>
+      </div>
+      <div class="border-t border-gray-700 p-4">
+        <%= link_to 'Página de lotes →', lots_path, class: 'block antialiased block font-medium dark:text-purple-300 hover:underline cursor-pointer' %>
+      </div>
+    </div>
+    <!-- Gerenciar Categorias -->
+    <div id="category" class="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-dark-900 shadow-md">
+      <div class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M18.045 3.007 12.31 3a1.965 1.965 0 0 0-1.4.585l-7.33 7.394a2 2 0 0 0 0 2.805l6.573 6.631a1.957 1.957 0 0 0 1.4.585 1.965 1.965 0 0 0 1.4-.585l7.409-7.477A2 2 0 0 0 21 11.479v-5.5a2.972 2.972 0 0 0-2.955-2.972Zm-2.452 6.438a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+        </svg>
+      </div>
+      <div class="p-4 text-right">
+        <p class="opacity-60 block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Categorias</p>
+        <%= link_to admin_categories_path, class: 'transition hover:text-purple-500 block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900' do %>
+          Gerenciar
+        <% end %>
+      </div>
+      <div class="border-t border-gray-700 p-4">
+        <%= link_to 'Página de categorias →', admin_categories_path, class: 'block antialiased block font-medium dark:text-purple-300 hover:underline cursor-pointer' %>
+      </div>
+    </div>
+  </div>
+</div>

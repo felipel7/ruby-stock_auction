@@ -1,5 +1,7 @@
-<section class="section products--index">
-  <h2>Lista de Produtos</h2>
+<section class="my-4 max-w-screen-xl mx-auto flex flex-col gap-2">
+  <h2 class="title dark:text-white text-2xl font-semibold tracking-wide">Lista de Produtos</h2>
 
   <%= render partial: 'shared/product-list', locals: { products: @products }  %>
+
+  <%= render partial: 'shared/pagination', locals: { pagination: @pagination, path: products_path } %>
 </section>

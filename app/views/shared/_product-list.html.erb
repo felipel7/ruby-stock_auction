@@ -1,27 +1,27 @@
-<div class='card__wrapper'>
+<div class="max-w-screen-xl dark:text-white grid grid-flow-row sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   <% products.each do |product| %>
-    <article class="product-card card">
-      <figure>
-        <%= render partial: "shared/image", locals: { obj: product } %>
+    <article class="flex-grow flex gap-6 flex-col justify-between p-6 rounded-lg shadow dark:bg-darker-900">
+      <figure class="h-44">
+        <%= render partial: "shared/image", locals: { obj: product }%>
       </figure>
 
-      <div class="product-card__body card__body">
-        <h3><%= link_to product.name, product_path(product) %></h3>
+      <div class="flex flex-col gap-2">
+        <h3><%= link_to product.name, product_path(product), class: "text-xl font-medium text-blue-600 dark:text-blue-500 hover:underline"%></h3>
         
-        <ul class="list">
+        <ul class="font-mono">
           <li>
-            <strong><%= Product.human_attribute_name(:description) %>:</strong>
+            <strong class="font-sans"><%= Product.human_attribute_name(:dimensions) %>:</strong>
             <%= product.full_dimensions_desc %></li>
           <li>
-            <strong><%= Product.human_attribute_name(:sku) %>:</strong>
+            <strong class="font-sans"><%= Product.human_attribute_name(:sku) %>:</strong>
             <%= product.sku %>
           </li>
           <li>
-            <strong><%= Product.human_attribute_name(:weight) %>:</strong>
-            <%= product.weight %>g
+            <strong class="font-sans"><%= Product.human_attribute_name(:weight) %>:</strong>
+            <%= number_with_precision(product.weight, precision: 0) %>g
           </li>
           <li>
-            <strong><%= Product.human_attribute_name(:category) %>:</strong>
+            <strong class="font-sans"><%= Product.human_attribute_name(:category) %>:</strong>
             <%= product.category.name %>
           </li>
         </ul>

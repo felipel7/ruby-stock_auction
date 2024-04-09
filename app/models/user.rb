@@ -13,6 +13,7 @@ class User < ApplicationRecord
   before_save :check_email_domain
 
   validates :cpf, presence: true, uniqueness: true, length: { is: 11 }
+  validates :first_name, :last_name, presence: true
 
   def admin?
     role == 'admin'

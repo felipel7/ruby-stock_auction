@@ -49,12 +49,26 @@ export default class extends Controller {
       .padStart(2, '0');
 
     const countdownHTML = `
-      <div class="icon__wrapper">
-        <i class="fa fa-clock-o"></i>
-      </div>
-      <div class="text__wrapper">
-        <p class="text">${label}</p>
-        <strong class="time">${`${days}D ${hours} : ${minutes} : ${seconds}`}</strong>
+     <div class="flex flex-col items-center mt-4">
+        <p class="text-gray-300 uppercase text-sm opacity-60 mb-3">${label}</p>
+        <div class="flex items-center justify-center space-x-4 mt-4">
+          <div class="flex flex-col items-center px-4 border-r dark:border-gray-700">
+            <span class="text-xl lg:text-2xl text-gray-200">${days}</span>
+            <span class="text-gray-400 mt-2">D</span>
+          </div>
+          <div class="flex flex-col items-center px-4 border-r dark:border-gray-700">
+            <span class="text-xl lg:text-2xl text-gray-200">${hours}</span>
+            <span class="text-gray-400 mt-2">Hrs</span>
+          </div>
+          <div class="flex flex-col items-center px-4 border-r dark:border-gray-700">
+            <span class="text-xl lg:text-2xl text-gray-200">${minutes}</span>
+            <span class="text-gray-400 mt-2">Min</span>
+          </div>
+          <div class="flex flex-col items-center px-4">
+            <span class="text-xl lg:text-2xl text-gray-200">${seconds}</span>
+            <span class="text-gray-400 mt-2">Sec</span>
+          </div>
+        </div>
       </div>
     `;
 

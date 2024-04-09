@@ -1,25 +1,25 @@
-<section class="section admin bid--index">
-  <h2>Lista de Lances dos Usuários</h2>
+<section class='my-4 max-w-screen-xl mx-auto'>
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Lista de lances dos usuários</h2>
 
   <% if @all_bids.empty? %>
     <p>Ainda não foi dado nenhum lance.</p>
   <% else %>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th><%= Lot.model_name.human %></th>
-          <th><%= Lot.human_attribute_name(:user) %></th>
-          <th><%= Lot.human_attribute_name(:amount) %></th>
-          <th><%= Lot.human_attribute_name(:time) %></th>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
+        <tr class="bg-white dark:bg-dark-900">
+          <th scope="col" class="px-6 py-3"><%= Lot.model_name.human %></th>
+          <th scope="col" class="px-6 py-3"><%= Lot.human_attribute_name(:user) %></th>
+          <th scope="col" class="px-6 py-3"><%= Lot.human_attribute_name(:amount) %></th>
+          <th scope="col" class="px-6 py-3"><%= Lot.human_attribute_name(:time) %></th>
         </tr>
       </thead>
       <tbody>
         <% @all_bids.each do |bid| %>
-          <tr>
-            <td><%= bid.lot.batch_code %></td>
-            <td><%= bid.user.email %></td>
-            <td><%= bid.amount %></td>
-            <td><%= l(bid.created_at, format: :long) %></td>
+          <tr class="bg-white border-t bg-white dark:bg-darker-900 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-darker-800">
+            <td class="px-6 py-4 gap-2"><%= bid.lot.batch_code %></td>
+            <td class="px-6 py-4 gap-2"><%= bid.user.email %></td>
+            <td class="px-6 py-4 gap-2"><%= bid.amount %></td>
+            <td class="px-6 py-4 gap-2"><%= l(bid.created_at, format: :long) %></td>
           </tr>
         <% end %>
       </tbody>

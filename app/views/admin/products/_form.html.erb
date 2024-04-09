@@ -1,43 +1,43 @@
-<%= form_with(model: @product, url: @product.persisted? ? admin_product_path(@product) : admin_products_path, class: "form", local: true, data: { turbo: false }) do |form|  %>
+<%= form_with(model: @product, url: @product.persisted? ? admin_product_path(@product) : admin_products_path, class: "flex gap-5 flex-col", local: true, data: { turbo: false }) do |form|  %>
   <p>
-    <%= form.label :name  %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.text_field :name, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: 'Nome do produto'  %>
   </p>
 
   <p>
-    <%= form.label :height  %>
-    <%= form.number_field :height, placeholder: "em centímetros" %>
+    <%= form.label :height, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :height, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em centímetros" %>
   </p>
 
   <p>
-    <%= form.label :width  %>
-    <%= form.number_field :width, placeholder: "em centímetros" %>
+    <%= form.label :width, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :width, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em centímetros" %>
   </p>
 
   <p>
-    <%= form.label :depth  %>
-    <%= form.number_field :depth, placeholder: "em centímetros" %>
+    <%= form.label :depth, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :depth, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em centímetros" %>
   </p>
 
   <p>
-    <%= form.label :weight  %>
-    <%= form.number_field :weight, placeholder: "em gramas" %>
+    <%= form.label :weight, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :weight, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em gramas" %>
   </p>
 
   <p>
-    <%= form.label :category_id  %>
-    <%= form.collection_select :category_id, @categories, :id, :name %>
+    <%= form.label :category_id, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.collection_select :category_id, @categories, :id, :name, {}, { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' } %>
   </p>
 
   <p>
-    <%= form.label :photo  %>
-    <%= form.file_field :photo %>
+    <%= form.label :photo, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.file_field :photo, class: 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400' %>
   </p>
 
   <p>
-    <%= form.label :description  %>
-    <%= form.text_area :description %>
+    <%= form.label :description, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.text_area :description, class: 'block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500', rows: 4%>
   </p>
 
-  <%= form.submit "Salvar Produto", class: "btn btn-primary rounded" %>
+  <%= form.submit "Salvar Produto", class: "self-start cursor-pointer transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2" %>
 <% end %>

@@ -1,44 +1,49 @@
-<section>
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <section class="mx-auto max-w-screen-xl relative px-4 py-10 bg-white dark:bg-dark-900 shadow-lg sm:rounded-3xl sm:p-20">
+    <h2 class="mb-3 text-2xl font-semibold text-gray-900 dark:text-white">Editar dados da conta</h2>
 
-    <p>
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </p>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col gap-4" }) do |f| %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <p>
+        <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+      </p>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <p>
+        <%= f.label :password, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <i class="mb-1 block text-xs font-medium text-gray-900 dark:text-white">(Deixe em branco se não quiser
+          alterar)</i>
+        <% if @minimum_password_length %>
+          <em class="mb-1 block text-xs font-medium text-gray-900 dark:text-white"><%= @minimum_password_length %>
+            characters minimum</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+      </p>
+
+      <p>
+        <%= f.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+      </p>
+
+      <p>
+        <%= f.label :current_password, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <i class="mb-1 block text-xs font-medium text-gray-900 dark:text-white">(Precisamos da sua senha atual para confirmar as mudanças)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500' %>
+      </p>
+
+      <div class="mb-6">
+        <%= f.submit "Atualizar", class: "!w-full justify-center flex gap-2 items-center !font-semibold text-md cursor-pointer text-white tracking-wide bg-purple-700 transition hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 rounded-lg sm:w-auto px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800" %>
+      </div>
     <% end %>
 
-    <p>
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </p>
+    <%= link_to "<- Voltar", :back, class: 'block font-medium dark:text-purple-300 hover:underline' %>
+  </section>
+</div>
 
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </p>
 
-    <p>
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
-      <%= f.password_field :current_password, autocomplete: "current-password" %>
-    </p>
-
-    <div class="actions">
-      <%= f.submit "Atualizar", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-
-  <h3>Cancel my account</h3>
-
-  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-  <%= link_to "Back", :back %>
-</section>

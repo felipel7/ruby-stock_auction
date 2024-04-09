@@ -1,36 +1,36 @@
-<%= form_with(model: @lot, url: @lot.persisted? ? admin_lot_path(@lot) : admin_lots_path, class: "form", data: { turbo: false }) do |form|  %>
+<%= form_with(model: @lot, url: @lot.persisted? ? admin_lot_path(@lot) : admin_lots_path, class: "flex gap-5 flex-col", data: { turbo: false }) do |form|  %>
 
   <p>
-    <%= form.label :batch_code  %>
-    <%= form.text_field :batch_code, placeholder: "Exe: ABC123456", maxlength: 9 %>
+    <%= form.label :batch_code, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.text_field :batch_code, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "Exe: ABC123456", maxlength: 9 %>
   </p>
 
   <% Time.use_zone("America/Sao_Paulo") do %>
     <p>
-      <%= form.label :start_date  %>
-      <%= form.datetime_local_field :start_date %>
+      <%= form.label :start_date, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+      <%= form.datetime_local_field :start_date, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light" %>
     </p>
 
     <p>
-      <%= form.label :end_date  %>
-      <%= form.datetime_local_field :end_date %>
+      <%= form.label :end_date, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+      <%= form.datetime_local_field :end_date, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light" %>
     </p>
   <% end %>
 
   <p>
-    <%= form.label :min_value  %>
-    <%= form.number_field :min_value, placeholder: "em reais" %>
+    <%= form.label :min_value, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :min_value, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em reais" %>
   </p>
 
   <p>
-    <%= form.label :min_allowed_difference  %>
-    <%= form.number_field :min_allowed_difference, placeholder: "em reais" %>
+    <%= form.label :min_allowed_difference, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.number_field :min_allowed_difference, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light", placeholder: "em reais" %>
   </p>
 
   <p>
-    <%= form.label :photo  %>
-    <%= form.file_field :photo %>
+    <%= form.label :photo, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"  %>
+    <%= form.file_field :photo, class: 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400' %>
   </p>
 
-  <%= form.submit class: "btn btn-primary rounded" %>
+  <%= form.submit class:"self-start cursor-pointer transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2" %>
 <% end %>

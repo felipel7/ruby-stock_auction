@@ -1,14 +1,13 @@
-<section class="section admin categories--index">
-  <h2>Criar nova categoria</h2>
-
+<section class="my-4 max-w-screen-xl mx-auto">
   <%= render 'shared/errors', { obj: @category } %>
+  <h2 class="mb-4 title dark:text-white text-2xl font-semibold tracking-wide">Criar nova categoria</h2>
 
-  <%= form_with(model: @category, url: admin_categories_path, class: "form") do |form| %>
+  <%= form_with(model: @category, url: admin_categories_path, class: "form", data: { turbo: false }) do |form| %>
     <p>
-      <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :name, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500 dark:shadow-sm-light" %>
     </p>
 
-    <%= form.submit "Criar nova Categoria", class: "btn btn-primary rounded" %>
+    <%= form.submit "Criar nova Categoria", class: "self-start cursor-pointer transition tracking-wide font-semibold text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 text-center me-2 my-4" %>
   <% end %>
 </section>

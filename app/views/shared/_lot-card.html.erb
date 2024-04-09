@@ -1,40 +1,49 @@
-<% lots.each do |lot| %>
-  <article class="card">
-    <figure>
-      <%= render partial: "shared/image", locals: { obj: lot } %>
-    </figure>
+<div class="max-w-screen-xl dark:text-white grid grid-flow-row sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% lots.each do |lot| %>
+    <article class="card flex-grow flex gap-3 flex-col justify-between p-6 rounded-lg shadow dark:bg-darker-900">
+      <figure class="h-44">
+        <%= render partial: "shared/image", locals: { obj: lot } %>
+      </figure>
 
-    <div class="card__body">
-      <h3>Lote: <%= link_to lot.batch_code, lot_path(lot) %></h3>
-      <p><%= number_to_currency(lot.min_value, locale: :'pt-BR') %><small>Lance Inicial</small></p>
+      <div class="font-mono flex flex-col gap-1">
+        <p>
+          <strong class="font-sans tracking-wide opacity-60">Lote:</strong> <%= link_to lot.batch_code, lot_path(lot) %>
+        </p>
+        <p>
+          <strong class="font-sans tracking-wide opacity-60">Lance Inicial:</strong>
+          <%= number_to_currency(lot.min_value, locale: :'pt-BR') %>
+        </p>
 
-      <div class="card__controls">
-        <%= link_to(lot_path(lot), class: "btn btn-bid") do %>
-          <i class="fa fa-gavel"></i>
-          <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
-        <% end %>
-
-        <%= button_to favorites_path(lot_id: lot.id), method: :post, class: 'btn btn-favorite' do %>
-          <% if current_user&.favorites&.exists?(lot_id: lot.id) %>
-            <i class="fa fa-heart"></i>
-          <% else %>
-            <i class="fa fa-heart-o"></i>
+        <div class="flex items-center justify-between">
+          <%= link_to(lot_path(lot), class: "transition font-sans rounded-md uppercase bg-purple-500 hover:bg-purple-600 px-8 py-2 text-center font-bold transition") do %>
+            <%= lot.end_date < Time.zone.now ? "Ver o resultado" : "Dar Lance" %>
           <% end %>
-        <% end %>
-      </div>
 
-      <% seconds_until_target_time = lot.end_date.to_i - Time.zone.now.to_i %>
-      <% seconds_until_target_time = Time.zone.now.to_i - lot.start_date.to_i if Time.zone.now < lot.start_date %>
-      <%= content_tag(
-          :div, "", 
-          data: {
-            controller: "countdown",
-            countdown_target: "countdown",
-            seconds_until_end_value: seconds_until_target_time
-          }, 
-          class: 'countdown'
-        ) 
-      %>
-    </div>
-  </article>
-<% end %>
+          <%= button_to favorites_path(lot_id: lot.id), method: :post, class: 'btn-favorite' do %>
+            <% if current_user&.favorites&.exists?(lot_id: lot.id) %>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z"/>
+              </svg>
+            <% else %>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+              </svg>
+            <% end %>
+          <% end %>
+        </div>
+
+        <% seconds_until_target_time = lot.end_date.to_i - Time.zone.now.to_i %>
+        <% seconds_until_target_time = Time.zone.now.to_i - lot.start_date.to_i if Time.zone.now < lot.start_date %>
+        <%= content_tag(
+              :div, "",
+              data: {
+                controller: "countdown",
+                countdown_target: "countdown",
+                seconds_until_end_value: seconds_until_target_time
+              }
+            )
+        %>
+      </div>
+    </article>
+  <% end %>
+</div>
