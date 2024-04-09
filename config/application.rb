@@ -33,6 +33,7 @@ module AuctionApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.assets.css_compressor = nil
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag.html_safe }
     config.active_storage.variant_processor = :mini_magick
