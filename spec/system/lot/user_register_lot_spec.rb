@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário tenta registrar um novo lote' do
   it 'e não tem acesso' do
-    user = User.create!(email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
 
     login_as(user)
     visit new_admin_lot_path

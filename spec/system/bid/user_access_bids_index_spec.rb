@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'A página de lances é acessa pelo' do
   context 'usuário' do
     it 'e retorna todos os seus lances' do
-      first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-      second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-      user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+      first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+      second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+      user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
       category = Category.create!(name: 'Eletrônicos')
       product = Product.create!(
         name: 'Monitor LG',
@@ -41,12 +41,12 @@ describe 'A página de lances é acessa pelo' do
           click_on 'Lances'
         end
 
-        within(:css, 'section:has(h2:contains("Meus Lances Vencedores"))') do
+        within(:css, 'section:has(h2:contains("Meus lances vencedores"))') do
           expect(page).to have_content 'Lote: EOR661430'
           expect(page).to have_content 'R$ 2.500,00'
         end
 
-        within(:css, 'section:has(h2:contains("Meu Histórico de Lances"))') do
+        within(:css, 'section:has(h2:contains("Meu histórico de lances"))') do
           expect(page).to have_content 'Lote: EOR661430'
           expect(page).to have_content 'R$ 2.500,00'
         end
@@ -56,10 +56,10 @@ describe 'A página de lances é acessa pelo' do
 
   context 'admin' do
     it 'e retorna o lance de todos os usuários' do
-      first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-      second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-      first_user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
-      second_user = User.create!(email: 'maria@gmail.com', cpf: '48092119082', password: '123123')
+      first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+      second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+      first_user = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+      second_user = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@gmail.com', cpf: '48092119082', password: '123123')
       category = Category.create!(name: 'Eletrônicos')
       product = Product.create!(
         name: 'Monitor LG',

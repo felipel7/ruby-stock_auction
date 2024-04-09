@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Admin registra um novo lote' do
   it 'com sucesso' do
     admin = User.create!(
+      first_name: 'maria', last_name: 'silva',
       email: 'maria@leilaodogalpao.com.br',
       cpf: '03507869098',
       password: '123123'
@@ -11,7 +12,10 @@ describe 'Admin registra um novo lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Novo Lote'
     fill_in 'Código do Lote', with: 'KAO668595'
@@ -28,6 +32,7 @@ describe 'Admin registra um novo lote' do
 
   it 'e falha quando tem informações incorretas' do
     admin = User.create!(
+      first_name: 'maria', last_name: 'silva',
       email: 'maria@leilaodogalpao.com.br',
       cpf: '03507869098',
       password: '123123'
@@ -36,7 +41,10 @@ describe 'Admin registra um novo lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Novo Lote'
     fill_in 'Data de início', with: 1.hour.ago
@@ -55,6 +63,7 @@ describe 'Admin registra um novo lote' do
 
   it 'e edita com sucesso' do
     admin = User.create!(
+      first_name: 'maria', last_name: 'silva',
       email: 'maria@leilaodogalpao.com.br',
       cpf: '03507869098',
       password: '123123'
@@ -71,7 +80,10 @@ describe 'Admin registra um novo lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Editar'
     fill_in 'Código do Lote', with: 'XYZ123123'
@@ -85,7 +97,8 @@ describe 'Admin registra um novo lote' do
   end
 
   it 'e edita, mas falha com dados incorretos' do
-     admin = User.create!(
+    admin = User.create!(
+      first_name: 'maria', last_name: 'silva',
       email: 'maria@leilaodogalpao.com.br',
       cpf: '03507869098',
       password: '123123'
@@ -102,7 +115,10 @@ describe 'Admin registra um novo lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Editar'
     fill_in 'Código do Lote', with: 'AC'

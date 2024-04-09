@@ -12,9 +12,9 @@ describe 'Usuário da um novo lance' do
       depth: 10,
       category:
     )
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-    user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
     lot = Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.second.from_now,
@@ -43,9 +43,9 @@ describe 'Usuário da um novo lance' do
   end
 
   it 'e falha quando o lote ainda não está em andamento' do
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-    user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     product = Product.create!(
       name: 'Monitor LG',
@@ -82,9 +82,9 @@ describe 'Usuário da um novo lance' do
   end
 
   it 'com sucesso' do
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-    user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     product = Product.create!(
       name: 'Monitor LG',
@@ -124,9 +124,9 @@ describe 'Usuário da um novo lance' do
   end
 
   it 'e falha quando o usuário já possui o maior lance' do
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-    user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     product = Product.create!(
       name: 'Monitor LG',
@@ -172,8 +172,8 @@ end
 
 describe 'Admin tenta dar um lance' do
   it 'e não consegue' do
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva',email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva',email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     product = Product.create!(
       name: 'Monitor LG',

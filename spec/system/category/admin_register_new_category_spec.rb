@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe 'Admin registra uma nova categoria' do
   it 'com sucesso' do
-    admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
 
     login_as(admin)
     visit root_path
-    within 'aside' do
-      click_on 'Categorias'
+    click_on 'Dashboard'
+    within("#category") do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Nova Categoria'
     fill_in 'Nome', with: 'Eletrônicos'
@@ -19,12 +20,13 @@ describe 'Admin registra uma nova categoria' do
   end
 
   it 'e falha quando não fornece um nome' do
-    admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
 
     login_as(admin)
     visit root_path
-    within 'aside' do
-      click_on 'Categorias'
+    click_on 'Dashboard'
+    within("#category") do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Nova Categoria'
     fill_in 'Nome', with: ''
@@ -36,12 +38,13 @@ describe 'Admin registra uma nova categoria' do
   end
 
   it 'e edita uma categoria com sucesso' do
-    admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
 
     login_as(admin)
     visit root_path
-    within 'aside' do
-      click_on 'Categorias'
+    click_on 'Dashboard'
+    within("#category") do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Nova Categoria'
     fill_in 'Nome', with: 'Eletrônico'
@@ -55,12 +58,13 @@ describe 'Admin registra uma nova categoria' do
   end
 
   it 'e não consegue editar uma categoria sem fornecer um nome' do
-    admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
 
     login_as(admin)
     visit root_path
-    within 'aside' do
-      click_on 'Categorias'
+    click_on 'Dashboard'
+    within("#category") do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Nova Categoria'
     fill_in 'Nome', with: 'Eletrônico'

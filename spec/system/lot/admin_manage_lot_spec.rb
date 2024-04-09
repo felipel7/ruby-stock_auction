@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin acessa um lote' do
   it 'e adiciona um produto' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
     Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -25,7 +25,10 @@ describe 'Admin acessa um lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Adicionar'
@@ -38,7 +41,7 @@ describe 'Admin acessa um lote' do
   end
 
   it 'e remove um produto' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
     lot = Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -62,7 +65,10 @@ describe 'Admin acessa um lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Remover'
@@ -72,7 +78,7 @@ describe 'Admin acessa um lote' do
   end
 
   it 'e não tem permissão para aprovar o lote que ele registrou' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
     lot = Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -85,7 +91,10 @@ describe 'Admin acessa um lote' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Aprovar Lote'
@@ -95,8 +104,8 @@ describe 'Admin acessa um lote' do
   end
 
   it 'e outro admin aprova o lote com sucesso' do
-    first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-    second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+    first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
     lot = Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -120,7 +129,10 @@ describe 'Admin acessa um lote' do
     login_as(second_admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Aprovar Lote'
@@ -130,8 +142,8 @@ describe 'Admin acessa um lote' do
   end
 
   it 'e não consegue aprovar um lote que já foi aprovado' do
-    first_admin = User.create!(email: 'Felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-    second_admin = User.create!(email: 'Maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+    first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'Felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'Maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
     lot = Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -155,13 +167,13 @@ describe 'Admin acessa um lote' do
     login_as(second_admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Aprovar Lote'
-    within 'aside' do
-      click_on 'Gerenciar Lotes'
-    end
     visit manage_admin_lot_path(lot.id)
     click_on 'Aprovar Lote'
 
@@ -171,8 +183,8 @@ describe 'Admin acessa um lote' do
   end
 
   it 'e não consegue aprovar um lote que não tem nenhum produto' do
-    first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-    second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+    first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+    second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
     Lot.create!(
       batch_code: 'EOR661430',
       start_date: 1.minute.from_now,
@@ -185,7 +197,10 @@ describe 'Admin acessa um lote' do
     login_as(second_admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Lotes'
+      click_on 'Dashboard'
+    end
+    within '#lot' do
+      click_on 'Gerenciar'
     end
     click_on 'Gerenciar'
     click_on 'Aprovar Lote'
@@ -197,8 +212,8 @@ describe 'Admin acessa um lote' do
 
   context 'encerrado' do
     it 'e não consegue aprovar um lote sem lances' do
-      first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-      second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+      first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 2.seconds.from_now,
@@ -214,7 +229,10 @@ describe 'Admin acessa um lote' do
       login_as(second_admin)
       visit root_path
       within 'aside' do
-        click_on 'Gerenciar Lotes'
+        click_on 'Dashboard'
+      end
+      within '#lot' do
+        click_on 'Gerenciar'
       end
       click_on 'Ver'
       click_on 'Validar Resultado'
@@ -223,9 +241,9 @@ describe 'Admin acessa um lote' do
     end
 
     it 'e consegue aprovar um lote com sucesso' do
-      first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-      second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
-      user = User.create!(email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
+      first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+      user = User.create!(first_name: 'joao', last_name: 'silva', email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.minute.from_now,
@@ -255,7 +273,10 @@ describe 'Admin acessa um lote' do
       login_as(second_admin)
       visit root_path
       within 'aside' do
-        click_on 'Gerenciar Lotes'
+        click_on 'Dashboard'
+      end
+      within '#lot' do
+        click_on 'Gerenciar'
       end
       click_on 'Ver'
       click_on 'Validar Resultado'
@@ -264,9 +285,9 @@ describe 'Admin acessa um lote' do
     end
 
     it 'e não consegue cancelar um lote que possui lances' do
-      first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-      second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
-      user = User.create!(email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
+      first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+      user = User.create!(first_name: 'joao', last_name: 'silva', email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.minute.from_now,
@@ -296,7 +317,10 @@ describe 'Admin acessa um lote' do
       login_as(second_admin)
       visit root_path
       within 'aside' do
-        click_on 'Gerenciar Lotes'
+        click_on 'Dashboard'
+      end
+      within '#lot' do
+        click_on 'Gerenciar'
       end
       click_on 'Ver'
       click_on 'Cancelar Lote'
@@ -305,9 +329,9 @@ describe 'Admin acessa um lote' do
     end
 
     it 'e cancela um lote com sucesso' do
-      first_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
-      second_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
-      User.create!(email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
+      first_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      second_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '09468829081', password: '123123')
+      User.create!(first_name: 'joao', last_name: 'silva', email: 'joao@gmail.com.br', cpf: '77694319054', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.minute.from_now,
@@ -336,7 +360,10 @@ describe 'Admin acessa um lote' do
       login_as(second_admin)
       visit root_path
       within 'aside' do
-        click_on 'Gerenciar Lotes'
+        click_on 'Dashboard'
+      end
+      within '#lot' do
+        click_on 'Gerenciar'
       end
       click_on 'Ver'
       click_on 'Cancelar Lote'

@@ -21,7 +21,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'o lote é criado com sucesso quando preenchido corretamente' do
-      admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
 
       lot = Lot.new(
         batch_code: 'EOR661430',
@@ -59,7 +59,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'data de encerramento não pode ser anterior a data de início' do
-      admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
       start_date_time = 1.hour.from_now
       lot = Lot.new(
         batch_code: 'EOR661430',
@@ -78,7 +78,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'o código gerado manualmente deve ter 3 letras e 6 números' do
-      admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
       lot = Lot.new(
         batch_code: 'EO6614R30',
         start_date: 1.minute.from_now,
@@ -95,7 +95,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'o código do lote deve ser único' do
-      admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
       Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.minute.from_now,
@@ -120,7 +120,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'o produto não pode estar em dois lotes ao mesmo tempo' do
-      admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
+      admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '75857986010', password: '123123')
       first_lot = Lot.create!(
         batch_code: 'HZK119066',
         start_date: 1.minute.from_now,

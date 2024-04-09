@@ -2,14 +2,17 @@ require 'rails_helper'
 
 describe 'Admin registra um novo produto' do
   it 'e envia com sucesso' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
     Category.create!(name: 'Vestuário')
     Category.create!(name: 'Eletrônicos')
 
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Produtos'
+      click_on 'Dashboard'
+    end
+    within '#product' do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Novo Produto'
     fill_in 'Nome', with: 'Monitor LG'
@@ -29,7 +32,7 @@ describe 'Admin registra um novo produto' do
   end
 
   it 'e edita com sucesso' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
     first_category = Category.create!(name: 'Vestuário')
     Category.create!(name: 'Eletrônicos')
 
@@ -48,7 +51,10 @@ describe 'Admin registra um novo produto' do
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Produtos'
+      click_on 'Dashboard'
+    end
+    within '#product' do
+      click_on 'Gerenciar'
     end
     click_on 'GZEGINJIOI'
     click_on 'Editar'
@@ -63,14 +69,17 @@ describe 'Admin registra um novo produto' do
   end
 
   it 'e falha quando tem informações incorretas' do
-    admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
     Category.create!(name: 'Vestuário')
     Category.create!(name: 'Eletrônicos')
 
     login_as(admin)
     visit root_path
     within 'aside' do
-      click_on 'Gerenciar Produtos'
+      click_on 'Dashboard'
+    end
+    within '#product' do
+      click_on 'Gerenciar'
     end
     click_on 'Cadastrar Novo Produto'
     fill_in 'Nome', with: 'Monitor LG'

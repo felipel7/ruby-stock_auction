@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário favorita um lote' do
   it 'e visualiza os lotes favoritados com sucesso' do
-    user = User.create!(email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     first_product = Product.create!(
       name: 'Monitor LG',
@@ -65,9 +65,9 @@ describe 'Usuário favorita um lote' do
   end
 
   it 'e desmarca um lote dos favoritos com sucesso' do
-    user = User.create!(email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     first_product = Product.create!(
       name: 'Monitor LG',
@@ -129,9 +129,9 @@ describe 'Usuário favorita um lote' do
   end
 
   it 'e vê recomendações de lotes que já perderam a validade' do
-    user = User.create!(email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com.br', cpf: '81140180037', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     first_product = Product.create!(
       name: 'Monitor LG',
@@ -219,8 +219,8 @@ end
 
 describe 'Admin favorita um lote' do
   it 'e recebe uma mensagem de erro' do
-    first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-    second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+    first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+    second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
     category = Category.create!(name: 'Eletrônicos')
     first_product = Product.create!(
       name: 'Monitor LG',

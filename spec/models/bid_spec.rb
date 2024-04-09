@@ -11,8 +11,8 @@ RSpec.describe Bid, type: :model do
     end
 
     it 'Valor do lance precisa ser maior que o mínimo permitido' do
-      admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-      user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+      admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+      user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.day.from_now,
@@ -30,9 +30,9 @@ RSpec.describe Bid, type: :model do
     end
 
     it 'Não deve ser possível dar lance em um lote que ainda não foi iniciado' do
-      first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-      second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-      user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+      first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+      second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+      user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.hour.from_now,
@@ -62,9 +62,9 @@ RSpec.describe Bid, type: :model do
     end
 
     it 'Não deve ser possível dar lance em um lote que já foi encerrado' do
-      first_admin = User.create!(email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
-      second_admin = User.create!(email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
-      user = User.create!(email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
+      first_admin = User.create!(first_name: 'maria', last_name: 'silva', email: 'maria@leilaodogalpao.com.br', cpf: '03507869098', password: '123123')
+      second_admin = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@leilaodogalpao.com.br', cpf: '14367226085', password: '123123')
+      user = User.create!(first_name: 'felipe', last_name: 'silva', email: 'felipe@gmail.com', cpf: '70587229004', password: '123123')
       lot = Lot.create!(
         batch_code: 'EOR661430',
         start_date: 1.hour.from_now,
