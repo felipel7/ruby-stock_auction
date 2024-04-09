@@ -78,6 +78,58 @@ Este projeto consiste no desenvolvimento de uma aplicação web utilizando Ruby 
 
 A aplicação possui dois tipos de usuários: regulares e administradores. Os usuários regulares podem se cadastrar utilizando qualquer endereço de e-mail, enquanto os administradores devem se cadastrar com um e-mail do domínio _"leilaodogalpao.com.br"_. Além do e-mail, todos os usuários devem fornecer um CPF único e válido para realizar o cadastro.
 
+<br />
+<br />
+
+<details>
+  <summary>Tela de login:</summary>
+
+  <img alt="criar conta" src="docs/media/login.png" />
+</details>
+
+<details>
+  <summary>Tela de cadastro:</summary>
+
+  <img alt="criar conta" src="docs/media/criarconta.png" />
+</details>
+
+<br />
+<br />
+
+### Dashboard para Admin
+
+O administrador possui um painel com várias opções, permitindo-lhe gerenciar produtos, categorias, usuários e lotes.
+
+<br />
+
+Tela do admin:
+
+<img alt="dashboard" src="docs/media/dashboard.png" />
+
+<details>
+  <summary>Tela gerenciar produtos:</summary>
+
+  <img alt="produtos" src="docs/media/admin_produtos.png" />
+</details>
+<details>
+  <summary>Tela gerenciar usuários:</summary>
+
+  <img alt="usuários" src="docs/media/admin_usuarios.png" />
+</details>
+<details>
+  <summary>Tela gerenciar lotes:</summary>
+
+  <img alt="lotes" src="docs/media/admin_lotes.png" />
+</details>
+<details>
+  <summary>Tela gerenciar categorias:</summary>
+
+  <img alt="categorias" src="docs/media/admin_categorias.png" />
+</details>
+
+<br />
+<br />
+
 ### Status dos Lotes
 
 Os lotes possuem diferentes status que determinam suas permissões e ações disponíveis:
@@ -92,6 +144,9 @@ Os lotes possuem diferentes status que determinam suas permissões e ações dis
 
   - **Cancelado**: Caso nenhum lance tenha sido registrado no lote, ele será marcado como "Cancelado". Isso indica que o lote foi encerrado sem nenhum lance registrado.
 
+<br />
+<br />
+
 ### Lances
 
 Na aplicação, os usuários têm a opção de realizar lances em lotes específicos. No entanto, existem algumas restrições e informações relevantes relacionadas aos lances:
@@ -100,25 +155,28 @@ Na aplicação, os usuários têm a opção de realizar lances em lotes específ
 
 - Um usuário não pode fazer um lance se o último lance registrado for dele mesmo. Isso evita que um usuário aumente o valor do seu próprio lance ou que ele de lances duplicados sem querer.
 
-> Imagem da tela de lances:
->
->  <img alt="lances" src="docs/media/lances.png" />
-
 - O usuário pode visualizar todas os lances que deu na tela de lances. Essa tela apresenta duas informações principais:
 
   - **Todos os lances que o usuário está ganhando**, ou seja, será mostrado todos os lotes que o usuário está vencendo/venceu, independentemente se o lote esteja encerrado ou não.
   - **Todos os lances** dados pelo usuário, incluindo lances em lotes que ele ganhou e lotes em que foi superado por outros lances.
 
-> Imagem da tela de histórico de lances:
->
->  <img alt="histórico de lances" src="docs/media/historico-lances.png" />
+<br />
+Imagem da tela de dar lances:
+
+<img alt="lances" src="docs/media/lance.png" />
+
+<br />
+
+<details>
+  <summary>Imagem da tela de histórico de lances:</summary>
+
+  <img alt="histórico de lances" src="docs/media/lances.png" />
+</details>
 
 <br>
 <br>
 
-## 🏗️ Arquitetura do Projeto
-
-Durante o desenvolvimento deste projeto, enfrentei desafios decorrentes de decisões iniciais inadequadas. Como não tinha experiência prévia com bancos de dados, cometi erros na escolha dos modelos, o que resultou em dificuldades ao longo do processo de desenvolvimento para alcançar a funcionalidade desejada. Embora esteja satisfeito com o progresso alcançado até o momento, reconheço que podem haver áreas que precisam ser melhoradas.
+### 🛠️ Esquema do Banco de Dados
 
 Tabelas:
 
@@ -236,6 +294,8 @@ git clone https://github.com/felipel7/ruby-treinadev-stock_auction.git
 ```bash
 # Na pasta raiz, digite o comando:
 bundle install
+
+yarn install
 ```
 
 3. Configurar o banco de dados:
